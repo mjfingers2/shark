@@ -23531,6 +23531,12 @@
       "cleanup": "하루 지난 빈 세션 자동 정리",
       "on": "켜짐",
       "off": "꺼짐"
+    },
+    "launchFolder": {
+      "title": "어느 폴더에서 작업할까요?",
+      "description": "최근 폴더를 고르거나 다른 폴더를 여세요.",
+      "descriptionEmpty": "시작할 폴더를 여세요.",
+      "pickOther": "다른 폴더 열기"
     }
   }
 }

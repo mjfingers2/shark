@@ -25836,6 +25836,12 @@
       "cleanup": "Clear empty sessions after a day",
       "on": "On",
       "off": "Off"
+    },
+    "launchFolder": {
+      "title": "Which folder do you want to work in?",
+      "description": "Pick a recent folder or open another one.",
+      "descriptionEmpty": "Open a folder to start.",
+      "pickOther": "Open another folder"
     }
   }
 }
