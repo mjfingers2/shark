@@ -30,7 +30,7 @@ export function buildConversationNamePrompt(
 ): string {
   const firstPrompt = clampConversationNameFirstPrompt(context.firstPrompt)
   const basePrompt = `${CONVERSATION_NAME_PROMPT_OPENING}
-Write a short, specific title of at most ${MAX_GENERATED_NAME_LENGTH} characters.
+Write a short, specific title of at most ${MAX_GENERATED_NAME_LENGTH} characters that says what the request is about, in the same language as the request.
 Output only the title, with no heading, quotes, or explanation.
 
 First request:

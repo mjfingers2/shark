@@ -229,28 +229,18 @@ export function ensureWorktreeHasInitialTerminal(
   if (templatedTabId) {
     return templatedTabId
   }
-  if (
-    opts?.seedUserDefaultSurface === true &&
-    !hasExplicitLaunchWork &&
-    opts.activateCreatedTabs !== false
-  ) {
+  if (!hasExplicitLaunchWork) {
+    // Shark is chat-first: an empty workspace opens the default agent's chat, never a bare
+    // shell. Terminals are opened on purpose from the tab bar.
+    if (opts?.activateCreatedTabs === false || opts?.seedUserDefaultSurface === false) {
+      return null
+    }
     const defaultChat = openDefaultAgentChatInEmptyWorkspace(
       worktreeId,
-      () =>
-        ensureWorktreeHasInitialTerminal(
-          store,
-          worktreeId,
-          startup,
-          setup,
-          issueCommand,
-          defaultTabs,
-          { ...opts, seedUserDefaultSurface: false }
-        ) !== null,
-      opts.initialCwd
+      () => false,
+      opts?.initialCwd
     )
-    if (defaultChat) {
-      return defaultChat.primaryTabId
-    }
+    return defaultChat?.primaryTabId ?? null
   }
 
   // Activation-created PTY spawns must not count as activity and reshuffle Recent.

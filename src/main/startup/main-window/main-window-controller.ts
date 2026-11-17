@@ -1,3 +1,4 @@
+import { APP_DISPLAY_NAME } from '../../../shared/app-display-name'
 import { app, type BrowserWindow } from 'electron'
 import { createMainWindow, loadMainWindow } from '../../window/createMainWindow'
 import {
@@ -149,7 +150,7 @@ export async function openMainWindow(options: MainWindowOpenOptions = {}): Promi
     deferLoad: true,
     ...(options.revealOnDidFinishLoad === true ? { revealOnDidFinishLoad: true } : {}),
     revealInBackground,
-    title: state.devInstanceIdentity?.name ?? app.name,
+    title: state.devInstanceIdentity?.name ?? APP_DISPLAY_NAME,
     getKeybindings: () => keybindings.getOverrides(),
     onBeforeReload: ({ ignoreCache, webContentsId }) => {
       if (state.mainWindow?.webContents.id === webContentsId) {

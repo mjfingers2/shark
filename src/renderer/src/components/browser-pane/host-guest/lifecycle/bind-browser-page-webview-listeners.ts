@@ -19,6 +19,11 @@ import type { AttachBrowserPageWebviewArgs } from './attach-browser-page-webview
 import { createBrowserPageWebviewGuestSession } from './browser-page-webview-guest-session'
 import { createBrowserPageWebviewLoadingHandlers } from './browser-page-webview-loading-handlers'
 import { createBrowserPageWebviewNavigationHandlers } from './browser-page-webview-navigation-handlers'
+import {
+  clearBrowserPageErrors,
+  isConsoleErrorLevel,
+  recordBrowserPageError
+} from '@/lib/browser/page-errors/browser-page-errors'
 
 export function bindBrowserPageWebviewListeners({
   container,
@@ -150,9 +155,21 @@ export function bindBrowserPageWebviewListeners({
   // Why: close find only on full 'did-navigate', not the shared handler, which also fires on SPA in-page hash/pushState changes.
   const handleFindCloseOnNavigate = (): void => {
     setFindOpen(false)
+    clearBrowserPageErrors(browserTabId)
     const recovery = recoveryNavigationValidationRef.current
     if (recovery?.started) {
       recovery.committed = true
+    }
+  }
+
+  // Shark: page errors feed the toolbar's "send errors to the agent" chip.
+  const handlePageConsoleError = (event: Electron.ConsoleMessageEvent): void => {
+    if (isConsoleErrorLevel(event.level)) {
+      recordBrowserPageError(browserTabId, {
+        message: event.message,
+        source: event.sourceId,
+        line: event.line
+      })
     }
   }
 
@@ -160,6 +177,7 @@ export function bindBrowserPageWebviewListeners({
   webview.addEventListener('page-favicon-updated', handleFaviconUpdate)
   webview.addEventListener('did-fail-load', handleFailLoad)
   webview.addEventListener('console-message', handleAnnotationViewportMessage)
+  webview.addEventListener('console-message', handlePageConsoleError)
 
   const unsubscribeMetadata = subscribeBrowserGuestMetadata(browserTabId, webview, (metadata) => {
     if (!metadata || metadata.kind === 'retired') {
@@ -240,6 +258,7 @@ export function bindBrowserPageWebviewListeners({
     webview.removeEventListener('page-favicon-updated', handleFaviconUpdate)
     webview.removeEventListener('did-fail-load', handleFailLoad)
     webview.removeEventListener('console-message', handleAnnotationViewportMessage)
+    webview.removeEventListener('console-message', handlePageConsoleError)
     container.removeEventListener('dragover', onContainerDragOver)
     container.removeEventListener('drop', onContainerDrop)
     unsubscribeSystemResumed()

@@ -69,12 +69,12 @@ describe('resolveWorkspaceCleanupPolicy', () => {
     })
   })
 
-  it('treats settings without cleanup rules as every rule off', () => {
+  it('clears only empty sessions when settings have no cleanup rules', () => {
     expect(resolveWorkspaceCleanupPolicy({}, undefined)).toEqual({
       source: 'global',
       rules: {
         merged: { enabled: false },
-        unchanged: { enabled: false, afterDays: 1 },
+        unchanged: { enabled: true, afterDays: 1 },
         inactive: { enabled: false, afterDays: 30, action: 'archive' },
         automationRuns: { enabled: false },
         orchestrationWorkers: { enabled: false },

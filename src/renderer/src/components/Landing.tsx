@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react'
-import { AlertTriangle, ExternalLink, FolderPlus, GitBranchPlus, Star, X } from 'lucide-react'
+import { AlertTriangle, ExternalLink, FolderPlus, MessageSquarePlus, Star, X } from 'lucide-react'
 import { cn } from '../lib/class-names'
 import { useAppStore } from '../store/index'
 import { isGitRepoKind } from '../../../shared/repo-kind'
@@ -16,8 +16,10 @@ import { hasGitHubBackedProject, type PreflightIssue } from './landing-preflight
 import { useLandingPreflightRuntime } from './landing-preflight-runtime'
 import { useLandingOrcaStarState, type LandingStarState } from './landing-github-star-state'
 import { openAppHttpLink } from '@/lib/browser/navigation/app-http-link-open'
+import { pickNewProject, startNewSession } from './sidebar/one-click-start'
 import {
   LANDING_ACTION_BUTTON_CLASS,
+  LANDING_PRIMARY_BUTTON_CLASS,
   LandingBrand,
   LandingShortcutList,
   type LandingShortcutItem
@@ -216,7 +218,6 @@ function PreflightBanner({
 export default function Landing(): React.JSX.Element {
   const t = useTranslate()
   const repos = useAppStore((s) => s.repos)
-  const openModal = useAppStore((s) => s.openModal)
 
   const createActionLabel =
     repos.length > 0 && repos.every((repo) => isGitRepoKind(repo))
@@ -260,25 +261,23 @@ export default function Landing(): React.JSX.Element {
 
           <p className="text-sm text-muted-foreground text-center">
             {hasProjects
-              ? t(
-                  'auto.components.Landing.9c00bd4adf',
-                  'Select a workspace from the sidebar to begin.'
-                )
-              : t('auto.components.Landing.cd21242762', 'Add a project to get started.')}
+              ? t('landing.oneClick.hintWithProjects', 'Start a new session in this project.')
+              : t('landing.oneClick.hintEmpty', 'Pick a folder to start.')}
           </p>
 
           <div className="flex items-center justify-center gap-2.5 flex-wrap">
-            <button className={LANDING_ACTION_BUTTON_CLASS} onClick={() => openModal('add-repo')}>
-              <FolderPlus className="size-3.5" />
-              {t('auto.components.Landing.f9eaa9e12d', 'Add project')}
-            </button>
-
+            {hasProjects ? (
+              <button className={LANDING_PRIMARY_BUTTON_CLASS} onClick={startNewSession}>
+                <MessageSquarePlus className="size-4" />
+                {t('sidebar.oneClick.newSession', 'New session')}
+              </button>
+            ) : null}
             <button
-              className={LANDING_ACTION_BUTTON_CLASS}
-              onClick={() => openModal('new-workspace-composer', { telemetrySource: 'unknown' })}
+              className={hasProjects ? LANDING_ACTION_BUTTON_CLASS : LANDING_PRIMARY_BUTTON_CLASS}
+              onClick={pickNewProject}
             >
-              <GitBranchPlus className="size-3.5" />
-              {createActionLabel}
+              <FolderPlus className={hasProjects ? 'size-3.5' : 'size-4'} />
+              {t('sidebar.oneClick.newProject', 'New project')}
             </button>
           </div>
 

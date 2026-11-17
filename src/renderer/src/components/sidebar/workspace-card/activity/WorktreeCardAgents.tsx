@@ -13,6 +13,7 @@ import { useUiLanguageRevision } from '@/i18n/use-ui-language-revision'
 import { opensClaudeParentConversation } from '@/lib/agent-session/navigation/claude-agent-row-view'
 import { ChildAgentsWithIdleGroup } from './worktree-card-idle-child-agents'
 import { useWorktreeAgentListModel } from './use-worktree-agent-list-model'
+import { WorktreeCardClaudeUsage } from './WorktreeCardClaudeUsage'
 
 type Props = {
   worktreeId: string
@@ -267,6 +268,9 @@ const WorktreeCardAgentsBody = React.memo(function WorktreeCardAgentsBody({
               compactRootListExpanded && 'compact-agent-summary-panel-expanded'
             )}
           >
+            {summaryAgents.some((agent) => agent.agentType === 'claude') ? (
+              <WorktreeCardClaudeUsage />
+            ) : null}
             <CompactAgentSummaryButton
               agents={summaryAgents}
               subjectLabel={subjectLabel}

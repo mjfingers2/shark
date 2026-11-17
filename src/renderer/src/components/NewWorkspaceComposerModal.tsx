@@ -44,6 +44,8 @@ import '@/components/sidebar/workspace-creation/folder/folder-workspace-source-r
 import { getFolderWorkspacePrimaryActionLabel } from '@/components/sidebar/workspace-creation/folder/folder-workspace-source-selection'
 import { useAgentMenuObservation } from '@/components/tab-bar/use-new-tab-agent-menu-rows'
 import { addAppKeyListener, removeAppKeyListener } from '@/lib/keyboard/app-keyboard-router'
+import { cn } from '@/lib/class-names'
+import { useComposerAutoSubmit } from './new-workspace/composer/use-composer-auto-submit'
 
 // Keep Add Project’s clone/SSH machinery outside the composer entry render, matching App loading.
 const HostedAddRepoDialog = lazyWithRetry(
@@ -85,12 +87,18 @@ function ComposerModalBody({
     onClose()
   }, [onClose])
   const isSubmissionCancelled = useCallback(() => submitCancelledRef.current, [])
+  const [autoSubmitHidden, setAutoSubmitHidden] = useState(modalData.autoSubmit === true)
+  const revealComposer = useCallback(() => setAutoSubmitHidden(false), [])
 
   return (
     <Dialog open onOpenChange={(open) => !open && handleDismiss()}>
       <DialogContent
         ref={dialogRef}
-        className="flex max-h-[calc(100vh-2rem)] flex-col overflow-hidden sm:max-w-lg"
+        overlayClassName={autoSubmitHidden ? 'opacity-0' : undefined}
+        className={cn(
+          'flex max-h-[calc(100vh-2rem)] flex-col overflow-hidden sm:max-w-lg',
+          autoSubmitHidden && 'pointer-events-none opacity-0'
+        )}
         onEscapeKeyDown={(event) => {
           if (dialogRef.current?.querySelector('[data-sparse-preset-editor]')) {
             event.preventDefault()
@@ -107,6 +115,7 @@ function ComposerModalBody({
           modalData={modalData}
           onClose={onClose}
           isSubmissionCancelled={isSubmissionCancelled}
+          onAutoSubmitStalled={revealComposer}
           active
         />
       </DialogContent>
@@ -118,11 +127,13 @@ function QuickTabBody({
   modalData,
   onClose,
   isSubmissionCancelled,
+  onAutoSubmitStalled,
   active
 }: {
   modalData: ComposerModalData
   onClose: () => void
   isSubmissionCancelled: () => boolean
+  onAutoSubmitStalled: () => void
   active: boolean
 }): React.JSX.Element {
   const t = useTranslate()
@@ -283,6 +294,7 @@ function QuickTabBody({
     modalData,
     cardProps
   ])
+  useComposerAutoSubmit(modalData.autoSubmit, createDisabled, handleCreate, onAutoSubmitStalled)
   const {
     addProjectOpen,
     addProjectMounted,

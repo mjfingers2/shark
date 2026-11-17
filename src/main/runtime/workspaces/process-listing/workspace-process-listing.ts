@@ -247,13 +247,13 @@ export abstract class OrcaRuntimeWithGetWorktreePs extends RuntimeChatWorkerEven
             const target = await this.resolveRuntimeFileTarget(`id:${workspaceId}`)
             return { path: target.worktree.path, executionHostId: target.executionHostId }
           },
-          getAgentEnvResolvers: () => this.getCommitMessageAgentEnvironmentResolvers(),
           resolveNamingEnvironment: (agent) =>
             resolveHostStructuredAgentLaunchEnvironment(agent, this.requireStore().getSettings()),
           workerTaskTitle: (record) =>
             structuredWorkerOpenTaskTitle(this.getOrchestrationDbIfAvailable?.() ?? null, record),
           retitleOpenTab: (workspaceId, sessionId) =>
-            this.refreshStructuredConversationTabTitle(workspaceId, sessionId)
+            this.refreshStructuredConversationTabTitle(workspaceId, sessionId),
+          host: this
         },
         logger
       )

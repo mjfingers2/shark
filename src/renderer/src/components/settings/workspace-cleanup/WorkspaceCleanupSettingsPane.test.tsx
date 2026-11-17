@@ -41,6 +41,8 @@ function mount(enabled = false) {
   const settings = getDefaultSettings('/preview')
   settings.workspaceCleanupPolicy = {
     ...getDefaultWorkspaceCleanupRules(),
+    // Start from every rule off; Shark's default turns the unchanged rule on.
+    unchanged: { enabled: false, afterDays: 1 },
     inactive: { enabled, afterDays: 30, action: 'delete' }
   }
   useAppStore.setState({

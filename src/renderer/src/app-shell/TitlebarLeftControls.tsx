@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, MoreHorizontal, PanelLeft } from 'lucide-react'
 import logo from '../../../../resources/logo.svg'
+import { APP_DISPLAY_NAME } from '../../../shared/app-display-name'
 import { useTranslate } from '@/i18n/use-translate'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import {
@@ -65,8 +66,9 @@ export function TitlebarLeftControls({ layout }: { layout: AppChromeLayout }): R
         {layout.showSidebar && !hasCustomTitleBar && layout.showTitlebarAppName && (
           <ContextMenu>
             <ContextMenuTrigger asChild>
-              <div className="titlebar-app-name" aria-label={t('auto.App.5096cbbc86', 'Orca')}>
-                <span className="titlebar-app-name-main">{t('auto.App.5096cbbc86', 'Orca')}</span>
+              <div className="titlebar-app-name" aria-label={APP_DISPLAY_NAME}>
+                <img src={logo} alt="" aria-hidden className="titlebar-app-name-logo" />
+                <span className="titlebar-app-name-main">{APP_DISPLAY_NAME}</span>
               </div>
             </ContextMenuTrigger>
             <ContextMenuContent>

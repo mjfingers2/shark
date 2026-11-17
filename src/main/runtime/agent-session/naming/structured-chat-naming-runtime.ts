@@ -9,7 +9,6 @@ import { chatNamingAgentTarget } from './structured-chat-naming-agent-launch'
 import type { AgentLaunchProfileSettings } from '../../../../shared/agent-launch/choices/tui-agent-launch-defaults'
 import { chatNamingFailure } from '../../../../shared/chat-naming-failure-copy'
 import { LOCAL_EXECUTION_HOST_ID, type ExecutionHostId } from '../../../../shared/execution-host'
-import type { CommitMessageAgentEnvironmentResolvers } from '../../../text-generation/execution/commit-message-agent-environment'
 import type { StructuredChatNamingDeps } from '../../../native-chat/conversation-naming/structured-chat-naming-types'
 import type { StructuredAgentSessionLogger } from '../../../native-chat/agent-session-wire/host/structured-agent-session-logger'
 import { getStructuredAgentSessionHost } from '../../../native-chat/agent-session-wire/host/structured-agent-session-registry'
@@ -19,19 +18,22 @@ import {
   resolveCommitMessageSettings as resolveTextGenerationParams
 } from '../../../text-generation/commit-message-text-generation'
 import { resolveGenerationTarget } from '../../../agent-hooks/first-work/first-work-generation-target'
+import { firstWorkRenameDeps } from '../../../agent-hooks/first-work/first-work-rename-runtime'
+import { followFirstChatTitle } from '../../../agent-hooks/first-work/session-title-from-chat'
 
 type StructuredChatNamingRuntime = {
   resolveWorkspace: (
     workspaceId: string
   ) => Promise<{ path: string; executionHostId: ExecutionHostId }>
   resolveNamingEnvironment: (agent: string) => Promise<Record<string, string>>
-  getAgentEnvResolvers: () => CommitMessageAgentEnvironmentResolvers | undefined
   workerTaskTitle: StructuredChatNamingDeps['workerTaskTitle']
   retitleOpenTab: StructuredChatNamingDeps['onNamed']
+  /** Supplies agent environments, and lets the session card take its first chat's title. */
+  host: Parameters<typeof firstWorkRenameDeps>[1]
 }
 
 export function structuredChatNamingDeps(
-  getStore: () => {
+  getStore: () => Parameters<typeof firstWorkRenameDeps>[0] & {
     getSettings: () => Parameters<typeof resolveTextGenerationParams>[0] &
       AgentLaunchProfileSettings &
       ReturnType<StructuredChatNamingDeps['getSettings']>
@@ -134,7 +136,9 @@ export function structuredChatNamingDeps(
             runtime.resolveNamingEnvironment,
             current
           )
-        : await resolveGenerationTarget(workspace.path, settings.params.agentId, runtime)
+        : await resolveGenerationTarget(workspace.path, settings.params.agentId, {
+            getAgentEnvResolvers: () => runtime.host.getCommitMessageAgentEnvironmentResolvers()
+          })
       if (!target) {
         const failure = chatNamingFailure('noAgentAvailable')
         logger.warn(failure.error, log)
@@ -164,6 +168,13 @@ export function structuredChatNamingDeps(
         })
       }
       runtime.retitleOpenTab(workspaceId, sessionId)
+      try {
+        const record = getStructuredAgentSessionHost()?.deps.store.getRecord(sessionId)
+        const titleDeps = firstWorkRenameDeps(getStore(), runtime.host)
+        followFirstChatTitle(workspaceId, sessionId, record?.conversationName, titleDeps)
+      } catch (error) {
+        logger.warn('Session title update failed', { scope: 'conversation-name', sessionId, error })
+      }
     },
     logger
   }

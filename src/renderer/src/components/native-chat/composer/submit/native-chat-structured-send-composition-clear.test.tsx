@@ -24,6 +24,9 @@ vi.mock('../controls/NativeChatComposerActions', () => ({
     return <div data-testid="composer-actions" />
   }
 }))
+vi.mock('../controls/NativeChatComposerDictationButton', () => ({
+  NativeChatComposerDictationButton: () => null
+}))
 vi.mock('../pickers/NativeChatAutocompleteMenus', () => ({
   NativeChatMentionMenu: () => null,
   NativeChatPickerMenu: () => null

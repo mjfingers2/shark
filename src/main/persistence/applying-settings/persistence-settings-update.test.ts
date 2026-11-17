@@ -136,16 +136,16 @@ describe('Store', () => {
       ]
     })
     const store = await createStore()
-    const offRules = {
+    const defaultRules = {
       merged: { enabled: false },
-      unchanged: { enabled: false, afterDays: 1 },
+      unchanged: { enabled: true, afterDays: 1 },
       inactive: { enabled: false, afterDays: 30, action: 'archive' },
       automationRuns: { enabled: false },
       orchestrationWorkers: { enabled: false },
       keepWhen: 'any-local-files'
     }
     expect(store.getSettings().workspaceCleanupPolicy).toEqual({
-      ...offRules,
+      ...defaultRules,
       merged: { enabled: true }
     })
     expect(store.getRepo('r1')?.workspaceCleanupPolicy).toEqual({ mode: 'off' })
@@ -156,7 +156,7 @@ describe('Store', () => {
       workspaceCleanupPolicy: { inactive: { enabled: true, action: 'delete', afterDays: 'soon' } }
     })
     expect(store.getSettings().workspaceCleanupPolicy).toEqual({
-      ...offRules,
+      ...defaultRules,
       inactive: { enabled: true, afterDays: 30, action: 'delete' }
     })
 

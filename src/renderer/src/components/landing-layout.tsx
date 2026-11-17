@@ -12,13 +12,16 @@ export type LandingShortcutItem = {
 export const LANDING_ACTION_BUTTON_CLASS =
   'inline-flex items-center gap-1.5 bg-secondary/70 border border-border/80 text-foreground font-medium text-sm px-4 py-2 rounded-md cursor-pointer hover:bg-accent transition-colors'
 
+export const LANDING_PRIMARY_BUTTON_CLASS =
+  'inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold text-[15px] px-6 py-2.5 rounded-lg cursor-pointer shadow-lg shadow-primary/25 hover:bg-primary/90 transition-colors'
+
 export function LandingBrand(): React.JSX.Element {
   const t = useTranslate()
   return (
     <>
       <div
         className="flex items-center justify-center size-20 rounded-2xl border border-border/80 shadow-lg shadow-black/40"
-        style={{ backgroundColor: '#12181e' }}
+        style={{ backgroundColor: '#12264a' }}
       >
         <img
           src={logo}
@@ -27,7 +30,7 @@ export function LandingBrand(): React.JSX.Element {
         />
       </div>
       <h1 className="text-4xl font-bold text-foreground tracking-tight">
-        {t('auto.components.Landing.6ca6ff404e', 'ORCA')}
+        {t('auto.components.Landing.6ca6ff404e', 'SHARK')}
       </h1>
     </>
   )

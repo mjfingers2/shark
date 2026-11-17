@@ -68,6 +68,8 @@ it('projects one capable source through cold, deadline, late, failed-refresh and
     useAppStore.setState((state) => ({
       settings: {
         ...state.settings!,
+        // These launches are checked as terminal startups; Shark's default surface is chat.
+        agentDefaultSurface: 'terminal',
         agentDefaultArgs: { claude: '--verbose' },
         agentDefaultEnv: { claude: { KEEP: 'caller' } }
       },

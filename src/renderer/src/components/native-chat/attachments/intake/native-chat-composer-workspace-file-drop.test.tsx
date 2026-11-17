@@ -60,6 +60,9 @@ vi.mock(
     isRemoteRuntimePtyId: () => testState.targetIsRemoteRuntime
   })
 )
+vi.mock('../../composer/controls/NativeChatComposerDictationButton', () => ({
+  NativeChatComposerDictationButton: () => null
+}))
 vi.mock('../../composer/controls/NativeChatComposerActions', () => ({
   NativeChatComposerActions: () => <div data-testid="composer-actions" />
 }))

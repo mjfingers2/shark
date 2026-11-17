@@ -1,6 +1,11 @@
 import { issueBrowserGuestNavigation } from '../host-guest/metadata/browser-guest-metadata-cache'
 import type { Dispatch, RefObject, SetStateAction } from 'react'
 import { ArtifactPublishButton } from '@/components/artifacts/ArtifactPublishButton'
+import {
+  BrowserPageErrorsChip,
+  BrowserPhoneViewButton
+} from './address-bar/browser-shark-address-actions'
+import { useBrowserPageAnnotateRequests } from '@/lib/browser/shark-grab-request'
 import { useShortcutLabel } from '@/hooks/useShortcutLabel'
 import { useAppStore } from '@/store/index'
 import type { BrowserReloadTrigger } from '../navigate/browser-reload-action'
@@ -130,6 +135,7 @@ export function BrowserPageToolbar({
   externalUrl: string | null
 }): React.JSX.Element {
   const annotateElementShortcut = useShortcutLabel('browser.annotateElement')
+  useBrowserPageAnnotateRequests(browserPageId, () => startGrabIntent('annotate'))
   const browserTourStep = useAppStore((state) =>
     state.activeContextualTourId === 'browser' ? state.activeContextualTourStepIndex : null
   )
@@ -199,6 +205,15 @@ export function BrowserPageToolbar({
           trailing={
             <>
               <BrowserPasswordSaveButton browserPageId={browserPageId} isActive={isActive} />
+              <BrowserPageErrorsChip
+                browserPageId={browserPageId}
+                worktreeId={worktreeId}
+                url={currentBrowserUrl}
+              />
+              <BrowserPhoneViewButton
+                browserPageId={browserPageId}
+                viewportPresetId={viewportPresetId}
+              />
               <BrowserPageStateChips
                 browserPageId={browserPageId}
                 url={currentBrowserUrl}

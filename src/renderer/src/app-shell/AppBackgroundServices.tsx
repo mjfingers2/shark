@@ -3,6 +3,7 @@ import { lazyWithRetry as lazy } from '@/app-shell/startup/lazy-with-retry'
 import { AgentHibernationGate } from '../components/AgentHibernationGate'
 import { AiVaultTabTitleSyncGate } from '../components/AiVaultTabTitleSyncGate'
 import { WorkspacePortScanner } from '../components/ports/WorkspacePortScanner'
+import { WorkspacePortAutoPreview } from '../components/ports/WorkspacePortAutoPreview'
 import { SavedHostScopeWidenGate } from '../components/sidebar/worktree-list/listing/SavedHostScopeWidenGate'
 import { MacosTccPromptNoticeHost } from '../hooks/MacosTccPromptNoticeHost'
 import { RemoteHostBrowserControlNoticeHost } from '../components/browser-pane/remote-host-control/RemoteHostBrowserControlNoticeHost'
@@ -23,6 +24,7 @@ const AgentListVerdictPublisher = lazy(
 /** Isolate high-churn subscriptions from App rendering; services outlive their consuming surfaces. */
 export function AppBackgroundServices(): React.JSX.Element {
   const workspaceSessionReady = useAppStore((s) => s.workspaceSessionReady)
+  const autoPreviewEnabled = useAppStore((s) => s.settings?.browserAutoPreviewEnabled !== false)
   const dashboardPopoutEnabled = useAppStore(
     (s) => s.settings?.experimentalAgentDashboardPopout === true
   )
@@ -34,6 +36,7 @@ export function AppBackgroundServices(): React.JSX.Element {
     <>
       <NativeChatVisualGuestThemePublisher />
       <WorkspacePortScanner enabled={workspaceSessionReady} />
+      <WorkspacePortAutoPreview enabled={workspaceSessionReady && autoPreviewEnabled} />
       <ActiveWorkspaceSyncGate />
       {/* Keep permission notices available across app surfaces. */}
       <MacosTccPromptNoticeHost />

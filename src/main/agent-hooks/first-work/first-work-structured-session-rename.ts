@@ -21,7 +21,8 @@ export function maybeAutoRenameWorkspaceOnFirstStructuredTurn(
       state: 'working',
       prompt: summary.latestPrompt,
       assistantMessage: undefined,
-      isReplay: options.replay
+      isReplay: options.replay,
+      titleFromChat: true
     },
     deps
   )

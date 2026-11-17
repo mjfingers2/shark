@@ -75,6 +75,8 @@
   --color-chat-inline-code-border: var(--chat-inline-code-border);
   --color-chat-composer-surface: var(--chat-composer-surface);
   --color-chat-composer-border: var(--chat-composer-border);
+  --color-chat-composer-accent: var(--chat-composer-accent);
+  --color-usage-meter: var(--usage-meter);
   --color-chat-warning: var(--chat-warning);
   --color-chat-diff-added: var(--chat-diff-added);
   --color-chat-diff-removed: var(--chat-diff-removed);
@@ -813,6 +815,10 @@ body[data-modal-overlay-open]
     var(--chat-source-foreground) var(--chat-composer-border-mix),
     transparent
   );
+  /* Focused composer edge and Send: Shark's blue point color. */
+  --chat-composer-accent: #3b82f6;
+  /* Plan usage bars in the sidebar, in the Claude Code blue. */
+  --usage-meter: var(--color-blue-500);
   /* From the chat's own foreground, so the edges stay visible when chat follows the terminal's colors. */
   --question-card-border: color-mix(
     in srgb,
@@ -4082,4 +4088,63 @@ body:has([data-contextual-tour-target='tab-create-menu'][data-state='open'])
   .browser-agent-cursor-layer[data-agent-active]::before {
     animation: none;
   }
+}
+
+/* Shark: blue point color everywhere, navy surfaces in dark mode. Last in the file so it wins over the base palette. */
+:root {
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --ring: #3b82f6;
+  --sidebar-primary: #2563eb;
+  --unread: #2563eb;
+}
+
+.dark {
+  --background: #0a1324;
+  --editor-surface: #0c172b;
+  --foreground: #e3ebf7;
+  --card: #0f1c33;
+  --card-foreground: #e3ebf7;
+  --popover: #0f1c33;
+  --popover-foreground: #e3ebf7;
+  --floating-surface: rgba(6, 12, 26, 0.72);
+  --dialog-surface: rgba(15, 28, 51, 0.96);
+  --orca-security-dialog-surface: rgba(15, 28, 51, 0.96);
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #16243d;
+  --secondary-foreground: #e3ebf7;
+  --muted: #16243d;
+  --muted-foreground: #8da2c0;
+  --accent: #1c2f50;
+  --accent-foreground: #e3ebf7;
+  --border: rgb(148 180 230 / 0.1);
+  --input: rgb(148 180 230 / 0.18);
+  --ring: #3b82f6;
+  --unread: #60a5fa;
+  --worktree-sidebar: #0d1a30;
+  --worktree-sidebar-foreground: #e3ebf7;
+  --worktree-sidebar-accent: #172947;
+  --worktree-sidebar-accent-foreground: #e3ebf7;
+  --worktree-sidebar-border: rgb(148 180 230 / 0.1);
+  --worktree-sidebar-ring: #3b82f6;
+  --sidebar: #0b1729;
+  --sidebar-foreground: #e3ebf7;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #16243d;
+  --sidebar-accent-foreground: #e3ebf7;
+  --sidebar-border: rgb(148 180 230 / 0.1);
+  --sidebar-ring: #3b82f6;
+  --split-divider: #2a3f63;
+  --split-divider-hover: #4a6491;
+}
+
+.titlebar-app-name-logo {
+  height: 12px;
+  opacity: 0.85;
+}
+
+:root:not(.dark) .titlebar-app-name-logo {
+  filter: invert(1);
 }

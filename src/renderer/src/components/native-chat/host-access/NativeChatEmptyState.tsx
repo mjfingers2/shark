@@ -1,4 +1,5 @@
 import { MessageSquare, TriangleAlert } from 'lucide-react'
+import { AgentTypeIcon } from '@/components/agent/icons/agent-type-icon'
 import { translate } from '@/i18n/i18n'
 import { useTranslate, type Translate } from '@/i18n/use-translate'
 import { formatAgentTypeLabel } from '../../../../../shared/agent-status/presentation/agent-type-label'
@@ -21,6 +22,18 @@ export function NativeChatEmptyState({
   retrying?: boolean
 }): React.JSX.Element {
   const t = useTranslate()
+  if (kind === 'empty') {
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center gap-7 p-6 text-center">
+        <AgentTypeIcon agentType={agent} size={72} className="opacity-45 grayscale" />
+        <h2 className="text-balance text-2xl leading-snug font-medium tracking-tight text-chat-foreground-strong">
+          {t('components.native-chat.state.empty.greeting', 'Good to see you.')}
+          <br />
+          {t('components.native-chat.state.empty.whatsNext', "What's next?")}
+        </h2>
+      </div>
+    )
+  }
   const copy = emptyStateCopy(kind, { message, headline }, agent, retrying, t)
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-6 text-center">

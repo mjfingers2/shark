@@ -157,6 +157,7 @@ it.each(['target', 'folder:local-folder'])(
 
     expect(useAppStore.getState().activeWorktreeId).toBe(worktreeId)
     expect(useAppStore.getState().activeWorkspaceExecutionHostId).toBe('local')
-    expect(useAppStore.getState().tabsByWorktree[worktreeId]).toHaveLength(1)
+    // Shark is chat-first: reopening an emptied workspace never seeds a bare shell.
+    expect(useAppStore.getState().tabsByWorktree[worktreeId] ?? []).toEqual([])
   }
 )

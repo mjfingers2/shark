@@ -1,7 +1,8 @@
 import { NativeChatComposerDraftNotSavedIcon } from '../../drafts/NativeChatComposerDraftNotSavedIcon'
 import { memo } from 'react'
-import { ArrowUp, CornerDownRight, ListEnd, Mic, Plus, Save, Square } from 'lucide-react'
+import { ArrowUp, CornerDownRight, ListEnd, Plus, Save, Square, SquareSlash } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/class-names'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useTranslate } from '@/i18n/use-translate'
 import { getScreenSubmitShortcutLabel } from '@/lib/keyboard/screen-submit-shortcut'
@@ -19,6 +20,7 @@ import {
 import { NativeChatSessionOptionPickers } from '../../session/options/controls/NativeChatSessionOptionPickers'
 import { NativeChatComposerPermissionPicker } from '../../session/options/controls/NativeChatPermissionModePicker'
 import { NativeChatComposerGoalChip } from './NativeChatComposerGoalChip'
+import { NativeChatComposerDictationButton } from './NativeChatComposerDictationButton'
 import { NativeChatContextUsageRing } from '../../usage/NativeChatContextUsageRing'
 import type { NativeChatContextUsageSummary } from '../../../../../../shared/native-chat/native-chat-context-usage-summary'
 import type { NativeChatOptionPickerRequest } from '../../session/options/controls/native-chat-option-picker-request'
@@ -63,6 +65,10 @@ export type NativeChatComposerActionsProps = {
   agent?: string
   /** A launch prompt: Attach and dictation are its only controls; launching is the panel's. */
   launchPrompt?: boolean
+  /** False when the composer shows dictation beside the text instead of in the toolbar. */
+  dictationInToolbar?: boolean
+  /** Starts a slash command at the caret, opening the command picker. */
+  onOpenCommands?: () => void
 }
 
 // Memoized: typing re-renders the composer per keystroke, and these controls rarely change with it.
@@ -94,7 +100,9 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
   contextUsage,
   focusComposer,
   agent,
-  launchPrompt = false
+  launchPrompt = false,
+  dictationInToolbar = true,
+  onOpenCommands
 }: NativeChatComposerActionsProps): React.JSX.Element {
   const t = useTranslate()
   useUiLanguageRevision()
@@ -116,9 +124,6 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
       onSend()
     }
   }
-  const dictationLabel = isDictating
-    ? t('components.native-chat.composer.stopDictation', 'Stop dictation')
-    : t('components.native-chat.composer.startDictation', 'Start dictation')
   const sendReason = stops ? null : (sendBlockedReason ?? null)
   const sendHint =
     sendReason ??
@@ -171,7 +176,10 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
       onClick={handleCriticalAction}
       variant={stops ? 'secondary' : 'default'}
       size="icon"
-      className="size-8 rounded-full pointer-coarse:size-10"
+      className={cn(
+        'size-7 rounded-md pointer-coarse:size-10',
+        !stops && 'bg-chat-composer-accent text-white hover:bg-chat-composer-accent/90'
+      )}
     >
       {stops ? <Square className="size-3.5 fill-current" /> : <ArrowUp className="size-4" />}
     </Button>
@@ -198,47 +206,36 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
     </Tooltip>
   )
   const dictation = (
+    <NativeChatComposerDictationButton
+      disabled={dictationDisabled}
+      isDictating={isDictating}
+      isHoldMode={isDictationHoldMode}
+      onToggle={onDictationToggle}
+      onHoldStart={onDictationHoldStart}
+      onHoldEnd={onDictationHoldEnd}
+    />
+  )
+  const commands = onOpenCommands ? (
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
           type="button"
-          variant={isDictating ? 'secondary' : 'ghost'}
+          variant="ghost"
           size="icon-sm"
-          aria-label={dictationLabel}
-          disabled={dictationDisabled}
-          onClick={isDictationHoldMode ? undefined : onDictationToggle}
-          onPointerDown={(event) => {
-            if (!isDictationHoldMode || dictationDisabled) {
-              return
-            }
-            event.preventDefault()
-            onDictationHoldStart()
-          }}
-          onPointerUp={() => {
-            if (isDictationHoldMode && !dictationDisabled) {
-              onDictationHoldEnd()
-            }
-          }}
-          onPointerCancel={() => {
-            if (isDictationHoldMode && !dictationDisabled) {
-              onDictationHoldEnd()
-            }
-          }}
-          onPointerLeave={(event) => {
-            if (isDictationHoldMode && event.buttons === 1 && !dictationDisabled) {
-              onDictationHoldEnd()
-            }
-          }}
+          aria-label={t('components.native-chat.composer.openCommands', 'Commands')}
+          disabled={attachDisabled}
+          onMouseDown={(event) => event.preventDefault()}
+          onClick={onOpenCommands}
           className="pointer-coarse:size-11"
         >
-          {isDictating ? <Square className="size-3.5 fill-current" /> : <Mic className="size-4" />}
+          <SquareSlash className="size-4" />
         </Button>
       </TooltipTrigger>
       <TooltipContent side="top" sideOffset={4}>
-        {dictationLabel}
+        {t('components.native-chat.composer.openCommands', 'Commands')}
       </TooltipContent>
     </Tooltip>
-  )
+  ) : null
   if (launchPrompt) {
     return (
       <div className="flex w-full items-center justify-between text-muted-foreground">
@@ -250,15 +247,28 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
 
   const left: NativeChatComposerControl[] = [
     { id: 'attach', priority: 6, content: attach },
+    ...(commands ? [{ id: 'commands', priority: 3, content: commands }] : []),
+    ...(contextUsage
+      ? [
+          {
+            id: 'context',
+            priority: 0,
+            content: <NativeChatContextUsageRing usage={contextUsage} />
+          }
+        ]
+      : []),
     {
-      id: 'permissions',
-      priority: 5,
+      id: 'model',
       content: (
-        <NativeChatComposerPermissionPicker
-          surface={sessionOptionsSurface}
-          snapshot={sessionOptionsSnapshot}
-          {...(agent ? { agent } : {})}
-        />
+        <span className="inline-flex rounded-md bg-foreground/[0.08] text-chat-foreground [&_button:hover]:bg-foreground/[0.06]">
+          <NativeChatSessionOptionPickers
+            surface={sessionOptionsSurface}
+            snapshot={sessionOptionsSnapshot}
+            isWorking={isWorking}
+            pickerRequest={sessionOptionsPickerRequest}
+            focusComposer={focusComposer}
+          />
+        </span>
       )
     },
     ...(mode
@@ -293,27 +303,17 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
   ]
   const right: NativeChatComposerControl[] = [
     {
-      id: 'model',
+      id: 'permissions',
+      priority: 5,
       content: (
-        <NativeChatSessionOptionPickers
+        <NativeChatComposerPermissionPicker
           surface={sessionOptionsSurface}
           snapshot={sessionOptionsSnapshot}
-          isWorking={isWorking}
-          pickerRequest={sessionOptionsPickerRequest}
-          focusComposer={focusComposer}
+          {...(agent ? { agent } : {})}
         />
       )
     },
-    ...(contextUsage
-      ? [
-          {
-            id: 'context',
-            priority: 0,
-            content: <NativeChatContextUsageRing usage={contextUsage} />
-          }
-        ]
-      : []),
-    { id: 'dictation', priority: 2, content: dictation },
+    ...(dictationInToolbar ? [{ id: 'dictation', priority: 2, content: dictation }] : []),
     ...(draftNotSaved
       ? [{ id: 'draft', priority: 1, content: <NativeChatComposerDraftNotSavedIcon shown /> }]
       : []),
@@ -351,7 +351,7 @@ export const NativeChatComposerActions = memo(function NativeChatComposerActions
             }}
             variant="default"
             size="icon"
-            className="size-8 rounded-full pointer-coarse:size-10"
+            className="size-7 rounded-md bg-chat-composer-accent text-white hover:bg-chat-composer-accent/90 pointer-coarse:size-10"
           >
             {steerPreview === 'queue' ? (
               <ListEnd className="size-4" />

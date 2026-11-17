@@ -5,49 +5,35 @@ import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { formatOptionalPrimaryShortcutLabel } from '@/hooks/useShortcutLabel'
 import { useTranslate } from '@/i18n/use-translate'
-import { openWorkspaceCreationComposerWithTourHandoff } from '../contextual-tours/workspace-creation-tour-handoff'
-import type { AddRepoDialogEntryRequest } from './project-admission/dialog/add-repo-dialog-types'
-import { AddProjectMenu } from './project-admission/menu/AddProjectMenu'
+import { pickNewProject, startNewSession } from './one-click-start'
 import SidebarWorkspaceOptionsMenu from './worktree-list/controls/SidebarWorkspaceOptionsMenu'
 
 function AddProjectButton({
-  preserveWorkspaceBoardOpen,
-  onMenuOpenChange
+  preserveWorkspaceBoardOpen
 }: {
   preserveWorkspaceBoardOpen: boolean
-  onMenuOpenChange?: (open: boolean) => void
 }): React.JSX.Element {
   const t = useTranslate()
-  const openModal = useAppStore((s) => s.openModal)
-  const label = t('auto.components.sidebar.SidebarHeader.addProject', 'Add project')
-  const handleOpenEntryRequest = useCallback(
-    (entryRequest: AddRepoDialogEntryRequest) => {
-      openModal('add-repo', { entryRequest })
-    },
-    [openModal]
-  )
-
+  const label = t('sidebar.oneClick.newProject', 'New project')
   return (
-    <AddProjectMenu
-      side="bottom"
-      align="start"
-      tooltipLabel={label}
-      tooltipSide="bottom"
-      preserveWorkspaceBoardOpen={preserveWorkspaceBoardOpen}
-      onOpenChange={onMenuOpenChange}
-      onOpenEntryRequest={handleOpenEntryRequest}
-    >
-      <Button
-        variant="ghost"
-        size="icon-xs"
-        type="button"
-        className="text-muted-foreground"
-        aria-label={label}
-        data-workspace-board-preserve-open={preserveWorkspaceBoardOpen ? '' : undefined}
-      >
-        <FolderPlus className="size-3.5" strokeWidth={2.25} />
-      </Button>
-    </AddProjectMenu>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon-xs"
+          type="button"
+          className="text-muted-foreground"
+          aria-label={label}
+          data-workspace-board-preserve-open={preserveWorkspaceBoardOpen ? '' : undefined}
+          onClick={pickNewProject}
+        >
+          <FolderPlus className="size-3.5" strokeWidth={2.25} />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" sideOffset={6}>
+        {label}
+      </TooltipContent>
+    </Tooltip>
   )
 }
 
@@ -60,11 +46,7 @@ function NewWorkspaceButton({
   const keybindings = useAppStore((s) => s.keybindings)
   // Show the primary create shortcut so aliases do not crowd the tooltip.
   const shortcutLabel = formatOptionalPrimaryShortcutLabel('workspace.create', keybindings)
-  const label = t('auto.components.sidebar.SidebarHeader.92154beb7e', 'New workspace')
-
-  const handleCreateWorkspace = useCallback(() => {
-    openWorkspaceCreationComposerWithTourHandoff()
-  }, [])
+  const label = t('sidebar.oneClick.newSession', 'New session')
 
   return (
     <Tooltip>
@@ -77,7 +59,7 @@ function NewWorkspaceButton({
           aria-label={label}
           data-workspace-board-preserve-open={preserveWorkspaceBoardOpen ? '' : undefined}
           data-contextual-tour-target="workspace-create-control"
-          onClick={handleCreateWorkspace}
+          onClick={startNewSession}
         >
           <Plus className="size-3.5" strokeWidth={2.25} />
         </Button>
@@ -120,10 +102,7 @@ export function SidebarHeaderActions({
           />
         )}
       </div>
-      <AddProjectButton
-        preserveWorkspaceBoardOpen
-        onMenuOpenChange={(open) => updateMenuOpen('addProject', open)}
-      />
+      <AddProjectButton preserveWorkspaceBoardOpen />
       <NewWorkspaceButton preserveWorkspaceBoardOpen />
     </div>
   )

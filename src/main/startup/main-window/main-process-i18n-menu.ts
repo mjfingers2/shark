@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from 'electron'
+import { APP_DISPLAY_NAME } from '../../../shared/app-display-name'
+import { BrowserWindow } from 'electron'
 import { setMainUiLanguage } from '../../i18n/main-i18n'
 import {
   registerAppMenu,
@@ -29,7 +30,7 @@ export async function initializeMainProcessI18nAndMenu(): Promise<void> {
   await setMainUiLanguage(store.getSettings().uiLanguage)
   logStartupMilestone('i18n-ready')
   registerAppMenu({
-    appMenuLabel: state.devInstanceIdentity?.name ?? app.name,
+    appMenuLabel: state.devInstanceIdentity?.name ?? APP_DISPLAY_NAME,
     ...getAppMenuQuitHandlers(),
     onCheckForUpdates: (options) => {
       ensureAutoUpdaterConfigured()

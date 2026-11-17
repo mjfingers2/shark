@@ -21,6 +21,9 @@ vi.mock('@/lib/agent-status/aggregation/worktree-agent-status', async (importOri
 
 type TestStore = ReturnType<typeof createTestStore>
 
+// Shark seeds no bare shell; an agent startup is what asks for the first terminal.
+const STARTUP = { command: 'claude' }
+
 const SSH_WORKTREE_ID = 'repoSsh::/srv/proj/feature'
 const PAIRED_WORKTREE_ID = 'repoPaired::/srv/proj/paired'
 const TARGET_ID = 'ssh-target-1'
@@ -77,7 +80,9 @@ describe('workspace terminal seeding authority', () => {
 
     connectTarget(store)
     expect(resolveWorkspaceTerminalHostAuthority(store.getState(), SSH_WORKTREE_ID)).toBe('none')
-    expect(ensureWorktreeHasInitialTerminal(store.getState(), SSH_WORKTREE_ID)).toBeTruthy()
+    expect(
+      ensureWorktreeHasInitialTerminal(store.getState(), SSH_WORKTREE_ID, STARTUP)
+    ).toBeTruthy()
     expect(terminalTabCount(store, SSH_WORKTREE_ID)).toBe(1)
   })
 
@@ -99,7 +104,7 @@ describe('workspace terminal seeding authority', () => {
       ensureWorktreeHasInitialTerminal(
         store.getState(),
         SSH_WORKTREE_ID,
-        undefined,
+        STARTUP,
         undefined,
         undefined,
         undefined,

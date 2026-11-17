@@ -54,7 +54,8 @@ export const WORKSPACE_ARCHIVE_SUPPORTED = false
 export function getDefaultWorkspaceCleanupRules(): WorkspaceCleanupRules {
   return {
     merged: { enabled: false },
-    unchanged: { enabled: false, afterDays: 1 },
+    // Shark: empty sessions (no edits, no commits of their own) are cleared after a day.
+    unchanged: { enabled: true, afterDays: 1 },
     inactive: { enabled: false, afterDays: 30, action: 'archive' },
     automationRuns: { enabled: false },
     orchestrationWorkers: { enabled: false },

@@ -34,6 +34,8 @@ export type ComposerModalData = {
   initialParentWorktreeId?: string
   initialWorkspaceStatus?: WorkspaceStatus
   enableIssueAutomation?: boolean
+  /** Create right away with the defaults; the composer only appears if they never settle. */
+  autoSubmit?: boolean
   /** Creation-surface telemetry; each opener supplies it, otherwise use unknown. */
   telemetrySource?: WorkspaceCreateTelemetrySource
   contextualTourSource?: string

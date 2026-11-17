@@ -94,39 +94,8 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-describe('AddProjectMenu in sidebar header', () => {
-  it('switches project host without closing the parent menu and forwards the chosen host to Clone', async () => {
-    const user = userEvent.setup()
-    render(
-      <TooltipProvider>
-        <SidebarHeaderActions onWorkspaceBoardMenuOpenChange={vi.fn()} />
-      </TooltipProvider>
-    )
-
-    await user.click(screen.getByRole('button', { name: 'Add project' }))
-    const hostTrigger = await screen.findByRole('menuitem', { name: /Project host:/ })
-    expect(hostTrigger.textContent).toContain('Local')
-
-    await user.click(hostTrigger)
-    const ubuntuItem = await screen.findByRole('menuitem', { name: /Ubuntu-24\.04/ })
-    fireEvent.click(ubuntuItem)
-
-    // Parent menu stays open with updated host so the user can immediately choose an action.
-    expect(screen.getByRole('menuitem', { name: /Clone from URL/ })).not.toBeNull()
-    expect(screen.getByRole('menuitem', { name: /Project host:/ }).textContent).toContain(
-      'Ubuntu-24.04'
-    )
-
-    await user.click(screen.getByRole('menuitem', { name: /Clone from URL/ }))
-
-    expect(useAppStore.getState().activeModal).toBe('add-repo')
-    expect(useAppStore.getState().modalData.entryRequest).toMatchObject({
-      kind: 'clone',
-      hostId: 'runtime:wsl-ubuntu'
-    })
-  })
-
-  it('opens the native folder picker directly for local Browse folder without opening a modal on cancel', async () => {
+describe('New project button in sidebar header', () => {
+  it('opens the native folder picker in one click and opens the picked project', async () => {
     const user = userEvent.setup()
     pickFoldersMock.mockResolvedValueOnce([])
 
@@ -136,15 +105,12 @@ describe('AddProjectMenu in sidebar header', () => {
       </TooltipProvider>
     )
 
-    await user.click(screen.getByRole('button', { name: 'Add project' }))
-    await user.click(await screen.findByRole('menuitem', { name: /Browse folder/ }))
-
-    expect(pickFoldersMock).toHaveBeenCalledOnce()
+    await user.click(screen.getByRole('button', { name: 'New project' }))
+    await waitFor(() => expect(pickFoldersMock).toHaveBeenCalledOnce())
     expect(useAppStore.getState().activeModal).toBe('none')
 
     pickFoldersMock.mockResolvedValueOnce(['/Users/alice/new-repo'])
-    await user.click(screen.getByRole('button', { name: 'Add project' }))
-    await user.click(await screen.findByRole('menuitem', { name: /Browse folder/ }))
+    await user.click(screen.getByRole('button', { name: 'New project' }))
 
     await waitFor(() => expect(useAppStore.getState().activeModal).toBe('add-repo'))
     expect(useAppStore.getState().modalData.entryRequest).toMatchObject({

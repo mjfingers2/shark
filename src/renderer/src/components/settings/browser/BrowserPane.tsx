@@ -7,6 +7,7 @@ import { getBrowserLinkRoutingDescription } from './routing/browser-link-routing
 import { getBrowserUsePaneSearchEntries } from './use/browser-use-search'
 import { BrowserHomePageSetting } from './BrowserHomePageSetting'
 import { BrowserDefaultZoomSetting } from './BrowserDefaultZoomSetting'
+import { BrowserAutoPreviewSetting } from './BrowserAutoPreviewSetting'
 import { BrowserUseSetup } from './use/BrowserUsePane'
 import { BrowserSearchEngineSetting } from './BrowserSearchEngineSetting'
 import { BrowserLinkRoutingSetting } from './routing/BrowserLinkRoutingSetting'
@@ -250,6 +251,7 @@ export function BrowserPane({
 
   return (
     <div ref={setBrowserPaneRootNode} className="space-y-8">
+      <BrowserAutoPreviewSetting settings={settings} updateSettings={updateSettings} />
       {showBrowserUse ? (
         <SettingsGroup>
           <BrowserUseSetup
