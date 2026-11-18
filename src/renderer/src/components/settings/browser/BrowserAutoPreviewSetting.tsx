@@ -6,6 +6,7 @@ import { SettingsSwitchRow } from '../form-controls/SettingsFormControls'
 import { SearchableSetting } from '../section-layout/SearchableSetting'
 import { SettingsGroup } from '../section-layout/SettingsGroup'
 import { matchesSettingsSearch, type SettingsSearchEntry } from '../search/settings-search'
+import { translateSearchKeyword } from '../search/settings-search-keywords'
 
 export function getBrowserAutoPreviewSearchEntry(t: Translate = translate): SettingsSearchEntry {
   return {
@@ -14,7 +15,20 @@ export function getBrowserAutoPreviewSearchEntry(t: Translate = translate): Sett
       'shark.autoPreview.description',
       'When a session starts a web server on this computer, open its page in a browser beside the chat.'
     ),
-    keywords: ['browser', 'preview', 'live preview', 'dev server', 'localhost', 'port', 'auto']
+    keywords: [
+      ...translateSearchKeyword('shark.autoPreview.keywords.browser', 'browser', undefined, t),
+      ...translateSearchKeyword('shark.autoPreview.keywords.preview', 'preview', undefined, t),
+      ...translateSearchKeyword(
+        'shark.autoPreview.keywords.livePreview',
+        'live preview',
+        undefined,
+        t
+      ),
+      ...translateSearchKeyword('shark.autoPreview.keywords.devServer', 'dev server', undefined, t),
+      ...translateSearchKeyword('shark.autoPreview.keywords.localhost', 'localhost', undefined, t),
+      ...translateSearchKeyword('shark.autoPreview.keywords.port', 'port', undefined, t),
+      ...translateSearchKeyword('shark.autoPreview.keywords.auto', 'auto', undefined, t)
+    ]
   }
 }
 

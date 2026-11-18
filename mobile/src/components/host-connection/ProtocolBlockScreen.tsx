@@ -74,9 +74,9 @@ function mobileUpdateChannelTarget(t: Translate): { label: string; url: string }
 function blockTitle(remedy: BlockRemedy, t: Translate): string {
   switch (remedy) {
     case 'update-mobile':
-      return t('components.protocolBlockScreen.updateMobileTitle', 'Update Orca Mobile')
+      return t('components.protocolBlockScreen.updateMobileTitle', 'Update Shark Mobile')
     case 'update-desktop':
-      return t('components.protocolBlockScreen.updateDesktopTitle', 'Update Orca on your computer')
+      return t('components.protocolBlockScreen.updateDesktopTitle', 'Update Shark on your computer')
     case 'refresh-bundle':
       return t(
         'components.protocolBlockScreen.refreshWorkspaceTitle',
@@ -97,17 +97,17 @@ function blockBody(verdict: BlockedVerdict, remedy: BlockRemedy, t: Translate): 
       case 'app-store':
         return t(
           'components.protocolBlockScreen.mobileTooOldAppStore',
-          'This desktop needs a newer Orca Mobile app. Update Orca Mobile from the App Store, then try this host again.'
+          'This desktop needs a newer Shark Mobile app. Update Shark Mobile from the App Store, then try this host again.'
         )
       case 'google-play':
         return t(
           'components.protocolBlockScreen.mobileTooOldGooglePlay',
-          'This desktop needs a newer Orca Mobile app. Update Orca Mobile from Google Play, then try this host again.'
+          'This desktop needs a newer Shark Mobile app. Update Shark Mobile from Google Play, then try this host again.'
         )
       case 'github-releases':
         return t(
           'components.protocolBlockScreen.mobileTooOldGitHubReleases',
-          'This desktop needs a newer Orca Mobile app. Update Orca Mobile from GitHub Releases, then try this host again.'
+          'This desktop needs a newer Shark Mobile app. Update Shark Mobile from GitHub Releases, then try this host again.'
         )
     }
   }
@@ -116,23 +116,23 @@ function blockBody(verdict: BlockedVerdict, remedy: BlockRemedy, t: Translate): 
       case 'app-store':
         return t(
           'components.protocolBlockScreen.workspaceNeedsUpdateAppStore',
-          "This desktop's mobile workspace needs a newer Orca Mobile app. Update Orca Mobile from the App Store, then try this host again."
+          "This desktop's mobile workspace needs a newer Shark Mobile app. Update Shark Mobile from the App Store, then try this host again."
         )
       case 'google-play':
         return t(
           'components.protocolBlockScreen.workspaceNeedsUpdateGooglePlay',
-          "This desktop's mobile workspace needs a newer Orca Mobile app. Update Orca Mobile from Google Play, then try this host again."
+          "This desktop's mobile workspace needs a newer Shark Mobile app. Update Shark Mobile from Google Play, then try this host again."
         )
       case 'github-releases':
         return t(
           'components.protocolBlockScreen.workspaceNeedsUpdateGitHubReleases',
-          "This desktop's mobile workspace needs a newer Orca Mobile app. Update Orca Mobile from GitHub Releases, then try this host again."
+          "This desktop's mobile workspace needs a newer Shark Mobile app. Update Shark Mobile from GitHub Releases, then try this host again."
         )
     }
   }
   return t(
     'components.protocolBlockScreen.desktopTooOldBody',
-    'This paired desktop app is too old for your current Orca Mobile app. Update Orca on your computer, then try this host again.'
+    'This paired desktop app is too old for your current Shark Mobile app. Update Shark on your computer, then try this host again.'
   )
 }
 
@@ -145,7 +145,7 @@ export function ProtocolBlockScreen({ verdict }: Props) {
   const mobileUpdateTarget = mobileUpdateChannelTarget(t)
   const mobileAction = mobileUpdate
     ? {
-        label: t('components.protocolBlockScreen.getVersion', 'Get Orca {{version}}', {
+        label: t('components.protocolBlockScreen.getVersion', 'Get Shark {{version}}', {
           version: mobileUpdate.version
         }),
         url: mobileUpdate.url

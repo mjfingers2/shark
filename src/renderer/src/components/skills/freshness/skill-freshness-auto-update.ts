@@ -64,7 +64,7 @@ function reportPreservedEdits(result: BundledSkillInstallResult | null): void {
         warnAboutEdits(
           translate(
             'auto.components.skills.skillFreshnessAutoUpdate.strandedTitle',
-            "Orca couldn't back up your edits to {{value0}}",
+            "Shark couldn't back up your edits to {{value0}}",
             { value0: skill.name }
           ),
           translate(
@@ -82,7 +82,7 @@ function reportPreservedEdits(result: BundledSkillInstallResult | null): void {
           ),
           translate(
             'auto.components.skills.skillFreshnessAutoUpdate.preservedDescription',
-            'Orca updated the skill and saved your edits to {{value0}}.',
+            'Shark updated the skill and saved your edits to {{value0}}.',
             { value0: op.backupPath }
           )
         )
@@ -116,12 +116,12 @@ function reportUncertainOutcome(target: BundledSkillTarget, plan: BundledSkillPl
   warnAboutEdits(
     translate(
       'auto.components.skills.skillFreshnessAutoUpdate.uncertainTitle',
-      "Orca couldn't confirm the skill update on {{value0}}",
+      "Shark couldn't confirm the skill update on {{value0}}",
       { value0: targetLabel(target) }
     ),
     translate(
       'auto.components.skills.skillFreshnessAutoUpdate.uncertainDescription',
-      "Orca may have updated skills on {{value0}} but couldn't confirm the result. If you edited a skill during the update, your copy is in {{value1}}.",
+      "Shark may have updated skills on {{value0}} but couldn't confirm the result. If you edited a skill during the update, your copy is in {{value1}}.",
       { value0: targetLabel(target), value1: skillBackupDirectory(plan.homeDirectory) }
     )
   )

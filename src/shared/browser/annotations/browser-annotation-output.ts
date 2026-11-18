@@ -157,7 +157,10 @@ function inlineCode(content: string): string {
 // Diagnostics (tab id, layout, styles, DOM, HTML) are for layout debugging; agents locate and edit from the rest.
 export function formatBrowserAnnotationsAsMarkdown(
   annotations: BrowserPageAnnotation[],
-  { includeDiagnostics = false }: { includeDiagnostics?: boolean } = {}
+  {
+    includeDiagnostics = false,
+    includeHtmlSnippet = false
+  }: { includeDiagnostics?: boolean; includeHtmlSnippet?: boolean } = {}
 ): string {
   if (annotations.length === 0) {
     return ''
@@ -216,6 +219,9 @@ export function formatBrowserAnnotationsAsMarkdown(
       }
       if (includeDiagnostics) {
         lines.push(...formatDiagnostics(payload))
+      } else if (includeHtmlSnippet && target.htmlSnippet) {
+        // Shark: the phone cannot show the element, so the agent gets its markup to find it.
+        lines.push('**HTML:**', ...fence('html', target.htmlSnippet))
       }
       lines.push(`**Feedback:** ${inlineText(annotation.comment)}`)
       if (annotation.imagePaths?.length) {

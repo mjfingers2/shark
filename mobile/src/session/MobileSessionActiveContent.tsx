@@ -7,6 +7,7 @@ import {
 import { View, Text, Pressable, ActivityIndicator } from 'react-native'
 import { saveTerminalTextScale } from '../storage/preferences'
 import { MobileBrowserPane } from '../browser/MobileBrowserPane'
+import { MobileDevPreviewNotice } from '../browser/preview-notice/MobileDevPreviewNotice'
 import { TerminalPaneView } from '../terminal/session/pane-layout/TerminalPaneView'
 import { MountedTerminalPanes } from '../terminal/session/pane-layout/mounted-terminal-lru'
 import { MobileNativeChatOverlay } from './native-chat/MobileNativeChatOverlay'
@@ -229,6 +230,7 @@ export function MobileSessionActiveContent({
           client={client}
           worktreeId={worktreeId}
           tab={activeBrowserTab}
+          sessionTabs={controller.sessionTabs}
           screencastSupported={browserScreencastSupported}
           keyboardLift={keyboardLift}
           bottomInset={controller.insets.bottom}
@@ -398,6 +400,7 @@ export function MobileSessionActiveContent({
       }}
     >
       {content}
+      <MobileDevPreviewNotice controller={controller} />
     </View>
   )
 }

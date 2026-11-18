@@ -45,7 +45,7 @@ export function HostWorkspaceListStates(
           (isConnectionOutage(connectionVerdict) ? connectionVerdict.detail : undefined) ??
           t(
             'worktree.hostWorkspaceListStates.checkHost',
-            'Check that your computer is awake and Orca is running'
+            'Check that your computer is awake and Shark is running'
           )
         }
         action={

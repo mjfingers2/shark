@@ -3,7 +3,7 @@ export const WSL_HOST_ADD_REFUSAL_COPY = {
   turnedOff: 'WSL hosts are turned off in Settings → Experimental.',
   newWorkPaused:
     'Adding WSL hosts and moving projects onto them is paused in this build. Your saved WSL hosts keep working.',
-  serverFilesMissing: 'This build of Orca can’t run WSL hosts (server files missing).',
+  serverFilesMissing: 'This build of Shark can’t run WSL hosts (server files missing).',
   alreadyAdded: '{{distro}} is already a host.',
   distroStopped: '{{distro}} stopped since the list was read. Choose Start and add to start it.',
   distroUnverifiable:

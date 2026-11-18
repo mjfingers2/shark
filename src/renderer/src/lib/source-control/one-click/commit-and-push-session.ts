@@ -18,7 +18,10 @@ import {
   getRuntimeGitUpstreamStatus,
   pushRuntimeGit
 } from '@/runtime/source-control/git/runtime-git-sync-client'
-import { decideCommitAndPush, fallbackCommitMessage } from './commit-and-push-plan'
+import {
+  decideCommitAndPush,
+  fallbackCommitMessage
+} from '../../../../../shared/source-control/one-click/commit-and-push-plan'
 
 const running = new Set<string>()
 

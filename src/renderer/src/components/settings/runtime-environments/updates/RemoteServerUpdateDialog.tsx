@@ -150,13 +150,13 @@ export function RemoteServerUpdateDialog(): React.JSX.Element {
           <DialogTitle>
             {t(
               'auto.components.settings.RemoteServerUpdateDialog.dca6780b3a',
-              'Update remote Orca servers'
+              'Update remote Shark servers'
             )}
           </DialogTitle>
           <DialogDescription>
             {t(
               'auto.components.settings.RemoteServerUpdateDialog.description',
-              'Review paired servers and update supported installs from this Orca client.'
+              'Review paired servers and update supported installs from this Shark client.'
             )}
           </DialogDescription>
         </DialogHeader>
@@ -188,7 +188,7 @@ export function RemoteServerUpdateDialog(): React.JSX.Element {
               ) : (
                 t(
                   'auto.components.settings.RemoteServerUpdateDialog.empty',
-                  'No paired Remote Orca Servers.'
+                  'No paired Remote Shark Servers.'
                 )
               )}
             </div>

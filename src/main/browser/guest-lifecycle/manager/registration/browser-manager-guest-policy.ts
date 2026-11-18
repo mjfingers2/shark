@@ -12,6 +12,7 @@ import { setupGuestEscapeForwarding } from '../../input/shortcuts/browser-guest-
 import { setupGuestShortcutForwarding } from '../../input/shortcuts/browser-guest-shortcut-forwarding'
 import { forwardGuestMousePress } from '../../input/browser-guest-mouse-press'
 import { installGuestDevToolsCloseShortcut } from '../../devtools/browser-guest-devtools-close-shortcut'
+import { installBrowserPageErrorCollection } from '../../page-activity/browser-page-error-log'
 
 export abstract class BrowserManagerGuestPolicy extends BrowserManagerGuestCleanup {
   attachGuestPolicies(
@@ -68,6 +69,10 @@ export abstract class BrowserManagerGuestPolicy extends BrowserManagerGuestClean
       }
     }
     guest.on('audio-state-changed', forwardAudioState)
+    // Shark: the phone's "send errors to the agent" chip reads this list over RPC.
+    const disposePageErrors = installBrowserPageErrorCollection(guest, () =>
+      this.tabIdByWebContentsId.get(guest.id)
+    )
     const disposeDevToolsCloseShortcut = installGuestDevToolsCloseShortcut({
       guest,
       getKeybindings: () => this.settingsResolver?.().keybindings,
@@ -90,6 +95,7 @@ export abstract class BrowserManagerGuestPolicy extends BrowserManagerGuestClean
       disposeMetadata()
       disposeDevToolsCloseShortcut()
       disposeEscapeForwarding()
+      disposePageErrors()
       if (!guest.isDestroyed()) {
         guest.off('audio-state-changed', forwardAudioState)
       }

@@ -1,53 +1,54 @@
 import { codeFontFamily } from './mobile-code-font'
 
 // Desktop's main.css tokens per scheme; keep mobile on these instead of introducing inline colors.
+// Shark: the dark scheme follows the desktop's Shark block (navy surfaces), both schemes its blue --primary.
 
 export type MobileColorScheme = 'light' | 'dark'
 
 const darkColors = {
-  // --background, --sidebar, --secondary, --border
-  bgBase: '#0a0a0a',
-  bgPanel: '#171717',
-  bgRaised: '#262626',
-  borderSubtle: 'rgba(255, 255, 255, 0.07)',
-  editorSurface: '#1e1e1e',
-  // Sheets sit a step above the screen, their groups a step above the sheet (the desktop's sidebar and secondary).
-  sheetSurface: '#171717',
-  sheetGroup: '#262626',
-  // A translucent grey that reads on any surface: off switches, and chips or picked segments on a sheet group.
-  translucentFill: 'rgba(120, 120, 128, 0.36)',
+  // --background, --card, --secondary, --border
+  bgBase: '#0a1324',
+  bgPanel: '#0f1c33',
+  bgRaised: '#16243d',
+  borderSubtle: 'rgba(148, 180, 230, 0.1)',
+  editorSurface: '#0c172b',
+  // Sheets sit a step above the screen, their groups a step above the sheet (the desktop's card and secondary).
+  sheetSurface: '#0f1c33',
+  sheetGroup: '#16243d',
+  // A translucent blue-grey that reads on any surface: off switches, and chips or picked segments on a sheet group.
+  translucentFill: 'rgba(120, 140, 180, 0.36)',
   // --chat-composer-surface painted over --chat-canvas, and --chat-composer-border.
-  composerSurface: '#1f1f1f',
-  composerBorder: 'rgba(250, 250, 250, 0.09)',
-  composerControl: '#262626',
+  composerSurface: '#13213a',
+  composerBorder: 'rgba(227, 235, 247, 0.09)',
+  composerControl: '#1c2f50',
   // A floating card's hairline edge (the answer card), a step stronger than the composer's.
-  floatingCardBorder: 'rgba(250, 250, 250, 0.16)',
+  floatingCardBorder: 'rgba(227, 235, 247, 0.16)',
   // An unfilled choice's edge on a card, 3:1 against it (WCAG 1.4.11), and the faint fill of the picked one.
   choiceBorder: 'rgba(255, 255, 255, 0.34)',
   choiceSelectedFill: 'rgba(134, 239, 172, 0.08)',
   // A small filled pill on a card (a queued row's Steer): light needs more than bgRaised to read on white.
-  cardPillFill: '#262626',
-  // A text field's edge, 3:1 on the screen, a sheet and a sheet group (WCAG 1.4.11): desktop's dark --ring.
-  inputBorder: '#737373',
+  cardPillFill: '#1c2f50',
+  // A text field's edge, 3:1 on the screen, a sheet and a sheet group (WCAG 1.4.11).
+  inputBorder: '#6b82a6',
   skillToken: '#8ab4f8',
   skillTokenSurface: 'rgba(59, 130, 246, 0.2)',
   // Your own message: --chat-user-surface and --chat-user-border over --chat-canvas, text in --chat-foreground-strong.
-  chatUserSurface: '#262626',
-  chatUserBorder: 'rgba(250, 250, 250, 0.06)',
-  chatForegroundStrong: '#e3e3e3',
+  chatUserSurface: '#16243d',
+  chatUserBorder: 'rgba(227, 235, 247, 0.06)',
+  chatForegroundStrong: '#e3ebf7',
 
   // --foreground, --muted-foreground, --chat-foreground-faint
-  textPrimary: '#fafafa',
-  textSecondary: '#acacac',
-  textMuted: '#898989',
+  textPrimary: '#eef3fb',
+  textSecondary: '#a9b8cf',
+  textMuted: '#8da2c0',
 
-  // --primary: the filled primary-action surface.
-  surfaceBright: '#e5e5e5',
+  // --primary: the filled primary-action surface (Shark's blue), with bgBase ink on it.
+  surfaceBright: '#3b82f6',
   // A list screen's floating create (+) button: the accent, as on Home, since a pale disc glares on the dark page.
-  createActionFill: '#3276f2',
+  createActionFill: '#3b82f6',
   onCreateActionFill: '#ffffff',
 
-  accentBlue: '#3276f2',
+  accentBlue: '#3b82f6',
   // White text preserves contrast on saturated accent fills.
   onAccent: '#ffffff',
 
@@ -126,11 +127,11 @@ const lightColors: MobilePalette = {
   textSecondary: '#696969',
   textMuted: '#696969',
 
-  surfaceBright: '#171717',
-  createActionFill: '#171717',
+  surfaceBright: '#2563eb',
+  createActionFill: '#2563eb',
   onCreateActionFill: '#ffffff',
 
-  accentBlue: '#225be3',
+  accentBlue: '#2563eb',
   onAccent: '#ffffff',
 
   statusGreen: '#147638',

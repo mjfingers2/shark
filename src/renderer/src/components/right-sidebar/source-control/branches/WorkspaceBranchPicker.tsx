@@ -137,7 +137,7 @@ export function WorkspaceBranchPicker({
     : statusReadError
       ? t(
           'sourceControl.branchPicker.statusFailed',
-          "Orca couldn't read this checkout's changes. Refresh Source Control before switching."
+          "Shark couldn't read this checkout's changes. Refresh Source Control before switching."
         )
       : !statusKnown
         ? t(

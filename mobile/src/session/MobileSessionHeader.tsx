@@ -7,6 +7,7 @@ import { useRefreshHint } from '../query/refresh-hint'
 import { NavBarButton } from '../components/nav-bar/NavBarButton'
 import { MobileSessionHeaderMoreMenu } from './MobileSessionHeaderMoreMenu'
 import { MobileSourceControlButton } from './MobileSourceControlButton'
+import { MobileSharkActionsButton } from '../shark-actions/MobileSharkActionsButton'
 import { MobileSessionTabBar } from './tabs/MobileSessionTabBar'
 import { MobileSessionTitleBlock } from './MobileSessionTitleBlock'
 import type { SessionTitleCard } from './tabs/use-session-title-card'
@@ -109,6 +110,7 @@ export function MobileSessionHeader({
     ) : null
   const trailing = (
     <>
+      <MobileSharkActionsButton controller={controller} />
       {sourceControlInBar ? (
         <MobileSourceControlButton
           hostId={hostId}

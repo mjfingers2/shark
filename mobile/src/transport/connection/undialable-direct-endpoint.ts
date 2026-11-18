@@ -49,7 +49,7 @@ export function createUndialableDirectClient(): RpcClient {
           options?.timeoutMs === undefined
             ? undefined
             : setTimeout(
-                () => fail(new Error('Timed out while connecting to the remote Orca runtime.')),
+                () => fail(new Error('Timed out while connecting to the remote Shark runtime.')),
                 Math.max(0, options.timeoutMs)
               )
         waiters.add(fail)

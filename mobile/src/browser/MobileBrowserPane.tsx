@@ -1,7 +1,7 @@
 /* oxlint-disable react-doctor/no-adjust-state-on-prop-change -- Why: mobile browser state mirrors a remote desktop screencast session and CDP dialogs, which are external systems that cannot be derived during render. */
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AppState, type HostInstance } from 'react-native'
-import type { MobileBrowserTab } from '../session/tabs/mobile-session-tabs'
+import type { MobileBrowserTab, MobileSessionTab } from '../session/tabs/mobile-session-tabs'
 import { translate } from '../i18n/mobile-i18n'
 import { useMobileTranslation } from '../i18n/use-mobile-translation'
 import type { RpcClient } from '../transport/rpc/rpc-client-contract'
@@ -35,11 +35,16 @@ import { MobileBrowserPaneView } from './pane-view/MobileBrowserPaneView'
 import { useMobileBrowserInteractions } from './page-interaction/use-mobile-browser-interactions'
 import { useMobileBrowserStream } from './screencast/use-mobile-browser-stream'
 import { useBrowserBinaryScreencastGrant } from './screencast/use-browser-binary-screencast-grant'
+import { useMobileBrowserInspection } from './page-inspection/use-mobile-browser-inspection'
+import { MobileBrowserInspectionToolbar } from './page-inspection/MobileBrowserInspectionToolbar'
+import { MobileBrowserPointOverlay } from './page-inspection/MobileBrowserPointOverlay'
 
 type MobileBrowserPaneProps = {
   client: RpcClient | null
   worktreeId: string
   tab: MobileBrowserTab
+  /** The session's tabs, to find its AI chat (or terminal agent) for page errors and comments. */
+  sessionTabs: readonly MobileSessionTab[]
   screencastSupported: boolean | null
   keyboardLift: number
   bottomInset: number
@@ -59,6 +64,7 @@ export function MobileBrowserPane({
   client,
   worktreeId,
   tab,
+  sessionTabs,
   screencastSupported,
   keyboardLift,
   bottomInset,
@@ -253,6 +259,16 @@ export function MobileBrowserPane({
     })
 
   const controlsDisabled = !client || !tab.browserPageId || screencastSupported !== true
+  const inspection = useMobileBrowserInspection({
+    client,
+    worktreeId,
+    browserPageId: tab.browserPageId ?? null,
+    sessionTabs,
+    onToast,
+    layoutRef,
+    frameMetadataRef,
+    zoomRef
+  })
   const goBack = useCallback(() => {
     if (controlsDisabled || !tab.canGoBack) {
       return
@@ -311,6 +327,13 @@ export function MobileBrowserPane({
       frameLayers={frameLayers}
       goBack={goBack}
       goForward={goForward}
+      inspectionToolbar={
+        <MobileBrowserInspectionToolbar
+          disabled={controlsDisabled}
+          pageErrors={inspection.pageErrors}
+          pointing={inspection.pointing}
+        />
+      }
       keyboardLift={keyboardLift}
       keyboardValue={keyboardValue}
       layoutRef={layoutRef}
@@ -330,6 +353,7 @@ export function MobileBrowserPane({
       setRootViewRef={setRootViewRef}
       tab={tab}
       togglePointerModifier={togglePointerModifier}
+      viewportOverlay={<MobileBrowserPointOverlay pointing={inspection.pointing} />}
       zoom={zoom}
     />
   )

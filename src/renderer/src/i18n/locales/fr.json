@@ -945,7 +945,6 @@
       "df1d56bf87": "Le shell de l'espace de travail a rencontré une erreur.",
       "9e0b441a91": "Basculer la barre latérale droite",
       "e81217c1b7": "Masquer le nom de l'app",
-      "5096cbbc86": "Orca",
       "8b0b8eb54f": "Menu de l'application",
       "caea5b51b9": "Redémarrer maintenant",
       "0a9e810705": "Les modifications ne seront enregistrées qu'après redémarrage. Vos onglets précédents sont en sécurité sur le disque.",
@@ -2252,7 +2251,6 @@
         "commentTooLarge": "Le commentaire est trop volumineux pour être envoyé sans risque."
       },
       "Landing": {
-        "f9eaa9e12d": "Ajouter un projet",
         "6ca6ff404e": "ORCA",
         "520304a067": "Logo Orca",
         "c1cf168479": "Masquer",
@@ -2262,8 +2260,6 @@
         "5beaef5f9e": "GitHub CLI n'est pas installée",
         "b673e7cf1b": "Git est requis pour les projets Git, le contrôle de version et la gestion des espaces de travail.",
         "e5b7296d9d": "Git n'est pas installé",
-        "cd21242762": "Ajoutez un projet pour commencer.",
-        "9c00bd4adf": "Sélectionnez un espace de travail dans la barre latérale pour commencer.",
         "0d0ace8861": "Mettre une étoile sur GitHub",
         "ec43b38ba7": "Étoile ajoutée sur GitHub",
         "157bb5ecbb": "Ouvrir GitHub",
@@ -6157,7 +6153,6 @@
           "keepDefaultBranchAria": "Garder la branche par défaut visible tout en masquant les espaces de travail en veille"
         },
         "SidebarHeader": {
-          "92154beb7e": "Nouvel espace de travail",
           "addProject": "Ajouter un projet"
         },
         "SidebarNav": {

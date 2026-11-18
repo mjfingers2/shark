@@ -11,6 +11,7 @@ import {
 import { appStoreUpdateSource } from './app-store-update-source'
 import { createAppUpdateChecker, type AppUpdateState } from './app-update-checker'
 import type { AppUpdateSource } from './app-update-source'
+import { ownsOrcaUpdateChannel } from './orca-update-channel-owner'
 import {
   ANDROID_RELEASE_TAG_PREFIX,
   createGithubReleaseUpdateSource,
@@ -30,6 +31,13 @@ export const isGooglePlayInstall =
 
 /** The channel that installed this binary. */
 function resolveAppUpdateSource(): AppUpdateSource | null {
+  const appId =
+    Platform.OS === 'ios'
+      ? Constants.expoConfig?.ios?.bundleIdentifier
+      : Constants.expoConfig?.android?.package
+  if (!ownsOrcaUpdateChannel(appId)) {
+    return null
+  }
   if (Platform.OS === 'android') {
     if (isGooglePlayInstall) {
       return null

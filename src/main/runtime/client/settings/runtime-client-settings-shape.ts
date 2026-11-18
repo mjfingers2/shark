@@ -47,6 +47,8 @@ export type RuntimeClientSettings = Pick<
 > & {
   /** Always set; older hosts omit it, so clients must not write it to them (settings.update is strict). */
   workspaceCleanupPolicy: WorkspaceCleanupRules
+  /** Shark live preview, resolved (missing = on); older hosts omit it, so clients must not write it to them. */
+  browserAutoPreviewEnabled: boolean
   hostSettingOverrides: RuntimeHostDisplayLabelOverrides
   sourceControlAi: RuntimeClientSourceControlAi
   /** Models directory and microphone stay host-private. */
@@ -89,5 +91,6 @@ export type RuntimeClientSettingsUpdate = Pick<
   | 'nativeChatPermissionMode'
   | 'nativeChatAutoContinueAfterUsageLimit'
   | 'workspaceCleanupPolicy'
+  | 'browserAutoPreviewEnabled'
   | 'prAutoRefresh'
 >

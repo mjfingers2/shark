@@ -1150,7 +1150,6 @@
       "df1d56bf87": "Çalışma alanı kabuğu bir hatayla karşılaştı.",
       "9e0b441a91": "Sağ kenar çubuğunu aç/kapat",
       "e81217c1b7": "Uygulama Adını Gizle",
-      "5096cbbc86": "Orca",
       "8b0b8eb54f": "Uygulama menüsü",
       "caea5b51b9": "Şimdi yeniden başlat",
       "0a9e810705": "Değişiklikler yeniden başlatana kadar kaydedilmeyecek. Önceki sekmeleriniz diskte güvende.",
@@ -2420,7 +2419,6 @@
         "commentTooLarge": "Yorum, güvenli şekilde gönderilemeyecek kadar büyük."
       },
       "Landing": {
-        "f9eaa9e12d": "Proje ekle",
         "6ca6ff404e": "ORCA",
         "520304a067": "Orca logosu",
         "c1cf168479": "Gizle",
@@ -2430,8 +2428,6 @@
         "5beaef5f9e": "GitHub CLI kurulu değil",
         "b673e7cf1b": "Git, Git projeleri, kaynak kontrolü ve çalışma alanı yönetimi için gereklidir.",
         "e5b7296d9d": "Git kurulu değil",
-        "cd21242762": "Başlamak için bir proje ekleyin.",
-        "9c00bd4adf": "Başlamak için kenar çubuğundan bir çalışma alanı seçin.",
         "0d0ace8861": "GitHub'da yıldızla",
         "ec43b38ba7": "GitHub'da yıldızlandı",
         "157bb5ecbb": "GitHub'ı aç",
@@ -6288,7 +6284,6 @@
           "keepDefaultBranchAria": "Uyuyan çalışma alanlarını gizlerken varsayılan branch'i görünür tut"
         },
         "SidebarHeader": {
-          "92154beb7e": "Yeni çalışma alanı",
           "addProject": "Proje ekle"
         },
         "SidebarNav": {

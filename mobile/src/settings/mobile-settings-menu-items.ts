@@ -6,7 +6,8 @@ import {
   Mic,
   SunMoon,
   Terminal,
-  Wrench
+  Wrench,
+  Zap
 } from 'lucide-react-native'
 import type { MobileSettingsMenuItem } from './mobile-settings-menu'
 import { translate } from '../i18n/mobile-i18n'
@@ -48,6 +49,12 @@ export function mobileSettingsMenuItems(push: (route: string) => void): MobileSe
       label: translate('settings.menuItems.notifications', 'Notifications'),
       icon: Bell,
       onPress: () => push('/notifications')
+    },
+    {
+      id: 'shark',
+      label: translate('settings.menuItems.shark', 'Shark'),
+      icon: Zap,
+      onPress: () => push('/shark-settings')
     },
     {
       id: 'troubleshoot',

@@ -13,6 +13,7 @@ import { RuntimeBrowserTabClose } from '../tabs/browser-tab-close'
 import { RuntimeBrowserProfiles } from './browser-profiles'
 import { RuntimeBrowserScreencasts } from '../screencast/browser-screencasts'
 import { RuntimeBrowserDialogs } from './browser-dialogs'
+import { RuntimeBrowserPageInspection } from './browser-page-inspection'
 
 export class RuntimeBrowserCommands {
   readonly browserSnapshot: RuntimeBrowserCommandTargets['browserSnapshot']
@@ -95,6 +96,8 @@ export class RuntimeBrowserCommands {
   readonly browserScreencast: RuntimeBrowserScreencasts['browserScreencast']
   readonly browserDialogAccept: RuntimeBrowserDialogs['browserDialogAccept']
   readonly browserDialogDismiss: RuntimeBrowserDialogs['browserDialogDismiss']
+  readonly browserPageErrors: RuntimeBrowserPageInspection['browserPageErrors']
+  readonly browserDescribeElementAt: RuntimeBrowserPageInspection['browserDescribeElementAt']
 
   readonly browserProfileDetectBrowsers: RuntimeBrowserProfiles['browserProfileDetectBrowsers']
   readonly browserProfileImportFromBrowser: RuntimeBrowserProfiles['browserProfileImportFromBrowser']
@@ -116,6 +119,7 @@ export class RuntimeBrowserCommands {
     const profiles = new RuntimeBrowserProfiles(host, targets, catalog)
     const screencasts = new RuntimeBrowserScreencasts(host, targets, catalog)
     const dialogs = new RuntimeBrowserDialogs(targets)
+    const inspection = new RuntimeBrowserPageInspection(targets)
     this.browserProfileDetectBrowsers = profiles.browserProfileDetectBrowsers.bind(profiles)
     this.browserProfileImportFromBrowser = profiles.browserProfileImportFromBrowser.bind(profiles)
     this.browserProfileClearGoogleCookies = profiles.browserProfileClearGoogleCookies.bind(profiles)
@@ -202,5 +206,7 @@ export class RuntimeBrowserCommands {
     this.browserScreencast = screencasts.browserScreencast.bind(screencasts)
     this.browserDialogAccept = dialogs.browserDialogAccept.bind(dialogs)
     this.browserDialogDismiss = dialogs.browserDialogDismiss.bind(dialogs)
+    this.browserPageErrors = inspection.browserPageErrors.bind(inspection)
+    this.browserDescribeElementAt = inspection.browserDescribeElementAt.bind(inspection)
   }
 }

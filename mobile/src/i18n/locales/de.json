@@ -37,7 +37,7 @@
       "title": "Verlauf der Agentensitzungen",
       "unavailable": "Verlauf der Agentensitzungen nicht verfügbar",
       "unknownHostPlatform": "Die Host-Plattform konnte nicht ermittelt werden.",
-      "updateHost": "Orca auf diesem Host aktualisieren, um den Verlauf der Agentensitzungen anzuzeigen.",
+      "updateHost": "Shark auf diesem Host aktualisieren, um den Verlauf der Agentensitzungen anzuzeigen.",
       "waitingForHost": "Warten auf Host…",
       "workspace": "Arbeitsbereich"
     },
@@ -73,7 +73,7 @@
       "stepProgress": "Schritt {{step}} von {{total}}"
     },
     "notifications": {
-      "description": "Benachrichtigungen von Agenten auch bei geschlossener App erhalten. Die Zustellung erfolgt über den Push-Dienst von Orca und Apple oder Google."
+      "description": "Benachrichtigungen von Agenten auch bei geschlossener App erhalten. Die Zustellung erfolgt über den Push-Dienst von Shark und Apple oder Google."
     },
     "pair": {
       "backToHome": "Zurück zur Startseite",
@@ -92,13 +92,13 @@
     "pairScan": {
       "cameraDisabledDescription": "Den Kamerazugriff in den Einstellungen aktivieren oder stattdessen den Kopplungscode einfügen.",
       "cameraDisabledTitle": "Kamerazugriff deaktiviert",
-      "cameraPermissionDescription": "Den QR-Code in Orca auf dem Desktop scannen oder stattdessen den Kopplungscode einfügen.",
+      "cameraPermissionDescription": "Den QR-Code in Shark auf dem Desktop scannen oder stattdessen den Kopplungscode einfügen.",
       "connectTimedOut": "Verbindung konnte nicht innerhalb von {{seconds}} s hergestellt werden – das Protokoll unten zeigt, wo der Vorgang hängen blieb",
       "connecting": "Verbindung wird hergestellt…",
       "invalidPairingCode": "Kein gültiger Kopplungscode – vom Computer kopieren und erneut einfügen",
-      "invalidQrCode": "Kein gültiger Orca-QR-Code",
+      "invalidQrCode": "Kein gültiger Shark-QR-Code",
       "downloadQrCode": "Das ist der Download-Code. Scanne den Kopplungscode in Schritt 2 auf deinem Computer.",
-      "openDesktopStep": "Orca auf dem Computer öffnen",
+      "openDesktopStep": "Shark auf dem Computer öffnen",
       "openMobileSettingsStep": "Einstellungen → Mobil öffnen",
       "openSettings": "Einstellungen öffnen",
       "pairingFailed": "Kopplung fehlgeschlagen: {{error}}",
@@ -119,7 +119,7 @@
       "largeText": "Groß (125 %)",
       "largerText": "Größer (150 %)",
       "largestText": "Am größten (200 %)",
-      "leaveAppDescription": "Während ein Terminal auf dem Smartphone verwendet wird, verkleinert Orca es auf die Bildschirmgröße des Smartphones. Diese Einstellung legt fest, ob es beim Schließen oder Verlassen der App in Smartphone-Größe bleibt (damit interaktive CLI-Tools ihr Layout beibehalten) oder wieder an den Desktop angepasst wird. Über „Wiederherstellen“ im Desktop-Banner lässt sich die Größe jederzeit manuell anpassen.",
+      "leaveAppDescription": "Während ein Terminal auf dem Smartphone verwendet wird, verkleinert Shark es auf die Bildschirmgröße des Smartphones. Diese Einstellung legt fest, ob es beim Schließen oder Verlassen der App in Smartphone-Größe bleibt (damit interaktive CLI-Tools ihr Layout beibehalten) oder wieder an den Desktop angepasst wird. Über „Wiederherstellen“ im Desktop-Banner lässt sich die Größe jederzeit manuell anpassen.",
       "leaveAppHeading": "BEIM VERLASSEN DER APP",
       "noPairedDesktops": "Noch keine Desktops gekoppelt. Einen Desktop koppeln, um das Terminalverhalten festzulegen.",
       "restoreAfterMinutes_one": "Nach {{count}} Minute",
@@ -138,15 +138,15 @@
   },
   "appMove": {
     "play": {
-      "title": "Orca ist jetzt bei Google Play",
+      "title": "Shark ist jetzt bei Google Play",
       "description": "Diese App funktioniert weiterhin, aber Updates kommen jetzt über Google Play. Der Wechsel dauert nur ein paar Minuten.",
-      "installTitle": "Orca über Google Play installieren",
+      "installTitle": "Shark über Google Play installieren",
       "installDescription": "Das geht sofort, egal wo du gerade bist.",
       "openGooglePlay": "Google Play öffnen",
       "cantUseGooglePlay": "Ich kann Google Play nicht nutzen"
     },
     "download": {
-      "title": "Die neue Orca-App holen",
+      "title": "Die neue Shark-App holen",
       "description": "Diese App funktioniert weiterhin, aber Updates und Sicherheitskorrekturen kommen jetzt über die neue App. Der Wechsel dauert nur ein paar Minuten.",
       "installTitle": "Die neue App herunterladen",
       "installDescription": "Wenn dein Smartphone fragt, erlaube deinem Browser, Apps zu installieren.",
@@ -155,7 +155,7 @@
       "keepThisVersionNote": "Dir entgehen Sicherheitskorrekturen. Wir erinnern dich in einer Woche."
     },
     "pairTitle": "Mit dem Computer koppeln",
-    "pairDescription": "In Orca auf dem Computer Einstellungen → Mobil öffnen und den Code scannen.",
+    "pairDescription": "In Shark auf dem Computer Einstellungen → Mobil öffnen und den Code scannen.",
     "deleteTitle": "Diese App löschen",
     "deleteDescription": "Sobald die neue App deine Agenten zeigt. Bis dahin diese App weiter nutzen.",
     "dataKept": "Deine Agenten, Chats und Workspaces sind auf deinem Computer gespeichert, du findest also alles in der neuen App wieder.",
@@ -269,7 +269,7 @@
       "copyFailed": "Bild konnte nicht kopiert werden",
       "saveFailed": "Bild konnte nicht gesichert werden",
       "shareFailed": "Bild konnte nicht geteilt werden",
-      "photosAccessDenied": "Erlaube Orca in den Einstellungen, Fotos hinzuzufügen",
+      "photosAccessDenied": "Erlaube Shark in den Einstellungen, Fotos hinzuzufügen",
       "imageTooLarge": "Dieses Bild ist zu groß"
     },
     "nativeChatProse": {
@@ -342,11 +342,11 @@
     },
     "orcaStop": {
       "canContinue": "Die Unterhaltung kann fortgesetzt werden.",
-      "crash": "Orca auf {{machine}} wurde während dieser Antwort unerwartet beendet.",
-      "quit": "Orca auf {{machine}} wurde während dieser Antwort geschlossen.",
-      "remote": "Orca auf {{machine}} wurde während dieser Antwort gestoppt.",
+      "crash": "Shark auf {{machine}} wurde während dieser Antwort unerwartet beendet.",
+      "quit": "Shark auf {{machine}} wurde während dieser Antwort geschlossen.",
+      "remote": "Shark auf {{machine}} wurde während dieser Antwort gestoppt.",
       "unnamedServer": "dem entfernten Server",
-      "update": "Orca auf {{machine}} wurde während dieser Antwort für ein Update neu gestartet."
+      "update": "Shark auf {{machine}} wurde während dieser Antwort für ein Update neu gestartet."
     },
     "interruptedContinue": {
       "failed": "Dieser Chat konnte nicht fortgesetzt werden. Erneut versuchen oder eine Nachricht senden.",
@@ -357,7 +357,7 @@
     },
     "permission": {
       "needsAccessTo": "Benötigt Zugriff auf: ",
-      "newerVersionRequired": "Diese Anfrage erfordert eine neuere Version von Orca.",
+      "newerVersionRequired": "Diese Anfrage erfordert eine neuere Version von Shark.",
       "planFile": "Plandatei: {{filePath}}",
       "reason": "Grund: "
     },
@@ -390,7 +390,7 @@
       "waitingFor": "Wird gesendet, wenn {{host}} wieder erreichbar ist",
       "waiting": "Wird gesendet, wenn der Desktop wieder erreichbar ist",
       "behind": "Wartet – eine Nachricht davor braucht Aufmerksamkeit",
-      "closed": "Nicht gesendet, bevor Orca geschlossen wurde"
+      "closed": "Nicht gesendet, bevor Shark geschlossen wurde"
     },
     "receipt": {
       "cancelled": "Abgebrochen",
@@ -596,9 +596,9 @@
       "autoContinueCancel": "Nicht fortsetzen",
       "statusResetAt": "Zurückgesetzt um {{time}}",
       "statusResetsAt": "Wird um {{time}} zurückgesetzt",
-      "statusContinuesShortly": "Orca setzt gleich fort",
-      "statusContinuesThen": "Orca setzt dann fort",
-      "statusWontContinue": "Orca setzt nicht automatisch fort"
+      "statusContinuesShortly": "Shark setzt gleich fort",
+      "statusContinuesThen": "Shark setzt dann fort",
+      "statusWontContinue": "Shark setzt nicht automatisch fort"
     },
     "useImageUpload": {
       "attachFailed": "Anhängen fehlgeschlagen",
@@ -615,7 +615,7 @@
       "incompleteReply": "Der Anhang wurde geändert oder die Antwort war unvollständig. Schließen und erneut versuchen.",
       "notText": "Diese Datei kann nicht als Text angezeigt werden. Speichere sie, um sie in einer anderen App zu öffnen.",
       "openFailed": "Anhang konnte nicht geöffnet werden. Erneut versuchen.",
-      "hostUpdate": "Dieser Host kann Textanhänge noch nicht öffnen. Aktualisiere Orca auf diesem Host und versuche es erneut.",
+      "hostUpdate": "Dieser Host kann Textanhänge noch nicht öffnen. Aktualisiere Shark auf diesem Host und versuche es erneut.",
       "copyTooLarge": "Diese Datei ist zu groß zum Kopieren. Speichere sie stattdessen.",
       "connectionChanged": "Die Verbindung hat sich geändert. Versuche erneut, den Anhang zu öffnen.",
       "hostChanged": "Der Host des Anhangs hat sich geändert. Schließe den Anhang und öffne ihn erneut.",
@@ -663,10 +663,10 @@
       "historyLimit": "Dieses Gespräch ist zu lang, um darin zurückzugehen. Es wurde nichts geändert.",
       "providerRefused": "Der Agent konnte nicht zu dieser Nachricht zurückkehren.",
       "proofMismatch": "Der Verlauf des Agenten stimmte nicht mit diesem Chat überein. Das Gespräch vor dem Fortfahren prüfen.",
-      "outcomeUnknown": "Orca konnte nicht bestätigen, ob das Gespräch zu einer früheren Nachricht zurückgesetzt wurde. Dies wird vor dem Senden der nächsten Nachricht geprüft.",
-      "refused": "Orca konnte nicht zu dieser Nachricht zurückkehren. Das Gespräch vor dem Fortfahren prüfen.",
+      "outcomeUnknown": "Shark konnte nicht bestätigen, ob das Gespräch zu einer früheren Nachricht zurückgesetzt wurde. Dies wird vor dem Senden der nächsten Nachricht geprüft.",
+      "refused": "Shark konnte nicht zu dieser Nachricht zurückkehren. Das Gespräch vor dem Fortfahren prüfen.",
       "unavailable": "Warten, bis die Verbindung zum Chat hergestellt ist.",
-      "outcomeUnknownReturned": "Orca konnte nicht bestätigen, ob das Gespräch zu dieser Nachricht zurückgesetzt wurde. Die Nachricht steht wieder im Eingabefeld, und Orca prüft das Gespräch vor dem Senden der nächsten Nachricht.",
+      "outcomeUnknownReturned": "Shark konnte nicht bestätigen, ob das Gespräch zu dieser Nachricht zurückgesetzt wurde. Die Nachricht steht wieder im Eingabefeld, und Shark prüft das Gespräch vor dem Senden der nächsten Nachricht.",
       "timeout": "Der Chat wurde nach dem Zurücksetzen zu dieser Nachricht nicht aktualisiert. Erneut öffnen, um den neuesten Stand zu sehen.",
       "pending": "Warten, bis das Gespräch zur früheren Nachricht zurückgesetzt wurde."
     },
@@ -674,7 +674,7 @@
       "busy": "Ein anderer Chat oder ein Terminal wird geöffnet. Warte und zweige dann den {{agent}}-Chat erneut ab.",
       "unconfirmed": "{{agent}} konnte das Abzweigen nicht bestätigen. Der Chat wurde möglicherweise dennoch geöffnet; prüfe den Sitzungsverlauf, bevor du erneut abzweigst.",
       "failed": "{{agent}} konnte diesen Chat nicht abzweigen. {{detail}}",
-      "unsupported": "Auf diesem Host läuft eine ältere Orca-Version. Aktualisiere Orca auf dem Host und versuche es erneut.",
+      "unsupported": "Auf diesem Host läuft eine ältere Shark-Version. Aktualisiere Shark auf dem Host und versuche es erneut.",
       "mark": "Zweig ·",
       "markedName": "{{mark}} {{name}}",
       "accessibleName": "Zweig: {{name}}"
@@ -710,7 +710,7 @@
       "copyFailed": "Kopieren fehlgeschlagen",
       "copyPrompt": "Prompt kopieren",
       "statusUnreadable": "Der Status dieses Hosts konnte nicht gelesen werden. Erneuter Versuch…",
-      "updateRequired": "Orca auf dem Computer aktualisieren, um einen Agenten vom Smartphone aus zu starten."
+      "updateRequired": "Shark auf dem Computer aktualisieren, um einen Agenten vom Smartphone aus zu starten."
     },
     "agentSpinner": {
       "monitoring": "Hintergrundaufgaben werden überwacht",
@@ -725,7 +725,7 @@
     },
     "authFailedBannerActions": {
       "repair": "Erneut koppeln",
-      "webNote": "Diesen Host über die Orca-App erneut verbinden oder entfernen."
+      "webNote": "Diesen Host über die Shark-App erneut verbinden oder entfernen."
     },
     "codexResetCredit": {
       "alreadyAppliedTitle": "Zurücksetzung bereits erfolgt",
@@ -841,7 +841,7 @@
       "terminalLabel": "{{title}} ({{id}})",
       "unsentNotes_one": "{{count}} ungesendete Notiz",
       "unsentNotes_other": "{{count}} ungesendete Notizen",
-      "updateRequired": "Orca auf dem Computer aktualisieren"
+      "updateRequired": "Shark auf dem Computer aktualisieren"
     },
     "diffReviewFileSummary": {
       "changed": "Geändert",
@@ -902,10 +902,10 @@
     },
     "jiraConnectPrompt": {
       "checkAgain": "Erneut prüfen",
-      "connectHint": "Die Jira-Site in Orca auf dem Computer unter Einstellungen → Integrationen hinzufügen und anschließend erneut prüfen.",
+      "connectHint": "Die Jira-Site in Shark auf dem Computer unter Einstellungen → Integrationen hinzufügen und anschließend erneut prüfen.",
       "connectOnDesktop": "Jira auf dem Computer verbinden",
       "credentialUnreadable": "Die Jira-Zugangsdaten sind gespeichert, können aber nicht gelesen werden: {{credentialError}}",
-      "updateDesktop": "Orca auf dem Computer aktualisieren"
+      "updateDesktop": "Shark auf dem Computer aktualisieren"
     },
     "markdownBlocks": {
       "copyCode": "Code kopieren",
@@ -970,23 +970,23 @@
     },
     "protocolBlockScreen": {
       "backToHosts": "Zurück zu Hosts",
-      "desktopTooOldBody": "Die gekoppelte Desktop-App ist für die aktuelle Version von Orca Mobile zu alt. Orca auf dem Computer aktualisieren und dann erneut mit diesem Host verbinden.",
-      "getVersion": "Orca {{version}} herunterladen",
-      "mobileTooOldAppStore": "Diese Desktop-App benötigt eine neuere Version von Orca Mobile. Orca Mobile über den App Store aktualisieren und dann erneut mit diesem Host verbinden.",
-      "mobileTooOldGooglePlay": "Diese Desktop-App benötigt eine neuere Version von Orca Mobile. Orca Mobile über Google Play aktualisieren und dann erneut mit diesem Host verbinden.",
-      "mobileTooOldGitHubReleases": "Diese Desktop-App benötigt eine neuere Version von Orca Mobile. Orca Mobile über GitHub Releases aktualisieren und dann erneut mit diesem Host verbinden.",
+      "desktopTooOldBody": "Die gekoppelte Desktop-App ist für die aktuelle Version von Shark Mobile zu alt. Shark auf dem Computer aktualisieren und dann erneut mit diesem Host verbinden.",
+      "getVersion": "Shark {{version}} herunterladen",
+      "mobileTooOldAppStore": "Diese Desktop-App benötigt eine neuere Version von Shark Mobile. Shark Mobile über den App Store aktualisieren und dann erneut mit diesem Host verbinden.",
+      "mobileTooOldGooglePlay": "Diese Desktop-App benötigt eine neuere Version von Shark Mobile. Shark Mobile über Google Play aktualisieren und dann erneut mit diesem Host verbinden.",
+      "mobileTooOldGitHubReleases": "Diese Desktop-App benötigt eine neuere Version von Shark Mobile. Shark Mobile über GitHub Releases aktualisieren und dann erneut mit diesem Host verbinden.",
       "openAppStore": "App Store öffnen",
       "openGooglePlay": "Google Play öffnen",
       "openGitHubReleases": "GitHub Releases öffnen",
       "refreshRecoveryNote": "Wenn diese Meldung weiterhin erscheint, diesen Host entfernen und erneut koppeln.",
       "refreshWorkspaceBody": "Der für diesen Host zwischengespeicherte Arbeitsbereich ist älter als von der Desktop-App erwartet. Erneut mit diesem Host verbinden, um die aktuelle Version herunterzuladen.",
       "refreshWorkspaceTitle": "Mobilen Arbeitsbereich aktualisieren",
-      "updateDesktopTitle": "Orca auf dem Computer aktualisieren",
-      "updateMobileTitle": "Orca Mobile aktualisieren",
+      "updateDesktopTitle": "Shark auf dem Computer aktualisieren",
+      "updateMobileTitle": "Shark Mobile aktualisieren",
       "updateRecoveryNote": "Bereits aktualisiert? Zu „Hosts“ zurückkehren und die Verbindung erneuern. Wenn diese Meldung weiterhin erscheint, diesen Host entfernen und erneut koppeln.",
-      "workspaceNeedsUpdateAppStore": "Der mobile Arbeitsbereich dieser Desktop-App benötigt eine neuere Version von Orca Mobile. Orca Mobile über den App Store aktualisieren und dann erneut mit diesem Host verbinden.",
-      "workspaceNeedsUpdateGooglePlay": "Der mobile Arbeitsbereich dieser Desktop-App benötigt eine neuere Version von Orca Mobile. Orca Mobile über Google Play aktualisieren und dann erneut mit diesem Host verbinden.",
-      "workspaceNeedsUpdateGitHubReleases": "Der mobile Arbeitsbereich dieser Desktop-App benötigt eine neuere Version von Orca Mobile. Orca Mobile über GitHub Releases aktualisieren und dann erneut mit diesem Host verbinden."
+      "workspaceNeedsUpdateAppStore": "Der mobile Arbeitsbereich dieser Desktop-App benötigt eine neuere Version von Shark Mobile. Shark Mobile über den App Store aktualisieren und dann erneut mit diesem Host verbinden.",
+      "workspaceNeedsUpdateGooglePlay": "Der mobile Arbeitsbereich dieser Desktop-App benötigt eine neuere Version von Shark Mobile. Shark Mobile über Google Play aktualisieren und dann erneut mit diesem Host verbinden.",
+      "workspaceNeedsUpdateGitHubReleases": "Der mobile Arbeitsbereich dieser Desktop-App benötigt eine neuere Version von Shark Mobile. Shark Mobile über GitHub Releases aktualisieren und dann erneut mit diesem Host verbinden."
     },
     "richMarkdownEditor": {
       "imageUrl": "Bild-URL",
@@ -1147,7 +1147,7 @@
       "disconnected": "Getrennt",
       "hostFallback": "Host",
       "hostOffline": "{{host}} ist offline",
-      "hostOfflineDetail": "Prüfen, ob der Computer wach ist, Orca läuft und du angemeldet bist",
+      "hostOfflineDetail": "Prüfen, ob der Computer wach ist, Shark läuft und du angemeldet bist",
       "labelWithHint": "{{label}} – {{hint}}",
       "pairingInvalid": "Kopplung ungültig – erneut mit dem Computer koppeln",
       "rePairDetail": "Erneut mit dem Computer koppeln",
@@ -1155,7 +1155,7 @@
       "relayAccessExpired": "Relay-Zugriff für {{host}} abgelaufen",
       "relayConnectFailed": "Verbindung über Relay fehlgeschlagen",
       "relayUnreachable": "Relay nicht erreichbar",
-      "signInDetail": "Auf dem Computer bei Orca anmelden, um die Verbindung wiederherzustellen",
+      "signInDetail": "Auf dem Computer bei Shark anmelden, um die Verbindung wiederherzustellen",
       "signInRequired": "Anmeldung auf {{host}} erforderlich",
       "tailscaleHint": "Tailscale prüfen"
     },
@@ -1200,7 +1200,7 @@
       "privacyHint": "Sendet einen um sensible Daten bereinigten Bericht mit begrenzter Größe. Er enthält Host-Name, Endpunkt, Versionen, Verbindungsstatus und Ereignisse, niemals Terminalinhalte oder Zugangsdaten.",
       "reconnecting": "Verbindung wird wiederhergestellt",
       "retrySending": "Erneut senden",
-      "sendDiagnostics": "Diagnosedaten an Orca senden",
+      "sendDiagnostics": "Diagnosedaten an Shark senden",
       "sending": "Wird gesendet…",
       "sent": "Diagnosedaten gesendet",
       "stateWithAttempt": "{{state}} · Versuch {{attempts}}",
@@ -1223,21 +1223,21 @@
       "title": "Arbeitsbereichsaktualisierungen"
     },
     "troubleshootCommonIssues": {
-      "allowNotifications": "Prüfen, ob Orca-Benachrichtigungen in den Systemeinstellungen erlaubt sind und „Focus“ oder „Do Not Disturb“ deaktiviert ist.",
+      "allowNotifications": "Prüfen, ob Shark-Benachrichtigungen in den Systemeinstellungen erlaubt sind und „Focus“ oder „Do Not Disturb“ deaktiviert ist.",
       "checkTailnet": "Prüfen, ob der Computer nicht im Ruhezustand ist und im Tailnet als verbunden angezeigt wird.",
       "desktopTitle": "Desktop-App läuft nicht",
       "disableVpn": "Dieses VPN deaktivieren oder Split-Tunneling / „Allow LAN“ aktivieren.",
       "firewallTitle": "Firewall blockiert Port {{port}}",
       "linuxFirewall": "Linux: sudo ufw allow {{port}}",
       "keepTailscaleOn": "Host-Adressen wie 100.x.x.x oder *.ts.net nutzen Tailscale – Tailscale eingeschaltet lassen.",
-      "macosFirewall": "macOS: System Settings → Network → Firewall – Orca zulassen.",
+      "macosFirewall": "macOS: System Settings → Network → Firewall – Shark zulassen.",
       "notificationNetwork": "Mobilfunk oder ein anderes WLAN ausprobieren. Treffen Benachrichtigungen nach dem Wechsel ein, verzögert das ursprüngliche Netzwerk möglicherweise die Zustellung.",
       "notificationsTitle": "Push-Benachrichtigungen",
-      "openDesktop": "Orca muss auf dem Computer geöffnet sein, um Verbindungen anzunehmen.",
+      "openDesktop": "Shark muss auf dem Computer geöffnet sein, um Verbindungen anzunehmen.",
       "pairAfterUpdate": "Nach einem Update ist möglicherweise eine erneute Kopplung per QR-Code nötig.",
       "reconnectWifi": "Die WLAN-Verbindung auf beiden Geräten erneut herstellen.",
       "restartBothApps": "Bei anhaltenden Zeitüberschreitungen beide Apps neu starten.",
-      "restartDesktop": "Orca neu starten – der Server für die mobile App startet mit Orca.",
+      "restartDesktop": "Shark neu starten – der Server für die mobile App startet mit Shark.",
       "restartTailscale": "Unter iOS/Android kann der Tunnel unbemerkt hängen bleiben: Tailscale in der Tailscale-App aus- und wieder einschalten.",
       "restrictedNetwork": "Firmen- und Schulnetzwerke können P2P blockieren – einen persönlichen Hotspot ausprobieren.",
       "retryHost": "Zur Host-Liste zurückkehren und den Host antippen, um es erneut zu versuchen.",
@@ -1250,7 +1250,7 @@
       "vpnTitle": "Störungen durch andere VPNs",
       "wifiSignal": "Die WLAN-Signalstärke auf dem Smartphone prüfen.",
       "wifiTitle": "Unterschiedliche WLANs",
-      "windowsFirewall": "Windows: Defender Firewall → Allow app – Orca für Private networks aktivieren."
+      "windowsFirewall": "Windows: Defender Firewall → Allow app – Shark für Private networks aktivieren."
     },
     "troubleshootView": {
       "commonIssues": "Häufige Probleme",
@@ -1324,15 +1324,15 @@
   },
   "dictation": {
     "setup": {
-      "alreadyActive": "Auf dem Computer oder einem anderen Smartphone wird bereits diktiert. Orca auf dem Computer aktualisieren, um auf mehreren Geräten gleichzeitig zu diktieren.",
+      "alreadyActive": "Auf dem Computer oder einem anderen Smartphone wird bereits diktiert. Shark auf dem Computer aktualisieren, um auf mehreren Geräten gleichzeitig zu diktieren.",
       "cloudModelNeedsKey": "OpenAI-Schlüssel erforderlich",
       "deleteFailed": "Modell konnte nicht gelöscht werden",
-      "desktopUpdateRequired": "Die gekoppelte Orca-Desktop-App aktualisieren, um die Spracheingabeeinstellungen auf dem Smartphone zu nutzen.",
+      "desktopUpdateRequired": "Die gekoppelte Shark-Desktop-App aktualisieren, um die Spracheingabeeinstellungen auf dem Smartphone zu nutzen.",
       "downloadFailed": "Download konnte nicht gestartet werden",
       "loadFailed": "Diktatmodelle konnten nicht geladen werden",
       "modelBusy": "Ein anderes Gerät diktiert mit einem anderen Spracherkennungsmodell. Erneut versuchen, sobald es fertig ist.",
       "repairRequired": "Dieses Smartphone erneut mit dem Computer koppeln, um das Diktat zu nutzen.",
-      "serverUpdateRequired": "Orca auf diesem Server aktualisieren, um das Diktat zu nutzen.",
+      "serverUpdateRequired": "Shark auf diesem Server aktualisieren, um das Diktat zu nutzen.",
       "sessionLimit": "Auf diesem Computer diktieren zu viele Geräte. Erneut versuchen, sobald eines fertig ist.",
       "sessionLost": "Die Verbindung zum Computer wurde beim Diktat unterbrochen. Erneut versuchen.",
       "updateFailed": "Diktateinstellungen konnten nicht aktualisiert werden"
@@ -1490,7 +1490,7 @@
       "open": "PDF öffnen",
       "openFailed": "Diese PDF-Datei konnte nicht geöffnet werden",
       "opening": "PDF wird geöffnet…",
-      "updateRequired": "Orca Mobile aktualisieren, um PDFs zu öffnen"
+      "updateRequired": "Shark Mobile aktualisieren, um PDFs zu öffnen"
     },
     "unsavedEditsOffer": {
       "changedSince": "Auf dem Desktop geändert seit deinen Änderungen von {{time}}",
@@ -1502,9 +1502,9 @@
   },
   "home": {
     "appUpdateCard": {
-      "dismissAccessibilityLabel": "Update-Hinweis für Orca {{version}} ausblenden",
-      "title": "Orca {{version}} ist verfügbar",
-      "updateAccessibilityLabel": "Orca {{version}} ist verfügbar, zum Aktualisieren antippen"
+      "dismissAccessibilityLabel": "Update-Hinweis für Shark {{version}} ausblenden",
+      "title": "Shark {{version}} ist verfügbar",
+      "updateAccessibilityLabel": "Shark {{version}} ist verfügbar, zum Aktualisieren antippen"
     },
     "automationsTab": {
       "connectDesktop": "{{desktop}} verbinden, um Automatisierungen anzuzeigen und auszuführen.",
@@ -1518,14 +1518,14 @@
       "scheduled": "Geplant",
       "showFor": "Automatisierungen anzeigen für",
       "toggleFailed": "{{name}} konnte nicht aktualisiert werden",
-      "updateDesktop": "Orca auf {{desktop}} aktualisieren, um Automatisierungen zu nutzen."
+      "updateDesktop": "Shark auf {{desktop}} aktualisieren, um Automatisierungen zu nutzen."
     },
     "emptyState": {
       "connectedDescription": "Der Desktop erscheint hier. Alles ist Ende-zu-Ende-verschlüsselt.",
       "connectedTitle": "Verbunden",
-      "description": "Mit Orca auf dem Computer koppeln, um Agenten im Blick zu behalten, beliebige Terminals zu öffnen und die Arbeit vom Smartphone aus zu steuern.",
+      "description": "Mit Shark auf dem Computer koppeln, um Agenten im Blick zu behalten, beliebige Terminals zu öffnen und die Arbeit vom Smartphone aus zu steuern.",
       "openDesktopDescription": "Einstellungen → Mobil öffnen und einen QR-Code zum Koppeln erstellen.",
-      "openDesktopTitle": "Orca-Desktop-App öffnen",
+      "openDesktopTitle": "Shark-Desktop-App öffnen",
       "scanCodeTitle": "Code scannen",
       "title": "Desktop verbinden"
     },
@@ -1624,8 +1624,8 @@
     },
     "hostScreenOverlays": {
       "deleteConfirmMessage": "„{{name}}“ ({{branch}}) löschen?",
-      "deleteDestroysEnvironment": "Dadurch wird auch die Umgebung „{{environment}}“ gelöscht, die Orca dafür erstellt hat, samt nicht committeter Änderungen und laufender Terminals.",
-      "deleteKeepsEnvironment": "Die Umgebung „{{environment}}“, die Orca dafür erstellt hat, läuft weiter: Ihr Rezept hat keinen Löschschritt.",
+      "deleteDestroysEnvironment": "Dadurch wird auch die Umgebung „{{environment}}“ gelöscht, die Shark dafür erstellt hat, samt nicht committeter Änderungen und laufender Terminals.",
+      "deleteKeepsEnvironment": "Die Umgebung „{{environment}}“, die Shark dafür erstellt hat, läuft weiter: Ihr Rezept hat keinen Löschschritt.",
       "pin": "Anheften",
       "primaryWorktreeDeleteHint": "Primärer Worktree — kann nicht gelöscht werden. Stattdessen das Projekt entfernen.",
       "removeHost": "Host entfernen",
@@ -1641,7 +1641,7 @@
       "closed": "Geschlossen",
       "createdByAutomation": "Durch Automatisierung erstellt",
       "createdByNamedAutomation": "Durch die Automatisierung „{{name}}“ erstellt",
-      "createdFromCli": "Über die Orca CLI erstellt",
+      "createdFromCli": "Über die Shark CLI erstellt",
       "draft": "Entwurf",
       "merged": "Gemergt",
       "openLink": "{{label}} öffnen",
@@ -1750,7 +1750,7 @@
   "notifications": {
     "desktopChannel": {
       "name": "Desktop-Benachrichtigungen",
-      "silentName": "Lautlose Orca-Benachrichtigungen"
+      "silentName": "Lautlose Shark-Benachrichtigungen"
     },
     "notificationDeliverySection": {
       "footer": "Die Benachrichtigungsarten richten sich nach den Benachrichtigungseinstellungen des jeweiligen gekoppelten Computers. Nach 7 Tagen ohne Nutzung dieser App werden Benachrichtigungen pausiert; zum Fortsetzen die App öffnen und erneut verbinden.",
@@ -1775,7 +1775,7 @@
       "keepTerminal": "Terminal beibehalten",
       "notNow": "Jetzt nicht",
       "notificationsDescription": "Auf diesem Smartphone benachrichtigt werden, wenn ein Agent fertig ist oder wartet – auch wenn die App gerade nicht genutzt wird.",
-      "notificationsDisclosure": "Zustellung über den Push-Dienst von Orca, sobald der Computer 3 Minuten lang inaktiv ist. Jederzeit in den Einstellungen änderbar.",
+      "notificationsDisclosure": "Zustellung über den Push-Dienst von Shark, sobald der Computer 3 Minuten lang inaktiv ist. Jederzeit in den Einstellungen änderbar.",
       "notificationsTitle": "Nicht verpassen, wenn ein Agent dich braucht",
       "openInChatUi": "Sitzungen in der Chat-Oberfläche öffnen",
       "openInTerminal": "Sitzungen im Terminal öffnen",
@@ -2096,7 +2096,7 @@
       "committedChangesFailed": "Committete Änderungen konnten nicht geladen werden.",
       "committedChangesUnavailable": "Committete Änderungen nicht verfügbar",
       "committedDiffUnavailable": "Diff der committeten Änderungen ist nicht verfügbar.",
-      "desktopUpdateRequired": "Orca auf dem Desktop aktualisieren, um Änderungen auf dem Mobilgerät zu prüfen.",
+      "desktopUpdateRequired": "Shark auf dem Desktop aktualisieren, um Änderungen auf dem Mobilgerät zu prüfen.",
       "diffLoadFailed": "Diff konnte nicht geladen werden.",
       "reviewNotesLoadFailed": "Review-Notizen konnten nicht geladen werden."
     },
@@ -2112,7 +2112,7 @@
     },
     "failure": {
       "accountSwitchInProgress": "{{agent}}: Die Einrichtung auf diesem Host wird geändert. Nach Abschluss erneut versuchen.",
-      "agentCommandNotRunnable": "Der Befehl für {{agent}} unter Einstellungen → Agenten muss ein Programmpfad oder -name sein, den Orca finden kann, ohne Argumente oder Variablen. Den Befehl ändern oder zurücksetzen.",
+      "agentCommandNotRunnable": "Der Befehl für {{agent}} unter Einstellungen → Agenten muss ein Programmpfad oder -name sein, den Shark finden kann, ohne Argumente oder Variablen. Den Befehl ändern oder zurücksetzen.",
       "agentCommandNotSignedIn": "Auf dem Computer, auf dem dieser Chat läuft, mit `{{loginCommand}}` bei {{agent}} anmelden.",
       "agentNotSignedIn": "Bei {{agent}} anmelden.",
       "agentStarting": "Der Agent wird noch gestartet.",
@@ -2173,13 +2173,13 @@
       "fullAccessAsRoot": "{{agent}} verwendet keinen Vollzugriff, solange die Ausführung als root erfolgt. Unter Einstellungen → Agenten für den Computer, auf dem dieser Chat läuft, eine andere Berechtigung für {{agent}} auswählen und anschließend einen neuen Chat starten.",
       "historyInOtherAccount": "Der Verlauf dieses Chats befindet sich in einem anderen Claude-Konto. Zu diesem Konto zurückwechseln, um den Chat fortzusetzen.",
       "historyTooLarge": "Der Verlauf dieser Unterhaltung ist zu groß, um ihn hier wiederherzustellen.",
-      "hostFault": "Bei Orca ist ein Problem aufgetreten, daher wurde dies nicht übermittelt.",
-      "hostFaultTryAgain": "Bei Orca ist ein Problem aufgetreten, daher wurde dies nicht übermittelt. Erneut versuchen.",
-      "hostRestarted": "Orca wurde neu gestartet, bevor diese Nachricht gesendet wurde.",
-      "hostStopped": "{{agent}} konnte den Start nicht abschließen und wurde daher von Orca gestoppt.",
+      "hostFault": "Bei Shark ist ein Problem aufgetreten, daher wurde dies nicht übermittelt.",
+      "hostFaultTryAgain": "Bei Shark ist ein Problem aufgetreten, daher wurde dies nicht übermittelt. Erneut versuchen.",
+      "hostRestarted": "Shark wurde neu gestartet, bevor diese Nachricht gesendet wurde.",
+      "hostStopped": "{{agent}} konnte den Start nicht abschließen und wurde daher von Shark gestoppt.",
       "interactiveAgentNotSignedIn": "Auf dem Computer, auf dem dieser Chat läuft, `{{loginCommand}}` ausführen und mit `{{slashCommand}}` bei {{agent}} anmelden.",
       "launchFolderMissing": "Der Ordner, in dem dieser Chat lief, existiert nicht mehr. Den Ordner wiederherstellen, um diesen Chat fortzusetzen.",
-      "launchPreparationFailed": "Orca konnte den Start von {{agent}} auf dem Computer, auf dem dieser Chat läuft, nicht vorbereiten.",
+      "launchPreparationFailed": "Shark konnte den Start von {{agent}} auf dem Computer, auf dem dieser Chat läuft, nicht vorbereiten.",
       "managedAccountEnvOverride": "Dieser Claude-Start legt eigene Variablen für die Anthropic-Anmeldung fest. Diese entfernen, um ein verwaltetes Claude-Konto zu verwenden.",
       "managedAccountUnsupported": "Auch wenn in WSL ein Claude-Konto hinzugefügt wurde, benötigen Claude-Chats ein Claude-Konto unter Windows.",
       "modelUnavailable": "{{agent}} konnte {{detail}} nicht verwenden. Ein anderes Modell auswählen und erneut senden.",
@@ -2211,7 +2211,7 @@
       "quitTerminalAgent": "Diesen Agenten beenden, um den Chat hier fortzusetzen.",
       "runCommandAgain": "/{{command}} erneut ausführen.",
       "runCommandWhenDone": "Nach Abschluss /{{command}} ausführen.",
-      "runtimeNotInstalled": "{{agent}} ist auf dem Computer, auf dem dieser Chat läuft, nicht installiert. Die Installation über den Chat in einer aktuellen Orca-Version durchführen.",
+      "runtimeNotInstalled": "{{agent}} ist auf dem Computer, auf dem dieser Chat läuft, nicht installiert. Die Installation über den Chat in einer aktuellen Shark-Version durchführen.",
       "sendAgainToTryOnceMore": "Die Nachricht erneut senden, um es noch einmal zu versuchen.",
       "sendToTryAgain": "Die Nachricht senden, um es erneut zu versuchen.",
       "sessionNotRestored": "{{agent}} konnte die frühere Sitzung nicht erneut öffnen, daher wird dieser Chat in einer neuen Sitzung fortgesetzt. {{agent}} erinnert sich nicht an die früheren Nachrichten.",
@@ -2236,7 +2236,7 @@
       "usageLimitWindowWeeklyModel": "Wöchentliche Modellnutzung",
       "waitForBackgroundTasks": "Warten, bis die Hintergrundaufgaben abgeschlossen sind.",
       "waitForStart": "Warten, bis der Agent vollständig gestartet ist.",
-      "writeFailed": "Orca konnte diese Nachricht nicht an den Agenten übergeben, daher wurde sie nicht gesendet.",
+      "writeFailed": "Shark konnte diese Nachricht nicht an den Agenten übergeben, daher wurde sie nicht gesendet.",
       "pluginInputRequired": "{{agent}} wurde angehalten, weil das Plugin „{{plugin}}“ in einem Terminalbereich auf eine Eingabe wartet. Deaktiviere das Plugin für Chatsitzungen oder führe die Aufgabe in einem {{agent}}-Terminal aus."
     },
     "fileReader": {
@@ -2345,7 +2345,7 @@
       "emptyPrompt": "Der gespeicherte Prompt dieser Aktion ist leer. Die KI-Einstellungen der Quellcodeverwaltung auf dem Computer aktualisieren.",
       "loadFailed": "Die verfügbaren Agenten konnten nicht geladen werden.",
       "promptNotSent": "Der Agent wurde gestartet, aber der Prompt wurde nicht gesendet.",
-      "updateRequired": "Orca auf dem Computer aktualisieren, um einen Agenten vom Smartphone aus zu starten."
+      "updateRequired": "Shark auf dem Computer aktualisieren, um einen Agenten vom Smartphone aus zu starten."
     },
     "prSidebarState": {
       "loadFailed": "Pull Request konnte nicht geladen werden"
@@ -2381,7 +2381,7 @@
       "globalScope": "Global",
       "label": "Bezeichnung",
       "labelPlaceholder": "Entwicklungsserver starten",
-      "olderHostPromptTooLong": "Zu lang für diesen Host. Orca auf dem Host aktualisieren, um längere Prompts zu speichern.",
+      "olderHostPromptTooLong": "Zu lang für diesen Host. Shark auf dem Host aktualisieren, um längere Prompts zu speichern.",
       "projectScope": "Projekt",
       "prompt": "Prompt",
       "promptHint": "Unterstützt Skills, Dateipfade und integrierte Befehle.",
@@ -2525,7 +2525,7 @@
     },
     "useCloseActions": {
       "closeFailed": "Der Tab konnte nicht geschlossen werden. Versuche es erneut.",
-      "closeFailedDesktopNotReady": "Der Tab konnte nicht geschlossen werden. Orca wird auf deinem Computer noch geladen. Versuche es gleich noch einmal."
+      "closeFailedDesktopNotReady": "Der Tab konnte nicht geschlossen werden. Shark wird auf deinem Computer noch geladen. Versuche es gleich noch einmal."
     },
     "useContentCreateActions": {
       "browserCommandFailed": "Browser-Befehl fehlgeschlagen",
@@ -2633,7 +2633,7 @@
       "liveInputInterrupted": "Live-Eingabe unterbrochen. Eingabefeld geleert; prüfe das Terminal, bevor du fortfährst."
     },
     "useStartup": {
-      "wakeAgents": "Orca auf dem Host öffnen, um schlafende Agenten zu wecken."
+      "wakeAgents": "Shark auf dem Host öffnen, um schlafende Agenten zu wecken."
     },
     "useTerminalCreateActions": {
       "createFailed": "Terminal konnte nicht erstellt werden",
@@ -2668,10 +2668,10 @@
       "attachmentExpired": "Dieser Anhang ist abgelaufen.",
       "backgroundTasksRunning": "Es laufen noch Hintergrundaufgaben.",
       "cancelNotSaved": "Diese Frage oder Genehmigungsanfrage konnte nicht abgebrochen werden.",
-      "cannotRunHere": "Orca kann diesen Agenten hier nicht in einem Chat ausführen.",
-      "capacity": "Orca hat auf dem Computer, auf dem dieser Chat läuft, ein Anfragelimit erreicht. Orca dort aktualisieren und anschließend erneut versuchen.",
-      "chatNotFound": "Orca kann diesen Chat nicht finden.",
-      "chatSavedByNewerOrca": "Dieser Chat wurde mit einer neueren Orca-Version gespeichert.",
+      "cannotRunHere": "Shark kann diesen Agenten hier nicht in einem Chat ausführen.",
+      "capacity": "Shark hat auf dem Computer, auf dem dieser Chat läuft, ein Anfragelimit erreicht. Shark dort aktualisieren und anschließend erneut versuchen.",
+      "chatNotFound": "Shark kann diesen Chat nicht finden.",
+      "chatSavedByNewerOrca": "Dieser Chat wurde mit einer neueren Shark-Version gespeichert.",
       "clearAfterAnswer": "Die Frage oder Genehmigungsanfrage des Agenten beantworten und anschließend /clear ausführen.",
       "clearAfterRetry": "Die vorherige Nachricht erneut senden und anschließend /clear ausführen.",
       "clearAfterSending": "Die vorherige Nachricht wird noch gesendet. Nach dem Senden /clear ausführen.",
@@ -2683,10 +2683,10 @@
       "continuationSuperseded": "Dieser Chat wurde inzwischen fortgesetzt. Vor dem Fortfahren die neuesten Nachrichten prüfen.",
       "conversationCleared": "Diese Unterhaltung wurde geleert.",
       "goalsUnsupported": "Dieser Agent unterstützt keine Ziele.",
-      "historyUnavailable": "Orca konnte den Verlauf dieses Chats gerade nicht öffnen.",
-      "historyUnreadable": "Orca konnte den gespeicherten Verlauf dieses Chats nicht lesen.",
+      "historyUnavailable": "Shark konnte den Verlauf dieses Chats gerade nicht öffnen.",
+      "historyUnreadable": "Shark konnte den gespeicherten Verlauf dieses Chats nicht lesen.",
       "historyUnusable": "Dieser Chat konnte nicht geladen werden.",
-      "hostReconciling": "Orca prüft diesen Chat nach dem Neustart noch.",
+      "hostReconciling": "Shark prüft diesen Chat nach dem Neustart noch.",
       "messageNotSaved": "Die Nachricht konnte nicht gespeichert werden.",
       "messageTooLarge": "Sie überschreitet das Limit von 256 KB pro Nachricht.",
       "messagesUnsettled": "Eine zuvor gesendete Nachricht ist noch nicht bestätigt.",
@@ -2703,7 +2703,7 @@
       "notDoneStopTasks": "Die Hintergrundaufgaben wurden nicht gestoppt.",
       "openCurrentConversation": "Zum Fortfahren die aktuelle Unterhaltung öffnen.",
       "optionRejected": "Der Agent hat diese Einstellung nicht angenommen.",
-      "outcomeUnknown": "Orca konnte das Ergebnis nicht bestätigen. Den Chat prüfen.",
+      "outcomeUnknown": "Shark konnte das Ergebnis nicht bestätigen. Den Chat prüfen.",
       "ownerUnproven": "Der vorherige Agent in diesem Chat läuft möglicherweise noch.",
       "pendingWork": "Diesen Befehl erst verwenden, wenn alle ausstehenden Aufgaben abgeschlossen und alle Nachrichten verarbeitet sind.",
       "promptPending": "Der Agent wartet auf eine Antwort auf eine Frage oder Genehmigungsanfrage.",
@@ -2712,14 +2712,14 @@
       "quitTerminalAgent": "Diesen Agenten beenden, um den Chat hier fortzusetzen.",
       "reattachFile": "Den Anhang entfernen und erneut anhängen.",
       "reattachFiles": "Die Anhänge entfernen und erneut anhängen.",
-      "recordFailed": "Orca konnte dies nicht im Chatverlauf speichern.",
-      "recordUnreadable": "Orca konnte den gespeicherten Zustand dieses Chats nicht lesen.",
+      "recordFailed": "Shark konnte dies nicht im Chatverlauf speichern.",
+      "recordUnreadable": "Shark konnte den gespeicherten Zustand dieses Chats nicht lesen.",
       "reopenChat": "Den Chat erneut öffnen, um dies nochmals zu prüfen.",
       "restartFailed": "Der Agent konnte nicht neu gestartet werden.",
       "runClearWhenDone": "Nach Abschluss /clear ausführen.",
       "runCompactWhenDone": "Nach Abschluss /compact ausführen.",
-      "savedByNewerOrca": "Die Chats wurden mit einer neueren Orca-Version gespeichert.",
-      "sendOutcomeLost": "Orca konnte nicht bestätigen, dass die Nachricht den Agenten erreicht hat. Den Chat prüfen und die Nachricht bei Bedarf erneut senden.",
+      "savedByNewerOrca": "Die Chats wurden mit einer neueren Shark-Version gespeichert.",
+      "sendOutcomeLost": "Shark konnte nicht bestätigen, dass die Nachricht den Agenten erreicht hat. Den Chat prüfen und die Nachricht bei Bedarf erneut senden.",
       "settleEarlierMessage": "Warten, bis die vorherige Nachricht übermittelt wurde, oder sie erneut senden.",
       "shortenMessage": "Die Nachricht kürzen oder aufteilen und anschließend erneut senden.",
       "shrinkQueue": "Eine Nachricht aus der Warteschlange löschen oder warten, bis eine Nachricht übermittelt wurde, und anschließend erneut versuchen.",
@@ -2728,10 +2728,10 @@
       "tryAgain": "Erneut versuchen.",
       "tryAgainComposerSend": "Erneut senden.",
       "turnActive": "Der Agent antwortet noch.",
-      "unreachable": "Orca konnte den Agenten nicht erreichen.",
-      "unsupported": "Hierfür ist eine neuere Orca-Version auf dem Computer erforderlich, auf dem dieser Chat läuft. Orca dort aktualisieren und anschließend erneut versuchen.",
-      "updateOrcaToKeepUsing": "Orca aktualisieren, um sie weiter zu verwenden.",
-      "updateOrcaToOpenChat": "Orca aktualisieren, um ihn zu öffnen.",
+      "unreachable": "Shark konnte den Agenten nicht erreichen.",
+      "unsupported": "Hierfür ist eine neuere Shark-Version auf dem Computer erforderlich, auf dem dieser Chat läuft. Shark dort aktualisieren und anschließend erneut versuchen.",
+      "updateOrcaToKeepUsing": "Shark aktualisieren, um sie weiter zu verwenden.",
+      "updateOrcaToOpenChat": "Shark aktualisieren, um ihn zu öffnen.",
       "waitForBackgroundTasks": "Warten, bis die Hintergrundaufgaben abgeschlossen sind.",
       "waitForCommand": "Warten, bis /compact oder /clear abgeschlossen ist.",
       "waitForStart": "Warten, bis der Agent vollständig gestartet ist.",
@@ -2788,11 +2788,11 @@
   "settings": {
     "aboutScreen": {
       "openLinkFailed": "Der Link konnte nicht geöffnet werden. Erneut versuchen.",
-      "socialProfile": "Orca auf X",
-      "sourceCode": "Orca-Quellcode",
+      "socialProfile": "Shark auf X",
+      "sourceCode": "Shark-Quellcode",
       "tagline": "Open-Source-Agenten-IDE für 100-mal produktivere Entwickler",
-      "title": "Über Orca",
-      "website": "Orca-Website"
+      "title": "Über Shark",
+      "website": "Shark-Website"
     },
     "appUpdateSettingsRows": {
       "checkFailed": "Prüfung fehlgeschlagen",
@@ -2810,7 +2810,7 @@
       "neverChecked": "Nie",
       "upToDate": "Aktuell",
       "update": "Aktualisieren",
-      "updateToVersion": "Auf Orca {{version}} aktualisieren"
+      "updateToVersion": "Auf Shark {{version}} aktualisieren"
     },
     "appearance": {
       "language": {
@@ -2828,7 +2828,7 @@
       "title": "Darstellung"
     },
     "browserSettingsScreen": {
-      "desktopBrowser": "Orca-Browser auf dem Desktop",
+      "desktopBrowser": "Shark-Browser auf dem Desktop",
       "desktopBrowserDescription": "Im gestreamten Browser des gekoppelten Desktops öffnen.",
       "linksDescription": "Auswählen, wo HTTP(S)-Links aus der Terminalausgabe beim Antippen geöffnet werden.",
       "linksHeading": "LINKS",
@@ -2840,7 +2840,7 @@
       "title": "Browser"
     },
     "menuItems": {
-      "about": "Über Orca",
+      "about": "Über Shark",
       "appearance": "Darstellung",
       "browser": "Browser",
       "chatUi": "Chat-Oberfläche",
@@ -2864,16 +2864,16 @@
     "nativeNotificationDeliverySettings": {
       "loadFailed": "Zustellungseinstellungen konnten nicht geladen werden. Für einen neuen Versuch diese Ansicht erneut öffnen.",
       "saveFailed": "Zustellungseinstellungen konnten nicht gespeichert werden. Erneut versuchen.",
-      "updateDesktopHint": "Einen Desktop mit aktueller Orca-Version koppeln, um auf diesem Smartphone Benachrichtigungen zu erhalten."
+      "updateDesktopHint": "Einen Desktop mit aktueller Shark-Version koppeln, um auf diesem Smartphone Benachrichtigungen zu erhalten."
     },
     "notificationDisplayTest": {
-      "accepted": "Vom Push-Dienst von Orca angenommen. Prüfen, ob die Benachrichtigung angekommen ist.",
+      "accepted": "Vom Push-Dienst von Shark angenommen. Prüfen, ob die Benachrichtigung angekommen ist.",
       "connectDesktop": "Eine Verbindung zum Desktop herstellen und erneut versuchen.",
       "description": "Push-Zustellung oder eine lokale Benachrichtigung testen, wenn Push nicht verfügbar ist.",
       "desktopUnreachable": "Der Desktop konnte nicht erreicht werden. Erneut versuchen.",
       "loadFailed": "Die gekoppelten Desktops konnten nicht geladen werden.",
       "pairDesktop": "Einen Desktop koppeln und erneut versuchen.",
-      "pushServiceFailed": "Die Benachrichtigung konnte nicht über den Push-Dienst von Orca gesendet werden. Erneut versuchen.",
+      "pushServiceFailed": "Die Benachrichtigung konnte nicht über den Push-Dienst von Shark gesendet werden. Erneut versuchen.",
       "rateLimited": "Zu viele Benachrichtigungen. Später erneut versuchen.",
       "sendButton": "Testbenachrichtigung senden",
       "sendFailed": "Die Push-Testbenachrichtigung konnte nicht gesendet werden.",
@@ -2883,12 +2883,12 @@
       "localTitle": "Testbenachrichtigung",
       "localBody": "Lokaler Benachrichtigungstest von diesem Telefon.",
       "localScheduled": "{{reason}} Lokaler Test geplant. Prüfe, ob die Benachrichtigung erscheint. Dies prüft nur die Anzeige, nicht die Zustellung von Agentenmeldungen.",
-      "disabled": "Benachrichtigungen sind in Orca deaktiviert. Aktiviere sie und versuche es erneut.",
+      "disabled": "Benachrichtigungen sind in Shark deaktiviert. Aktiviere sie und versuche es erneut.",
       "osDisabled": "Benachrichtigungen sind in den Systemeinstellungen deaktiviert. Erlaube sie und versuche es erneut.",
       "noToken": "Auf diesem Telefon ist kein Push-Token verfügbar.",
       "unsupportedHost": "Dieser Desktop unterstützt keine Push-Benachrichtigungen. Aktualisiere ihn, um Push zu empfangen.",
       "registrationPending": "Die Push-Registrierung ist auf diesem Desktop noch nicht bereit. Versuche es in Kürze erneut.",
-      "liveFallbackScheduled": "{{reason}} Lokaler Test geplant. Prüfe, ob die Benachrichtigung erscheint. Live-Meldungen sind verfügbar, solange Orca läuft und verbunden ist."
+      "liveFallbackScheduled": "{{reason}} Lokaler Test geplant. Prüfe, ob die Benachrichtigung erscheint. Live-Meldungen sind verfügbar, solange Shark läuft und verbunden ist."
     },
     "notificationSettingsScreen": {
       "description": "Auf diesem Gerät Benachrichtigungen erhalten, wenn ein Agent eine Eingabe benötigt oder eine Aufgabe abschließt.",
@@ -3185,7 +3185,7 @@
     "loaders": {
       "connectingToDesktop": "Verbindung zum Desktop wird hergestellt…",
       "loadFailed": "Quellcodeverwaltung konnte nicht geladen werden.",
-      "updateDesktop": "Orca auf dem Desktop aktualisieren, um die Quellcodeverwaltung mobil zu nutzen.",
+      "updateDesktop": "Shark auf dem Desktop aktualisieren, um die Quellcodeverwaltung mobil zu nutzen.",
       "waitingForDesktop": "Warten auf den Desktop…"
     },
     "modals": {
@@ -3204,7 +3204,7 @@
     "prCreate": {
       "authRequired": "Vor dem Erstellen eines {{reviewLabel}}s ist eine Authentifizierung erforderlich.",
       "baseNotOnRemote": "Den Basis-Branch pushen, bevor ein {{reviewLabel}} erstellt wird.",
-      "createdNotRefreshed": "{{titleLabel}} erstellt, aber Orca konnte ihn noch nicht aktualisieren.",
+      "createdNotRefreshed": "{{titleLabel}} erstellt, aber Shark konnte ihn noch nicht aktualisieren.",
       "defaultBranch": "Vor dem Erstellen eines {{reviewLabel}}s zu einem Feature-Branch wechseln.",
       "detachedHead": "Vor dem Erstellen eines {{reviewLabel}}s einen Branch auschecken.",
       "dirty": "Vor dem Erstellen eines {{reviewLabel}}s Änderungen committen.",
@@ -3212,7 +3212,7 @@
       "existingNumber": "{{titleLabel}} #{{number}} ist bereits offen.",
       "existingReview": "Für diesen Branch gibt es bereits einen {{reviewLabel}}.",
       "forkHeadUnsupported": "Das Erstellen eines {{reviewLabel}}s aus diesem Fork wird nicht unterstützt.",
-      "lookupUnconfirmed": "Orca konnte nicht bestätigen, ob für diesen Branch bereits ein {{reviewLabel}} existiert. In Kürze erneut versuchen.",
+      "lookupUnconfirmed": "Shark konnte nicht bestätigen, ob für diesen Branch bereits ein {{reviewLabel}} existiert. In Kürze erneut versuchen.",
       "needsSync": "Vor dem Erstellen eines {{reviewLabel}}s diesen Branch synchronisieren.",
       "noUpstream": "Vor dem Erstellen eines {{reviewLabel}}s Commits veröffentlichen.",
       "notReady": "Dieser Branch ist noch nicht für einen {{reviewLabel}} bereit.",
@@ -3350,7 +3350,7 @@
       "kimiSessionNotFound": "Kimi konnte die angeforderte Sitzung nicht finden. Eine vorhandene Sitzung verwenden oder eine neue starten.",
       "kimiSessionOccupied": "Kimi konnte diese Sitzung nicht verwenden, da sie in einem anderen Client aktiv ist. Die Sitzung dort stoppen oder den Client beenden und erneut versuchen.",
       "kimiSessionOtherDirectory": "Diese Kimi-Sitzung gehört zu einem anderen Verzeichnis. Sie dort fortsetzen oder eine für diesen Arbeitsbereich erstellte Sitzung verwenden.",
-      "kimiUnreadableOutput": "Kimi hat eine Ausgabe zurückgegeben, die Orca nicht lesen konnte. Erneut versuchen.",
+      "kimiUnreadableOutput": "Kimi hat eine Ausgabe zurückgegeben, die Shark nicht lesen konnte. Erneut versuchen.",
       "noBranchChanges": "Keine Änderungen im Branch zum Zusammenfassen.",
       "noModelForAgent": "Für {{label}} ist kein Modell verfügbar.",
       "noStagedChanges": "Keine vorgemerkten Änderungen zum Zusammenfassen.",
@@ -3368,7 +3368,7 @@
       "sourceControlCustomCommandEmpty": "Der benutzerdefinierte Befehl ist leer. Unter Einstellungen -> Git -> KI für die Quellcodeverwaltung einen hinzufügen.",
       "stagedChangesReadFailed": "Vorgemerkte Änderungen konnten nicht gelesen werden.",
       "timedOut": "Zeitüberschreitung bei der Generierung nach {{seconds}} s.",
-      "windowsBatchUnsafeArguments": "{{label}} wird über ein Windows-Batchskript ausgeführt, das den mehrzeiligen Prompt nicht als Argument annehmen kann. In den Einstellungen die ausführbare Datei des Agenten angeben oder einen benutzerdefinierten Befehl ohne {prompt} verwenden, damit Orca den Prompt über stdin sendet."
+      "windowsBatchUnsafeArguments": "{{label}} wird über ein Windows-Batchskript ausgeführt, das den mehrzeiligen Prompt nicht als Argument annehmen kann. In den Einstellungen die ausführbare Datei des Agenten angeben oder einen benutzerdefinierten Befehl ohne {prompt} verwenden, damit Shark den Prompt über stdin sendet."
     },
     "useMobileCommitFailureRecovery": {
       "launchFailed": "Agent konnte nicht gestartet werden.",
@@ -3384,7 +3384,7 @@
       "waitingForDesktop": "Warten auf den Desktop…"
     },
     "conflictActions": {
-      "needsNewerHost": "Aktualisiere Orca auf dem Computer, auf dem dieser Arbeitsbereich ausgeführt wird, um Merge-Konflikte auf deinem Smartphone zu lösen.",
+      "needsNewerHost": "Aktualisiere Shark auf dem Computer, auf dem dieser Arbeitsbereich ausgeführt wird, um Merge-Konflikte auf deinem Smartphone zu lösen.",
       "markResolved": "Als gelöst markieren",
       "keepFile": "Datei behalten",
       "keepDeletion": "Löschung beibehalten",
@@ -3487,7 +3487,7 @@
       "searchProjects": "Projekte suchen",
       "subtitle": "Eine Projektansicht für die Seite „Aufgaben“ auswählen.",
       "title": "GitHub Projects",
-      "unsupportedLayout": "Orca unterstützt dieses Layout in GitHub Projects noch nicht.",
+      "unsupportedLayout": "Shark unterstützt dieses Layout in GitHub Projects noch nicht.",
       "view": "Projektansicht"
     },
     "githubViewControls": {
@@ -3582,8 +3582,8 @@
       "connectLinearMessage": "Dir zugewiesene Linear-Issues direkt unter „Aufgaben“ durchsuchen und die Arbeit daran starten.",
       "connectLinearTitle": "Linear-Konto verbinden",
       "jiraStatusFailed": "Jira-Status konnte nicht gelesen werden.",
-      "updateDesktopMessage": "Diese mobile Aufgabenansicht benötigt eine neuere Version von Orca auf dem Desktop.",
-      "updateDesktopTitle": "Orca-Desktop-App aktualisieren"
+      "updateDesktopMessage": "Diese mobile Aufgabenansicht benötigt eine neuere Version von Shark auf dem Desktop.",
+      "updateDesktopTitle": "Shark-Desktop-App aktualisieren"
     },
     "options": {
       "all": "Alle",
@@ -3680,7 +3680,7 @@
       "show": "Anzeigen"
     },
     "projectDetailDrawer": {
-      "addRepositoryFromDesktop": "{{repository}} wurde Orca noch nicht hinzugefügt. Das Repository in der Desktop-App hinzufügen und anschließend die Aufgaben in der mobilen App aktualisieren.",
+      "addRepositoryFromDesktop": "{{repository}} wurde Shark noch nicht hinzugefügt. Das Repository in der Desktop-App hinzufügen und anschließend die Aufgaben in der mobilen App aktualisieren.",
       "clearType": "Typ entfernen",
       "closeItem": "Eintrag schließen",
       "copyGitHubLink": "GitHub-Link kopieren",
@@ -3691,7 +3691,7 @@
       "issueType": "Issue-Typ",
       "loadingIssueTypes": "Issue-Typen werden geladen…",
       "mergePullRequest": "Pull Request mergen",
-      "mergeRepositoryRequirement": "Für den Merge muss dieses Repository in Orca vorhanden sein.",
+      "mergeRepositoryRequirement": "Für den Merge muss dieses Repository in Shark vorhanden sein.",
       "noIssueTypes": "Für dieses Repository sind keine Issue-Typen konfiguriert.",
       "noType": "Kein Typ",
       "openInGitHub": "In GitHub öffnen",
@@ -3699,7 +3699,7 @@
       "projectSubtitle": "GitHub-Projekt · {{repository}}{{itemNumber}}",
       "pullRequest": "Pull Request",
       "reopenItem": "Eintrag erneut öffnen",
-      "repositoryNotInOrca": "Repository nicht in Orca",
+      "repositoryNotInOrca": "Repository nicht in Shark",
       "status": "Status",
       "type": "Typ",
       "workspaceCreationRequirement": "Arbeitsbereiche können nur aus GitHub-Issues und Pull Requests erstellt werden."
@@ -3998,7 +3998,7 @@
       "automaticName": "Automatischer Name",
       "existing": "Bestehender Branch",
       "existingHint": "Neue Commits werden diesem Branch hinzugefügt.",
-      "hostUpdateRequired": "Orca auf dem Host des Arbeitsbereichs aktualisieren, um einen Branch wiederzuverwenden oder explizit einen separaten Branch zu erstellen.",
+      "hostUpdateRequired": "Shark auf dem Host des Arbeitsbereichs aktualisieren, um einen Branch wiederzuverwenden oder explizit einen separaten Branch zu erstellen.",
       "newHint": "Einen neuen lokalen Branch erstellen",
       "newName": "Name des neuen Branches",
       "title": "Branch für diesen Worktree"
@@ -4026,7 +4026,7 @@
       "working": "In Arbeit"
     },
     "hostWorkspaceListStates": {
-      "checkHost": "Prüfen, ob der Computer wach ist und Orca läuft",
+      "checkHost": "Prüfen, ob der Computer wach ist und Shark läuft",
       "empty": "Keine Arbeitsbereiche",
       "loadFailed": "Arbeitsbereiche von diesem Host konnten nicht geladen werden.",
       "noFilterMatches": "Keine Arbeitsbereiche entsprechen den Filtern",
@@ -4184,7 +4184,7 @@
       "invalidDestination": "Dieser Host ist auf dieser Instanz nicht mehr verfügbar. Wähle einen Host und versuche es erneut.",
       "agentDiscoveryUnavailable": "Die Agentenerkennung ist für diesen Projekthost nicht verfügbar. Gespeicherte Agentenauswahlen bleiben erhalten.",
       "agentVerificationUnavailable": "Dieser Host kann Agenten für dieses Projekt nicht überprüfen. Aktualisiere den Host und versuche es erneut.",
-      "hostUnavailable": "Automatisierungen sind auf diesem Host nicht verfügbar. Aktualisiere Orca auf diesem Host und verbinde dich erneut.",
+      "hostUnavailable": "Automatisierungen sind auf diesem Host nicht verfügbar. Aktualisiere Shark auf diesem Host und verbinde dich erneut.",
       "hostUnreachable": "Dieser Host ist nicht erreichbar. Verbinde dich erneut und aktualisiere, um seinen aktuellen Status zu prüfen.",
       "actionFailed": "Diese Aktion konnte auf dem Host nicht abgeschlossen werden. Aktualisiere und versuche es erneut.",
       "dispatched": "Übermittelt",
@@ -4213,19 +4213,19 @@
       "workspaceHostAmbiguous": "Ihr Arbeitsbereich erstreckt sich über mehrere Hosts und hat daher keinen eindeutigen Besitzer."
     },
     "runFailures": {
-      "noDispatchHost": "Zum Starten der Automatisierung war kein Orca-Fenster verfügbar.",
-      "unevaluableSchedule": "Orca konnte diese Automatisierung nicht auswerten und hat diese Ausführung übersprungen.",
+      "noDispatchHost": "Zum Starten der Automatisierung war kein Shark-Fenster verfügbar.",
+      "unevaluableSchedule": "Shark konnte diese Automatisierung nicht auswerten und hat diese Ausführung übersprungen.",
       "noRunnableHost": "Dieser Automatisierung fehlt ein Host zur Ausführung.",
-      "wslMoveInProgress": "Das Projekt dieser Automatisierung wird auf seinen WSL-Host verschoben. Deshalb hat Orca diese Ausführung übersprungen. Die Ausführungen werden nach Abschluss des Verschiebens fortgesetzt.",
-      "wslMoveOwnedByHost": "Das Projekt dieser Automatisierung läuft jetzt auf seinem WSL-Host, der die Automatisierung dort ausführt. Orca führt diese lokale Kopie nicht mehr aus.",
+      "wslMoveInProgress": "Das Projekt dieser Automatisierung wird auf seinen WSL-Host verschoben. Deshalb hat Shark diese Ausführung übersprungen. Die Ausführungen werden nach Abschluss des Verschiebens fortgesetzt.",
+      "wslMoveOwnedByHost": "Das Projekt dieser Automatisierung läuft jetzt auf seinem WSL-Host, der die Automatisierung dort ausführt. Shark führt diese lokale Kopie nicht mehr aus.",
       "managedHostServer": "Migration zu {{host}} erforderlich",
-      "missedGraceWindow": "Bei der nächsten Prüfung durch Orca war die Nachholfrist für diese verpasste Ausführung bereits abgelaufen.",
+      "missedGraceWindow": "Bei der nächsten Prüfung durch Shark war die Nachholfrist für diese verpasste Ausführung bereits abgelaufen.",
       "targetMissing": "Der Host der Automatisierung ist nicht mehr registriert. Daher gibt es für diese Automatisierung keinen Ausführungsort.",
       "targetReplaced": "Der Host der Automatisierung wurde entfernt und erneut registriert. Daher muss diese Automatisierung vor der Ausführung erneut zugeordnet werden.",
-      "workspaceHostAmbiguous": "Der Arbeitsbereich der Automatisierung erstreckt sich über mehrere Hosts. Orca kann daher nicht bestimmen, auf welchem Host sie ausgeführt werden soll.",
-      "legacyTwinHosts": "Diese Automatisierung wurde gespeichert, bevor Orca ihren ausführenden Host erfasste. Ihr Projekt befindet sich auf mehreren Hosts. Die Automatisierung öffnen und den Host auswählen, auf dem sie ausgeführt werden soll.",
+      "workspaceHostAmbiguous": "Der Arbeitsbereich der Automatisierung erstreckt sich über mehrere Hosts. Shark kann daher nicht bestimmen, auf welchem Host sie ausgeführt werden soll.",
+      "legacyTwinHosts": "Diese Automatisierung wurde gespeichert, bevor Shark ihren ausführenden Host erfasste. Ihr Projekt befindet sich auf mehreren Hosts. Die Automatisierung öffnen und den Host auswählen, auf dem sie ausgeführt werden soll.",
       "targetUnavailable": "Das Ausführungsziel der Automatisierung ist nicht mehr verfügbar.",
-      "remoteSchedulingUnavailable": "Die Zeitplanung für Automatisierungen auf Remote-Servern ist mit diesem Orca-Client noch nicht verfügbar. Diese Automatisierung auf dem Remote-Server ausführen oder Orca aktualisieren, sobald dauerhafte Remote-Zeitplanung verfügbar ist.",
+      "remoteSchedulingUnavailable": "Die Zeitplanung für Automatisierungen auf Remote-Servern ist mit diesem Shark-Client noch nicht verfügbar. Diese Automatisierung auf dem Remote-Server ausführen oder Shark aktualisieren, sobald dauerhafte Remote-Zeitplanung verfügbar ist.",
       "projectSetupMissing": "Das Projekt ist auf dem ausgewählten Automatisierungs-Host nicht mehr eingerichtet.",
       "targetSetupMismatch": "Das Ausführungsziel der Automatisierung stimmt nicht mehr mit der ausgewählten Host-Einrichtung des Projekts überein.",
       "repoUnavailable": "Das Repository für den ausgewählten Automatisierungs-Host ist nicht mehr verfügbar.",
@@ -4236,7 +4236,7 @@
       "hooksReviewBlocked": "Der Agent wartet darauf, dass neue oder geänderte Hooks überprüft werden („Hooks need review“). Diese Ausführung öffnen und den Hooks vertrauen oder sie entfernen. Geplante Ausführungen laufen weiter und sind erfolgreich, sobald nichts mehr überprüft werden muss.",
       "agentNeverStarted": "Der Agent der Automatisierung wurde nach dem Absenden des Prompts nie gestartet.",
       "agentNoCompletion": "Der Agent der Automatisierung hat keinen Abschluss gemeldet.",
-      "watchTimedOut": "Orca hat die Überwachung dieser Ausführung nach 6 Stunden ohne Abschlusssignal beendet.",
+      "watchTimedOut": "Shark hat die Überwachung dieser Ausführung nach 6 Stunden ohne Abschlusssignal beendet.",
       "projectSetupState": {
         "notSetUp": "Das Projekt ist auf dem ausgewählten Automatisierungs-Host nicht eingerichtet.",
         "settingUp": "Das Projekt wird auf dem ausgewählten Automatisierungs-Host noch eingerichtet.",

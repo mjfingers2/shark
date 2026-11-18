@@ -110,7 +110,7 @@ export function MobileSearchField({
           >
             {/* Use chip and large hit target: bare 14px X looked decorative and was hard to tap. */}
             <View style={styles.clearChip}>
-              <X size={12} color={colors.surfaceBright} strokeWidth={2.6} />
+              <X size={12} color={colors.bgBase} strokeWidth={2.6} />
             </View>
           </Pressable>
         ) : undefined

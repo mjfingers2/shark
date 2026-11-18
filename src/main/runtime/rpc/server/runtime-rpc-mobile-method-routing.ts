@@ -30,6 +30,7 @@ export const EXECUTION_HOST_METHODS = [
   'automation.runNow',
   'automation.runs',
   'browser.back',
+  'browser.describeElementAt',
   'browser.dialogAccept',
   'browser.dialogDismiss',
   'browser.forward',
@@ -41,6 +42,8 @@ export const EXECUTION_HOST_METHODS = [
   'browser.mouseMove',
   'browser.mouseUp',
   'browser.mouseWheel',
+  // Shark: read-only page facts behind the phone's error chip.
+  'browser.pageErrors',
   'browser.reload',
   'browser.screencast',
   'browser.screencast.ack',
@@ -183,6 +186,8 @@ export const EXECUTION_HOST_METHODS = [
   'projectGroup.list',
   'project.list',
   'projectHostSetup.list',
+  // Shark's phone "New project" sheet adds a folder it browsed on the host.
+  'repo.add',
   'repo.baseRefDefault',
   'repo.gitAvailable',
   'repo.hooks',

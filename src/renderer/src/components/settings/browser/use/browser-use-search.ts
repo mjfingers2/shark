@@ -14,7 +14,7 @@ export const getBrowserUsePaneSearchEntries = createLocalizedCatalog(() => [
     ),
     description: translate(
       'auto.components.settings.browser.use.search.a7e82445fa',
-      "Install the Browser Use skill so agents can operate Orca's browser."
+      "Install the Browser Use skill so agents can operate Shark's browser."
     ),
     keywords: [
       ...translateSearchKeyword(

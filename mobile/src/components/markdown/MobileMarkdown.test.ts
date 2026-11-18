@@ -5,7 +5,7 @@ describe('normalizeMobileMarkdownPreviewHtml', () => {
   it('normalizes common README HTML into readable Markdown preview text', () => {
     const normalized = normalizeMobileMarkdownPreviewHtml(`
 <h1 align="center">
-  <a href="https://onOrca.dev"><img src="resources/build/icon.png" alt="Orca" width="64" /></a>
+  <a href="https://onOrca.dev"><img src="resources/build/icon.png" alt="Shark" width="64" /></a>
   Orca
 </h1>
 
@@ -16,7 +16,7 @@ describe('normalizeMobileMarkdownPreviewHtml', () => {
 </p>
 `)
 
-    expect(normalized).toContain('# [Orca](https://onOrca.dev)')
+    expect(normalized).toContain('# [Shark](https://onOrca.dev)')
     expect(normalized).toContain('[GitHub stars](https://github.com/stablyai/orca/stargazers)')
     expect(normalized).toContain('**The AI Orchestrator**')
     expect(normalized).not.toContain('<h1')

@@ -102,7 +102,7 @@ export function safetyBlockerState(
       ),
       description: t(
         'auto.components.right.sidebar.checks.panel.review.existing.body',
-        'Orca found an existing {{reviewLabel}} for this branch.',
+        'Shark found an existing {{reviewLabel}} for this branch.',
         { reviewLabel }
       ),
       composerMode: 'hidden',

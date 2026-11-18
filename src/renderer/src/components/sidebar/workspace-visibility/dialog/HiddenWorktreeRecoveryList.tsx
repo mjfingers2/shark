@@ -188,7 +188,7 @@ export default function HiddenWorktreeRecoveryList({
                     )
                   : t(
                       'auto.components.sidebar.WorktreeVisibilityDialog.appearWhenDetected',
-                      'New worktrees will appear here when Orca detects them.'
+                      'New worktrees will appear here when Shark detects them.'
                     )}
             </div>
           </div>

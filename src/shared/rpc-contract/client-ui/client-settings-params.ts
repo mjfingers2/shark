@@ -135,6 +135,7 @@ export const SettingsUpdate = z
     nativeChatAutoContinueAfterUsageLimit: z.boolean().optional(),
     nativeChatPermissionMode: z.enum(AGENT_CHAT_PERMISSION_MODES).optional(),
     workspaceCleanupPolicy: WorkspaceCleanupRulesParam.optional(),
+    browserAutoPreviewEnabled: z.boolean().optional(),
     prAutoRefresh: z.enum(PR_AUTO_REFRESH_CADENCES).optional()
   })
   .strict()

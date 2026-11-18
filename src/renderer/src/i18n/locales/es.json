@@ -691,7 +691,6 @@
       "df1d56bf87": "La vista del espacio de trabajo tuvo un error.",
       "9e0b441a91": "Alternar barra lateral derecha",
       "e81217c1b7": "Ocultar nombre de la aplicación",
-      "5096cbbc86": "Orca",
       "8b0b8eb54f": "Menú de aplicaciones",
       "caea5b51b9": "Reiniciar ahora",
       "0a9e810705": "Hasta que reinicies, los cambios no se guardarán. Tus pestañas anteriores siguen guardadas en disco.",
@@ -1981,7 +1980,6 @@
         "commentTooLarge": "El comentario es demasiado grande para enviarlo de forma segura."
       },
       "Landing": {
-        "f9eaa9e12d": "Agregar proyecto",
         "6ca6ff404e": "ORCA",
         "520304a067": "logotipo de Orca",
         "c1cf168479": "Ocultar",
@@ -1991,8 +1989,6 @@
         "5beaef5f9e": "La CLI de GitHub no está instalada",
         "b673e7cf1b": "Se requiere Git para proyectos Git, control de código fuente y gestión del espacio de trabajo.",
         "e5b7296d9d": "Git no está instalado",
-        "cd21242762": "Agrega un proyecto para comenzar.",
-        "9c00bd4adf": "Selecciona un espacio de trabajo en la barra lateral para comenzar.",
         "0d0ace8861": "Dar estrella en GitHub",
         "ec43b38ba7": "Con estrella en GitHub",
         "157bb5ecbb": "Abrir GitHub",
@@ -5871,7 +5867,6 @@
           "keepDefaultBranchAria": "Mantener visible la rama predeterminada al ocultar los espacios de trabajo en reposo"
         },
         "SidebarHeader": {
-          "92154beb7e": "Nuevo espacio de trabajo",
           "addProject": "Agregar proyecto"
         },
         "SidebarNav": {

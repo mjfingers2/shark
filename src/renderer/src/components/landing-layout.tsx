@@ -25,7 +25,7 @@ export function LandingBrand(): React.JSX.Element {
       >
         <img
           src={logo}
-          alt={t('auto.components.Landing.520304a067', 'Orca logo')}
+          alt={t('auto.components.Landing.520304a067', 'Shark logo')}
           className="size-12"
         />
       </div>

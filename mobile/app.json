@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Orca",
-    "slug": "orca-mobile",
+    "name": "Shark",
+    "slug": "shark-mobile",
     "version": "0.0.65",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -24,18 +24,18 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#111111"
+      "backgroundColor": "#0a1324"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.stably.orca.mobile",
+      "bundleIdentifier": "com.mjfingers2.shark.mobile",
       "buildNumber": "1",
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true,
-        "NSLocalNetworkUsageDescription": "Orca connects to the desktop app on your LAN.",
-        "NSMicrophoneUsageDescription": "Allow Orca to use your microphone for voice dictation, transcribed on this phone or on your paired computer.",
-        "NSPhotoLibraryUsageDescription": "Allow Orca to attach photos from your library to a terminal session on your paired desktop.",
-        "NSPhotoLibraryAddUsageDescription": "Allow Orca to save images from your sessions to Photos.",
+        "NSLocalNetworkUsageDescription": "Shark connects to the desktop app on your LAN.",
+        "NSMicrophoneUsageDescription": "Allow Shark to use your microphone for voice dictation, transcribed on this phone or on your paired computer.",
+        "NSPhotoLibraryUsageDescription": "Allow Shark to attach photos from your library to a terminal session on your paired desktop.",
+        "NSPhotoLibraryAddUsageDescription": "Allow Shark to save images from your sessions to Photos.",
         "NSAppTransportSecurity": {
           "NSAllowsLocalNetworking": true,
           "NSExceptionDomains": {
@@ -68,15 +68,21 @@
         "NSPrivacyAccessedAPITypes": [
           {
             "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
-            "NSPrivacyAccessedAPITypeReasons": ["CA92.1"]
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
           },
           {
             "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
-            "NSPrivacyAccessedAPITypeReasons": ["C617.1"]
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
           },
           {
             "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
-            "NSPrivacyAccessedAPITypeReasons": ["35F9.1"]
+            "NSPrivacyAccessedAPITypeReasons": [
+              "35F9.1"
+            ]
           }
         ]
       }
@@ -84,17 +90,20 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#111111"
+        "backgroundColor": "#0a1324"
       },
       "usesCleartextTraffic": true,
       "allowBackup": false,
-      "permissions": ["RECORD_AUDIO", "MODIFY_AUDIO_SETTINGS"],
+      "permissions": [
+        "RECORD_AUDIO",
+        "MODIFY_AUDIO_SETTINGS"
+      ],
       "blockedPermissions": [
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.USE_BIOMETRIC",
         "android.permission.USE_FINGERPRINT"
       ],
-      "package": "dev.orca.app",
+      "package": "com.mjfingers2.shark",
       "versionCode": 29,
       "googleServicesFile": "./google-services.json"
     },
@@ -104,14 +113,38 @@
         "expo-localization",
         {
           "supportedLocales": {
-            "ios": ["en", "zh-Hans", "zh-Hant", "ja", "ko", "es", "fr", "pt-BR", "ru", "tr", "de"]
+            "ios": [
+              "en",
+              "zh-Hans",
+              "zh-Hant",
+              "ja",
+              "ko",
+              "es",
+              "fr",
+              "pt-BR",
+              "ru",
+              "tr",
+              "de"
+            ]
           }
         }
       ],
       [
         "./plugins/android-locale-config.js",
         {
-          "locales": ["en", "zh-Hans", "zh-Hant", "ja", "ko", "es", "fr", "pt-BR", "ru", "tr", "de"]
+          "locales": [
+            "en",
+            "zh-Hans",
+            "zh-Hant",
+            "ja",
+            "ko",
+            "es",
+            "fr",
+            "pt-BR",
+            "ru",
+            "tr",
+            "de"
+          ]
         }
       ],
       "expo-notifications",
@@ -128,21 +161,21 @@
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",
-          "backgroundColor": "#111111"
+          "backgroundColor": "#0a1324"
         }
       ],
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow Orca to use the camera for QR code scanning.",
-          "microphonePermission": "Allow Orca to use your microphone for voice dictation sent to your paired desktop for transcription.",
+          "cameraPermission": "Allow Shark to use the camera for QR code scanning.",
+          "microphonePermission": "Allow Shark to use your microphone for voice dictation sent to your paired desktop for transcription.",
           "recordAudioAndroid": false
         }
       ],
       [
         "expo-image-picker",
         {
-          "photosPermission": "Allow Orca to attach photos from your library to a terminal session on your paired desktop."
+          "photosPermission": "Allow Shark to attach photos from your library to a terminal session on your paired desktop."
         }
       ],
       [

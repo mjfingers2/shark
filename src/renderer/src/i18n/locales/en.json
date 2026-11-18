@@ -241,7 +241,7 @@
       "hidden": "{{name}} hidden",
       "hiddenDescription": "Its terminals and agents keep running. Show it again from Hidden projects below the list.",
       "undo": "Undo",
-      "hideFailed": "Couldn't hide {{name}}. Its host may need an Shark update.",
+      "hideFailed": "Couldn't hide {{name}}. Its host may need a Shark update.",
       "showFailed": "Couldn't show {{name}} again.",
       "listLabel": "Hidden projects",
       "show": "Show",
@@ -753,7 +753,7 @@
         "museToggleDescription": "Show Muse subscription quota from the Muse CLI."
       },
       "menuBarIcon": {
-        "description": "Keep an Shark shortcut and activity indicator in the macOS menu bar.",
+        "description": "Keep a Shark shortcut and activity indicator in the macOS menu bar.",
         "keyword": {
           "menuBar": "menu bar",
           "statusItem": "status item",
@@ -1615,7 +1615,6 @@
       "df1d56bf87": "The workspace shell hit an error.",
       "9e0b441a91": "Toggle right sidebar",
       "e81217c1b7": "Hide App Name",
-      "5096cbbc86": "Shark",
       "8b0b8eb54f": "Application menu",
       "caea5b51b9": "Restart now",
       "0a9e810705": "Changes won't be saved until restart. Your previous tabs are safe on disk.",
@@ -1641,7 +1640,7 @@
         "27393856e4": "orca://pair?code=...",
         "7a566540de": "Pairing URL or code",
         "cb4d287238": "Server name",
-        "3affe7de3a": "Paste a pairing URL from an Shark server that this browser can reach.",
+        "3affe7de3a": "Paste a pairing URL from a Shark server that this browser can reach.",
         "e3bcd082ac": "Connect to Shark",
         "mobileScopeRejected": "This QR code grants limited (mobile) access. To use the full web app, open the browser access link from Settings → Runtime Environments → Share this Shark server → New Link.",
         "replaceSavedServer": "This link connects to a different server than \"{{name}}\" ({{endpoint}}). Connect only if you trust the endpoint below.",
@@ -1949,7 +1948,7 @@
         }
       },
       "remotePairingCopy": {
-        "invalidInput": "Enter an Shark access link or bare pairing code.",
+        "invalidInput": "Enter a Shark access link or bare pairing code.",
         "mobileOnly": "This link grants mobile-only access. Generate a link for another Shark client.",
         "invalidDestination": "This access link contains an invalid destination.",
         "unsupportedDestination": "This access link contains an unsupported destination.",
@@ -2428,8 +2427,8 @@
           "differentLauncher": "{{path}} points to a different launcher.",
           "launcherMissing": "The bundled CLI launcher is missing from this Shark build.",
           "noWslDistro": "No WSL distribution is available.",
-          "notOrcaLauncherScript": "{{path}} exists but is not an Shark launcher script.",
-          "notOrcaSymlink": "{{path}} exists but is not an Shark symlink.",
+          "notOrcaLauncherScript": "{{path}} exists but is not a Shark launcher script.",
+          "notOrcaSymlink": "{{path}} exists but is not a Shark symlink.",
           "olderLauncher": "{{path}} contains an older Shark launcher.",
           "platformUnsupported": "CLI registration is not implemented on this platform.",
           "readlinkPermissionDenied": "Shark does not have permission to inspect {{path}}. Check the path and its parent directory permissions, then try again.",
@@ -3055,7 +3054,6 @@
         "commentTooLarge": "Comment is too large to submit safely."
       },
       "Landing": {
-        "f9eaa9e12d": "Add project",
         "6ca6ff404e": "SHARK",
         "520304a067": "Shark logo",
         "c1cf168479": "Hide",
@@ -3065,8 +3063,6 @@
         "5beaef5f9e": "GitHub CLI is not installed",
         "b673e7cf1b": "Git is required for Git projects, source control, and workspace management.",
         "e5b7296d9d": "Git is not installed",
-        "cd21242762": "Add a project to get started.",
-        "9c00bd4adf": "Select a workspace from the sidebar to begin.",
         "0d0ace8861": "Star on GitHub",
         "ec43b38ba7": "Starred on GitHub",
         "157bb5ecbb": "Open GitHub",
@@ -3783,12 +3779,12 @@
         "loadPageUnreachable": "Page {{value0}} is beyond what GitHub search can return.",
         "loadPageFailed": "Page {{value0}} could not be loaded from GitHub.",
         "loadPageNoMoreResults": "No more results on page {{value0}}.",
-        "linearHasWorktreeLoadFailed": "Unable to load Linear issues linked to an Shark workspace.",
-        "linearHasWorktreePartialLoadFailed": "Some Linear issues linked to an Shark workspace could not be loaded. Refresh to try again.",
-        "linearHasWorktreeSearchPlaceholder": "Filter issues linked to an Shark workspace...",
+        "linearHasWorktreeLoadFailed": "Unable to load Linear issues linked to a Shark workspace.",
+        "linearHasWorktreePartialLoadFailed": "Some Linear issues linked to a Shark workspace could not be loaded. Refresh to try again.",
+        "linearHasWorktreeSearchPlaceholder": "Filter issues linked to a Shark workspace...",
         "linearModeHasWorktree": "Has Workspace",
-        "linearModeHasWorktreeTooltip": "Linear tickets linked to an Shark workspace",
-        "linearEmptyHasWorktree": "No Linear tickets are linked to an Shark workspace yet. Start work from a Linear issue to see it here.",
+        "linearModeHasWorktreeTooltip": "Linear tickets linked to a Shark workspace",
+        "linearEmptyHasWorktree": "No Linear tickets are linked to a Shark workspace yet. Start work from a Linear issue to see it here.",
         "linearOpenAttachedWorkspace": "Open workspace attached to {{value0}}",
         "linearWorktreesColumn": "Workspaces",
         "jiraBoardEmptyColumn": "No issues",
@@ -6190,7 +6186,7 @@
         },
         "SkillShareDialog": {
           "reconnect": "Reconnect your Shark account before sharing.",
-          "unconfigured": "Connect an Shark Cloud account before sharing.",
+          "unconfigured": "Connect a Shark Cloud account before sharing.",
           "prepareFailed": "Could not prepare this skill for sharing.",
           "publishCancelled": "Upload cancelled. The prepared copy is still available to retry.",
           "publishFailed": "Could not publish this skill. The prepared copy is still available to retry.",
@@ -6405,7 +6401,7 @@
           "reconnectBeforeInstalling": "Reconnect your Shark account before installing.",
           "bundleVerificationFailed": "Installation failed before Shark could verify the requested bundle.",
           "destinationAlreadyFinished": "The destination had already finished this installation.",
-          "enterShareLink": "Enter an Shark skill share link.",
+          "enterShareLink": "Enter a Shark skill share link.",
           "shareUnavailable": "This share is unavailable. The link may be invalid, expired, or revoked.",
           "requestedVersionVerificationFailed": "Installation failed before Shark could verify the requested version.",
           "versionVerificationFailed": "Shark could not verify the requested version.",
@@ -6636,7 +6632,7 @@
           "addRemoteServerDetail": "Pair with Shark running on another computer.",
           "addRemoteHostDetail": "SSH host or Shark server",
           "addWslHost": "Add WSL distro",
-          "addWslHostDetail": "Run an Shark server inside a WSL 2 distro. Experimental.",
+          "addWslHostDetail": "Run a Shark server inside a WSL 2 distro. Experimental.",
           "addRemoteHostDetailWithWsl": "SSH host, Shark server, or WSL distro",
           "turnOnWslHosts": "Turn on"
         },
@@ -6993,7 +6989,6 @@
           "keepDefaultBranchAria": "Keep the default branch visible while hiding sleeping workspaces"
         },
         "SidebarHeader": {
-          "92154beb7e": "New workspace",
           "addProject": "Add project",
           "expandAllProjects": "Expand all projects",
           "collapseAllProjects": "Collapse all projects"
@@ -7968,7 +7963,7 @@
           "startAndAdd": "Start and add",
           "add": "Add host",
           "refresh": "Refresh",
-          "wsl1Reason": "WSL 1 can’t run an Shark host; convert with {{command}}",
+          "wsl1Reason": "WSL 1 can’t run a Shark host; convert with {{command}}",
           "noWsl2Title": "No WSL 2 distros found",
           "noWsl2Install": "Install one from a Windows terminal with {{command}}, then choose Refresh.",
           "unverifiable": "Unknown",
@@ -12532,7 +12527,7 @@
           "copyError": "Could not copy the prompt.",
           "skillDescription": "Sets up, builds, authenticates, and validates repo-owned environment recipes.",
           "whatTitle": "What the skill does, with you",
-          "whatScaffold": "Writes the recipe & scripts for your provider — connected over an Shark server or SSH.",
+          "whatScaffold": "Writes the recipe & scripts for your provider — connected over a Shark server or SSH.",
           "whatBuild": "Builds a reusable base image and signs your agent in.",
           "whatValidate": "Validates it so you can create a workspace on it.",
           "promptHint": "In any workspace, ask your agent:",
@@ -13097,7 +13092,7 @@
           "permissionDenied": "Microphone access is blocked. Grant it in your system settings, then try again."
         },
         "TerminalTccAttributionNotice": {
-          "body": "The terminal daemon was started by an Shark install that no longer exists, so macOS can’t attribute its commands to Shark — Accessibility and Automation grants are silently ignored (osascript fails with error -25211). Restarting the daemon fixes this; running terminal sessions will close.",
+          "body": "The terminal daemon was started by a Shark install that no longer exists, so macOS can’t attribute its commands to Shark — Accessibility and Automation grants are silently ignored (osascript fails with error -25211). Restarting the daemon fixes this; running terminal sessions will close.",
           "title": "macOS permission grants aren’t reaching terminals",
           "63b8513f1e": "Open manage sessions"
         },
@@ -13505,7 +13500,7 @@
           "tunnelUnsupported": "This host isn’t supported by this version of Shark: its SSH server doesn’t allow port forwarding, and Shark couldn’t reach its server through the SSH session either. To keep using it, install an older version of Shark.",
           "setupRetry": "Shark couldn’t start its server on this host. Try connecting again.",
           "setupFreeHostSpace": "This host doesn’t have enough free disk space for Shark to keep a backup of its server data while starting it. Free up space on the host, then connect again.",
-          "setupStopUnmanagedRuntime": "An Shark server this app didn’t start still appears to be using this host’s Shark data. Stop it on the host, then connect again. This host’s Details, in Settings > SSH Hosts, names its process.",
+          "setupStopUnmanagedRuntime": "A Shark server this app didn’t start still appears to be using this host’s Shark data. Stop it on the host, then connect again. This host’s Details, in Settings > SSH Hosts, names its process.",
           "setupSeeDetails": "Shark couldn’t start its server on this host. The cause is in this host’s Details, in Settings > SSH Hosts.",
           "moveHeld": "Shark paused moving this host’s projects to its Shark server because it couldn’t confirm the server’s copy. Nothing is lost: the host keeps its projects and stays locked until the move finishes. Connect again to resume. If the server can’t come back, stop or forget it in Settings > Shark on your SSH hosts.",
           "olderTerminalsBridged": "Shark isn’t set up on this host yet: terminals started by an older version of Shark are still running in this host’s projects. They keep working here. Close them or end them on the host, then reconnect.",
@@ -13737,8 +13732,8 @@
         },
         "serverList": {
           "addTitle": "Add server",
-          "installNoHosts": "No SSH hosts without an Shark server.",
-          "installHostHelp": "Only hosts without an Shark server.",
+          "installNoHosts": "No SSH hosts without a Shark server.",
+          "installHostHelp": "Only hosts without a Shark server.",
           "addSshHost": "Add an SSH host",
           "cancel": "Cancel",
           "moreActions": "More actions for {{name}}",
@@ -13816,7 +13811,7 @@
           "removedCount": "{{count}} removed",
           "skippedCount": "{{count}} skipped",
           "failedCount": "{{count}} failed",
-          "skippedManaged": "{{label}} has an Shark server.",
+          "skippedManaged": "{{label}} has a Shark server.",
           "skippedWorkspaces": "{{label}} has workspaces.",
           "skippedHint": "Remove skipped hosts one at a time to choose what happens to them."
         },
@@ -13883,7 +13878,7 @@
         },
         "claudeSubagentNavigation": {
           "title": "Claude subagent navigation",
-          "description": "Open Claude subagents from the sidebar. Adds a shortcut to Claude’s keybindings.json and loads an Shark mod in new Shark panes. Requires Claude 2.1.300+ and status hooks. Turning off removes Shark’s shortcut; shortcuts you delete stay deleted.",
+          "description": "Open Claude subagents from the sidebar. Adds a shortcut to Claude’s keybindings.json and loads a Shark mod in new Shark panes. Requires Claude 2.1.300+ and status hooks. Turning off removes Shark’s shortcut; shortcuts you delete stay deleted.",
           "search": {
             "subagent": "subagent",
             "navigation": "navigation",
@@ -19999,7 +19994,7 @@
       },
       "plainSshTerminal": {
         "open": "Open plain SSH terminal",
-        "unmanaged": "Plain SSH — unmanaged. Not an Shark workspace: agents and tabs here aren’t tracked, and this terminal isn’t restored. Closing it ends the SSH session.",
+        "unmanaged": "Plain SSH — unmanaged. Not a Shark workspace: agents and tabs here aren’t tracked, and this terminal isn’t restored. Closing it ends the SSH session.",
         "ended": "ssh exited with code {{code}}. Close this window when you’re done reading.",
         "title": "Plain SSH · {{host}}",
         "minimize": "Minimize",
@@ -20099,7 +20094,7 @@
         },
         "list": {
           "PluginsSectionDescription": {
-            "openWith": "Open with (except while typing in an Shark text field)"
+            "openWith": "Open with (except while typing in a Shark text field)"
           }
         },
         "pluginInstallCount": {
@@ -22208,7 +22203,7 @@
           "add": "Add",
           "repoNameHint": "Use the repo name as a hint",
           "repoNameHintDescription": "Helps recognize the repo's name.",
-          "repoSaveFailed": "Couldn't save the repo's terms. The host running this repo may need an Shark update."
+          "repoSaveFailed": "Couldn't save the repo's terms. The host running this repo may need a Shark update."
         },
         "micTest": {
           "test": "Test",
@@ -22318,7 +22313,7 @@
       "workspaceCleanup": {
         "title": "Workspace Cleanup",
         "description": "Remove workspaces you're done with. Before removing anything, Shark checks again for unsaved work.",
-        "unsupportedHost": "This host runs an Shark version without automatic cleanup. Update Shark on it to use these settings.",
+        "unsupportedHost": "This host runs a Shark version without automatic cleanup. Update Shark on it to use these settings.",
         "previewFailed": "Couldn't check which workspaces this change matches.",
         "pinFailed": "Couldn't keep {{name}}.",
         "rules": {
@@ -23368,7 +23363,7 @@
       "remoteDisabled": "Search is disabled on this computer. Enable transcript indexing on that computer to search its sessions.",
       "titleOnly": "Full-text search is off on this computer, so only session titles are matched.",
       "notReady": "The search index is not ready yet. Try again shortly.",
-      "noService": "Search is unavailable on this computer. It may need an Shark update or a runtime with search support.",
+      "noService": "Search is unavailable on this computer. It may need a Shark update or a runtime with search support.",
       "unsupportedAgent": "This computer does not support history search for the selected agent. Update Shark on that computer or select another agent.",
       "failed": "Could not search this computer. Check its connection and try again.",
       "changed": "The index changed while searching. Search again for current results.",
@@ -25806,7 +25801,16 @@
   "shark": {
     "autoPreview": {
       "title": "Open previews automatically",
-      "description": "When a session starts a web server on this computer, open its page in a browser beside the chat."
+      "description": "When a session starts a web server on this computer, open its page in a browser beside the chat.",
+      "keywords": {
+        "browser": "browser",
+        "preview": "preview",
+        "livePreview": "live preview",
+        "devServer": "dev server",
+        "localhost": "localhost",
+        "port": "port",
+        "auto": "auto"
+      }
     },
     "pageErrors": {
       "chip": "{{count}} errors",

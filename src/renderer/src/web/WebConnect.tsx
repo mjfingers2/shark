@@ -53,7 +53,7 @@ export default function WebConnect({
       setError(
         t(
           'auto.web.WebConnect.mobileScopeRejected',
-          'This QR code grants limited (mobile) access. To use the full web app, open the browser access link from Settings → Runtime Environments → Share this Orca server → New Link.'
+          'This QR code grants limited (mobile) access. To use the full web app, open the browser access link from Settings → Runtime Environments → Share this Shark server → New Link.'
         )
       )
       return
@@ -82,7 +82,7 @@ export default function WebConnect({
         setError(
           t(
             'auto.web.WebConnect.mobileScopeRejected',
-            'This QR code grants limited (mobile) access. To use the full web app, open the browser access link from Settings → Runtime Environments → Share this Orca server → New Link.'
+            'This QR code grants limited (mobile) access. To use the full web app, open the browser access link from Settings → Runtime Environments → Share this Shark server → New Link.'
           )
         )
         return
@@ -132,12 +132,12 @@ export default function WebConnect({
           </div>
           <div className="min-w-0">
             <h1 className="text-base font-semibold leading-6">
-              {t('auto.web.WebConnect.e3bcd082ac', 'Connect to Orca')}
+              {t('auto.web.WebConnect.e3bcd082ac', 'Connect to Shark')}
             </h1>
             <p className="mt-1 text-sm leading-5 text-muted-foreground">
               {t(
                 'auto.web.WebConnect.3affe7de3a',
-                'Paste a pairing URL from an Orca server that this browser can reach.'
+                'Paste a pairing URL from a Shark server that this browser can reach.'
               )}
             </p>
           </div>

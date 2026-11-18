@@ -93,6 +93,8 @@ const BROWSER_COMMAND_NAMES = [
   'browserClipboardWrite',
   'browserDialogAccept',
   'browserDialogDismiss',
+  'browserPageErrors',
+  'browserDescribeElementAt',
   'browserStorageLocalGet',
   'browserStorageLocalSet',
   'browserStorageLocalClear',

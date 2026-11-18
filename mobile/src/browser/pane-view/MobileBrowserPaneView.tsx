@@ -1,4 +1,4 @@
-import type { Dispatch, RefObject, SetStateAction } from 'react'
+import type { Dispatch, ReactNode, RefObject, SetStateAction } from 'react'
 import {
   ActivityIndicator,
   Image,
@@ -55,6 +55,8 @@ type MobileBrowserPaneViewProps = {
   frameLayers: readonly [BrowserFrameLayerBinding, BrowserFrameLayerBinding]
   goBack: () => void
   goForward: () => void
+  /** Shark's error chip and point-at-an-element button, before the view-mode switch. */
+  inspectionToolbar: ReactNode
   keyboardLift: number
   keyboardValue: string
   layoutRef: RefObject<BrowserTouchLayout | null>
@@ -74,6 +76,8 @@ type MobileBrowserPaneViewProps = {
   setRootViewRef: (view: HostInstance | null) => void
   tab: MobileBrowserTab
   togglePointerModifier: (modifier: BrowserPointerModifier) => void
+  /** Drawn over the page and under a dialog card: the pointing mode's tap catcher. */
+  viewportOverlay: ReactNode
   zoom: BrowserZoomState
 }
 
@@ -95,6 +99,7 @@ export function MobileBrowserPaneView(props: MobileBrowserPaneViewProps) {
     frameLayers,
     goBack,
     goForward,
+    inspectionToolbar,
     keyboardLift,
     keyboardValue,
     layoutRef,
@@ -114,6 +119,7 @@ export function MobileBrowserPaneView(props: MobileBrowserPaneViewProps) {
     setRootViewRef,
     tab,
     togglePointerModifier,
+    viewportOverlay,
     zoom
   } = props
   return (
@@ -151,6 +157,7 @@ export function MobileBrowserPaneView(props: MobileBrowserPaneViewProps) {
           loading={tab.loading}
           loadFailed={tab.loadError != null}
         />
+        {inspectionToolbar}
         <MobileBrowserViewModeSwitch
           disabled={controlsDisabled}
           value={browserViewMode}
@@ -256,6 +263,7 @@ export function MobileBrowserPaneView(props: MobileBrowserPaneViewProps) {
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
           </View>
         ) : null}
+        {viewportOverlay}
         {dialog ? (
           <View style={styles.dialogOverlay}>
             <View style={styles.dialogCard}>

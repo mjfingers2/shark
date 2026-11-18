@@ -39,9 +39,12 @@ import { MobileHomeFeedTab } from './tabs/MobileHomeFeedTab'
 import { MobileHomeSettingsTab } from './tabs/MobileHomeSettingsTab'
 import { MobileHomeTabBar } from './tabs/MobileHomeTabBar'
 import { MobileHomeUsageTab } from './tabs/MobileHomeUsageTab'
+import { MobileHomeQuickStart } from './quick-start/MobileHomeQuickStart'
 
 // The floating button's height plus its gap above the tab bar.
 const FAB_CLEARANCE = 56 + spacing.lg
+// The two quick-start pills stacked above the floating button.
+const QUICK_START_CLEARANCE = 2 * 36 + spacing.sm + spacing.md
 
 export function MobileHomeScreen() {
   const t = useMobileTranslation()
@@ -148,6 +151,13 @@ export function MobileHomeScreen() {
     actionTarget != null && data.hostStates[actionTarget.id] === 'connected'
 
   const paired = data.hostCatalogLoaded && data.hostCatalog.length > 0
+  const { connectedHosts } = data
+  const openNewWorkspaceForm = useCallback(
+    () => router.push(newWorkspaceOverlayHref(connectedHosts.map((host) => host.id))),
+    [connectedHosts, router]
+  )
+  const quickStartHostId = connectedHosts[0]?.id ?? null
+  const showQuickStart = tab === 'feed' && paired && quickStartHostId !== null
   const automationsHostConnected =
     automationsHostId != null && data.hostStates[automationsHostId] === 'connected'
   const fab =
@@ -159,8 +169,7 @@ export function MobileHomeScreen() {
           hint: data.hostsConnecting
             ? undefined
             : t('home.bottomBar.connectFirst', 'Connect a desktop to start new work.'),
-          onPress: () =>
-            data.router.push(newWorkspaceOverlayHref(data.connectedHosts.map((host) => host.id)))
+          onPress: openNewWorkspaceForm
         }
       : tab === 'automations' && automationsHostId && automationsHostConnected
         ? {
@@ -171,7 +180,8 @@ export function MobileHomeScreen() {
           }
         : null
   // The floating button covers the last row unless the list can scroll past it.
-  const contentBottom = spacing.xl + (fab ? FAB_CLEARANCE : 0)
+  const contentBottom =
+    spacing.xl + (fab ? FAB_CLEARANCE : 0) + (showQuickStart ? QUICK_START_CLEARANCE : 0)
 
   return (
     // Agent rows swipe; no gesture root sits above Home.
@@ -231,6 +241,12 @@ export function MobileHomeScreen() {
           disabledHint={fab?.hint}
           bottom={tabBarHeight + spacing.lg}
           onPress={() => fab?.onPress()}
+        />
+        <MobileHomeQuickStart
+          hostId={quickStartHostId}
+          showActions={showQuickStart}
+          bottom={tabBarHeight + spacing.lg + FAB_CLEARANCE}
+          onOpenForm={openNewWorkspaceForm}
         />
         <View onLayout={(event) => setTabBarHeight(event.nativeEvent.layout.height)}>
           <MobileHomeTabBar

@@ -47,27 +47,27 @@ export function leaveReasonText(
   }
   switch (reason) {
     case 'edited':
-      return t('auto.components.skills.skillPlanOpCopy.edited', 'Skill edited outside Orca')
+      return t('auto.components.skills.skillPlanOpCopy.edited', 'Skill edited outside Shark')
     case 'other-build':
       return t(
         'auto.components.skills.skillPlanOpCopy.otherBuild',
-        'Installed by another Orca version'
+        'Installed by another Shark version'
       )
     case 'other':
       return t('auto.components.skills.skillPlanOpCopy.other', 'A different skill uses this name')
     case 'unwritable':
       return t(
         'auto.components.skills.skillPlanOpCopy.unwritable',
-        "Orca can't write to this folder"
+        "Shark can't write to this folder"
       )
     case 'unreadable':
-      return t('auto.components.skills.skillPlanOpCopy.unreadable', "Orca can't read every file")
+      return t('auto.components.skills.skillPlanOpCopy.unreadable', "Shark can't read every file")
     case 'busy':
       return t('auto.components.skills.skillPlanOpCopy.busy', 'Another install is still running')
     case 'shared-not-current':
       return t(
         'auto.components.skills.skillPlanOpCopy.sharedNotCurrent',
-        "The shared copy isn't Orca's"
+        "The shared copy isn't Shark's"
       )
   }
 }
@@ -97,7 +97,7 @@ export function locationStateText(location: BundledSkillLocation): string {
       location.reason === 'other-build'
         ? translate(
             'auto.components.skills.skillPlanOpCopy.otherBuildKept',
-            'Kept: written by another Orca version'
+            'Kept: written by another Shark version'
           )
         : translate(
             'auto.components.skills.skillPlanOpCopy.updateSkipped',

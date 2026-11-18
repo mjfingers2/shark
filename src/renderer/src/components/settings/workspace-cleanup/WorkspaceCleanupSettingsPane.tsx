@@ -127,7 +127,7 @@ export function WorkspaceCleanupSettingsPane({
       <p className="px-1 text-sm text-muted-foreground">
         {t(
           'components.settings.workspaceCleanup.unsupportedHost',
-          'This host runs an Orca version without automatic cleanup. Update Orca on it to use these settings.'
+          'This host runs a Shark version without automatic cleanup. Update Shark on it to use these settings.'
         )}
       </p>
     )

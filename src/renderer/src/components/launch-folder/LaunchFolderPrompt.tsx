@@ -11,8 +11,9 @@ import {
 import { useTranslate } from '@/i18n/use-translate'
 import { activateAndRevealWorktree } from '@/lib/workspace/activation/worktree-activation'
 import { useAppStore } from '@/store'
+import { selectWorktreesByRepo } from '@/store/workspaces/catalog/workspace-record-fields'
 import { pickNewProject } from '../sidebar/one-click-start'
-import { listLaunchFolderChoices } from './launch-folder-choices'
+import { listLaunchFolderChoices } from '../../../../shared/launch-folder/launch-folder-choices'
 
 // Once per app launch: sessionStorage survives a renderer reload but not a relaunch.
 const SHOWN_KEY = 'shark.launchFolderPrompt.shown'
@@ -38,7 +39,7 @@ export function LaunchFolderPrompt({ blocked }: { blocked: boolean }): React.JSX
   const t = useTranslate()
   const ready = useAppStore((s) => s.workspaceSessionReady)
   const { repos, worktreesByRepo } = useAppStore(
-    useShallow((s) => ({ repos: s.repos, worktreesByRepo: s.worktreesByRepo }))
+    useShallow((s) => ({ repos: s.repos, worktreesByRepo: selectWorktreesByRepo(s) }))
   )
   const [open, setOpen] = useState(false)
   const choices = useMemo(

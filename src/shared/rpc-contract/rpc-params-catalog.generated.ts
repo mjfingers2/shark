@@ -111,6 +111,7 @@ import { ExtensionList, ExtensionReload } from './browser/browser-extension-para
 import { MouseClick } from './browser/browser-extras-params'
 import { BrowserIdentitySet, ProfileCreate } from './browser/browser-identity-params'
 import { Screenshot, Snapshot } from './browser/browser-observation-params'
+import { DescribeElementAt } from './browser/browser-page-inspection-params'
 import {
   Check,
   ClipboardWrite,
@@ -963,6 +964,7 @@ export const RPC_PARAMS_BY_METHOD = {
   'browser.cookie.get': CookieGet,
   'browser.cookie.set': CookieSet,
   'browser.dblclick': Element,
+  'browser.describeElementAt': DescribeElementAt,
   'browser.dialogAccept': DialogAccept,
   'browser.dialogDismiss': ExpectUrlBrowserTarget,
   'browser.download': SelectorPath,
@@ -996,6 +998,7 @@ export const RPC_PARAMS_BY_METHOD = {
   'browser.mouseWheel': MouseWheel,
   'browser.network': LimitParam,
   'browser.openUrl': BrowserOpenUrlParams,
+  'browser.pageErrors': BrowserTarget,
   'browser.pdf': BrowserTarget,
   'browser.profileClearDefaultCookies': null,
   'browser.profileClearGoogleCookies': ProfileClearGoogleCookies,

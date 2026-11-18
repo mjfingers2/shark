@@ -28,7 +28,7 @@ function runtimeStatusLabel(state: RuntimeHostConnectionState, t: Translate = tr
     case 'runtime-unavailable':
       return t(
         'auto.components.status.bar.SshStatusSegment.runtime_unavailable_transport_up',
-        'Orca unavailable'
+        'Shark unavailable'
       )
     case 'workspace-window-closed':
       return t(
@@ -105,22 +105,22 @@ function runtimeFailureSummary(
     case 'runtime-unavailable':
       return t(
         'auto.components.status.bar.RuntimeHostStatusRow.runtime_unavailable',
-        'SSH transport is connected, but the Orca runtime is unavailable'
+        'SSH transport is connected, but the Shark runtime is unavailable'
       )
     case 'checking':
       return t(
         'auto.components.status.bar.RuntimeHostStatusRow.checking_host',
-        'Orca is checking whether this host is reachable'
+        'Shark is checking whether this host is reachable'
       )
     case 'reconnecting':
       return t(
         'auto.components.status.bar.RuntimeHostStatusRow.restoring_connection',
-        'Orca is trying to restore the connection'
+        'Shark is trying to restore the connection'
       )
     case 'disconnected':
       return t(
         'auto.components.status.bar.RuntimeHostStatusRow.host_unreachable',
-        'Orca isn’t reachable on this host'
+        'Shark isn’t reachable on this host'
       )
   }
 }
@@ -135,12 +135,12 @@ function runtimeFailureExplanation(
   if (state === 'runtime-unavailable') {
     return t(
       'auto.components.status.bar.RuntimeHostStatusRow.runtime_unavailable_explanation',
-      'The remote host may still be running; only the Orca runtime connection is unavailable.'
+      'The remote host may still be running; only the Shark runtime connection is unavailable.'
     )
   }
   return t(
     'auto.components.status.bar.RuntimeHostStatusRow.contact_note',
-    'The host may still be running; only the Orca connection is unavailable.'
+    'The host may still be running; only the Shark connection is unavailable.'
   )
 }
 

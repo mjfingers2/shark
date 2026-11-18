@@ -77,7 +77,7 @@ export function verifyRemotePairingRuntimeStatus(
     return {
       ok: false,
       kind: 'access-link-invalid',
-      message: 'This link grants mobile-only access. Generate a link for another Orca client.'
+      message: 'This link grants mobile-only access. Generate a link for another Shark client.'
     }
   }
   const versionFields = [
