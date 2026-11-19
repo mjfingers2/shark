@@ -10,11 +10,14 @@ export default function SettingsMenuScreen({
   push,
   onBack,
   openExternal,
+  onlyItems,
   children
 }: {
   push: (route: string) => void
   onBack?: () => void
   openExternal: (url: string) => Promise<unknown>
+  /** Item ids to keep, for a host (a browser tab) that cannot open every screen. */
+  onlyItems?: readonly string[]
   children?: ReactNode
 }) {
   const t = useMobileTranslation()
@@ -24,7 +27,7 @@ export default function SettingsMenuScreen({
       title={t('common.settings', 'Settings')}
       onBack={onBack ?? (() => router.back())}
     >
-      <SettingsMenuSections push={push} openExternal={openExternal}>
+      <SettingsMenuSections push={push} openExternal={openExternal} onlyItems={onlyItems}>
         {children}
       </SettingsMenuSections>
     </SettingsScreen>
@@ -35,16 +38,21 @@ export default function SettingsMenuScreen({
 export function SettingsMenuSections({
   push,
   openExternal,
+  onlyItems,
   children
 }: {
   push: (route: string) => void
   openExternal: (url: string) => Promise<unknown>
+  onlyItems?: readonly string[]
   children?: ReactNode
 }) {
   const t = useMobileTranslation()
+  const items = mobileSettingsMenuItems(push).filter(
+    (item) => onlyItems === undefined || onlyItems.includes(item.id)
+  )
   return (
     <>
-      <MobileSettingsSection first items={mobileSettingsMenuItems(push)} />
+      <MobileSettingsSection first items={items} />
 
       {children}
 

@@ -20,11 +20,17 @@ type Sheet = 'launch' | 'new-project' | null
  * Home's one-step starts on the most recently connected desktop: the launch folder question,
  * a new session with defaults, and a new project from a folder on the desktop.
  */
-export function useHomeQuickStart(args: { hostId: string | null; onOpenForm: () => void }) {
+export function useHomeQuickStart(args: {
+  hostId: string | null
+  onOpenForm: () => void
+  /** False where every visit is a fresh document (a browser tab), so the question would repeat. */
+  askOnLaunch?: boolean
+}) {
   const t = useMobileTranslation()
   const router = useRouter()
   const openMobileSession = useOpenMobileSession()
   const { hostId, onOpenForm } = args
+  const askOnLaunch = args.askOnLaunch ?? true
   const { client, state } = useHostClient(hostId ?? undefined)
   const connected = state === 'connected' && client !== null
   const [focused, setFocused] = useState(false)
@@ -49,7 +55,7 @@ export function useHomeQuickStart(args: { hostId: string | null; onOpenForm: () 
   )
 
   useEffect(() => {
-    if (!connected || !client || !focused || launchPromptAsked) {
+    if (!askOnLaunch || !connected || !client || !focused || launchPromptAsked) {
       return
     }
     launchPromptAsked = true
@@ -61,7 +67,7 @@ export function useHomeQuickStart(args: { hostId: string | null; onOpenForm: () 
         }
       })
       .catch(() => undefined)
-  }, [client, connected, focused])
+  }, [askOnLaunch, client, connected, focused])
 
   const closeThen = useCallback((next: (() => void) | null) => {
     afterCloseRef.current = next

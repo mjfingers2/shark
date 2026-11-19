@@ -31,6 +31,7 @@ import {
   createRouteScreenPaintReporter
 } from '../src/mobile-web-shell/bridge/page-lifecycle/page-first-paint'
 import { PageFaultBoundary } from '../src/mobile-web-shell/bridge/page-lifecycle/page-fault-boundary'
+import { isBrowserShellLocation } from '../src/mobile-web-shell/browser-shell/browser-shell-location'
 import type { BridgeUiLocale } from '../src/mobile-web-shell/bridge/protocol/bridge-envelope'
 import { BRIDGE_OPEN_ROUTE_PARAM } from '../src/mobile-web-shell/bridge/page-lifecycle/bridge-route-update'
 import { activateMobileUiLocale, subscribeMobileUiLanguage } from '../src/i18n/mobile-i18n'
@@ -131,10 +132,12 @@ function renderShellTooOldPanel(container: HTMLElement): void {
   container.replaceChildren(panel)
 }
 
-const container = document.getElementById('root')
-if (!container) {
+const rootElement = document.getElementById('root')
+if (!rootElement) {
   throw new Error('[orca-mobile-web-app] #root missing')
 }
+// Typed apart from the lookup so callbacks declared below keep the narrowing.
+const container: HTMLElement = rootElement
 const target = document.documentElement
 // Keep <html> transparent: overlay routes show the native screen through it, and the shell paints bgBase behind the rest.
 function paintDocumentScheme(): void {
@@ -150,90 +153,107 @@ subscribeMobileUiLanguage(() => {
 })
 stampPageMountState(target, 'started')
 
-bootstrapShellPage({
-  target,
-  client: createShellPageClient(),
-  replaceUrl: (href) => {
-    history.replaceState(null, '', href)
-  },
-  mount: (client, session) => {
-    // Apply before the first render so no component paints the default dark palette first.
-    applyMobileColorScheme(session.colorScheme)
-    client.onColorSchemeUpdate(applyMobileColorScheme)
-    const deviceStore = createPageDeviceStore(client)
-    publishPageDeviceStore(deviceStore)
-    // A shell that skipped the catalog chunks has the page read its catalog from the desktop; before the first load.
-    if (session.grants.native.includes(BRIDGE_HOST_CATALOGS_GRANT)) {
-      startPageLocaleCatalogs({ client, store: deviceStore })
-    }
-    // Subscribe before the first catalog load so a switch during startup is not lost; the latest request wins.
-    let uiLocaleActivation = activatePageUiLocale(session.uiLocale)
-    client.onUiLocaleUpdate((locale) => {
-      uiLocaleActivation = activatePageUiLocale(locale)
-    })
-    // Publish plain-function seams before first render because effects and initial list paint already read them.
-    publishPageHostProfile(session.host)
-    publishExternalLinkOpener((url) => client.notifyExternalLink(url))
-    publishHapticsNotifier((kind) => client.notifyHaptics(kind))
-    // Expose shell keyboard height to hooks and plain functions.
-    publishShellKeyboardSource({
-      read: () => client.getShellSession()?.keyboardInset ?? 0,
-      subscribe: client.onKeyboardInsetUpdate
-    })
-    startBlurringOnKeyboardClose()
-    // Without a host in init, leave every storage key unwritable for older shells.
-    publishPageStorage(
-      session.storage,
-      (key, value) => client.notifyStorageWrite(key, value),
-      session.host?.id ?? '',
-      session.route?.pathname ?? '',
-      session.storageOversize,
-      session.ownsHostArea
-        ? async (key) =>
-            storageReadResultSchema.parse(
-              (await client.callNativeVerb('native.storage.read', { key })).result
-            ).value
-        : null
-    )
-    // An open-target boot paints the shell's target first, so that is the screen to preload and restore.
-    const route = bootRoute(session.route?.params?.[BRIDGE_OPEN_ROUTE_PARAM])
-    const queryClient = createOrcaQueryClient()
-    // One store read for the first screen's stored data, alongside the catalog and route loads.
-    const firstPaintRestore = startPageQueryPersistence(
-      queryClient,
-      deviceStore,
-      session.host?.id ?? '',
-      route
-    )
-    client.onStorageUpdate(() => {
-      const current = client.getShellSession()
-      if (current !== null) {
-        refreshPageTerminalSettings(current.storage, current.storageOversize)
+function startShellPage(pageClient: BridgeRpcClient | null): void {
+  bootstrapShellPage({
+    target,
+    client: pageClient,
+    replaceUrl: (href) => {
+      history.replaceState(null, '', href)
+    },
+    mount: (client, session) => {
+      // Apply before the first render so no component paints the default dark palette first.
+      applyMobileColorScheme(session.colorScheme)
+      client.onColorSchemeUpdate(applyMobileColorScheme)
+      const deviceStore = createPageDeviceStore(client)
+      publishPageDeviceStore(deviceStore)
+      // A shell that skipped the catalog chunks has the page read its catalog from the desktop; before the first load.
+      if (session.grants.native.includes(BRIDGE_HOST_CATALOGS_GRANT)) {
+        startPageLocaleCatalogs({ client, store: deviceStore })
       }
-    })
-    const bootRoutes = preloadBootRoutes(route.pathname)
-    // Activation settles to English on failure and preloads settle either way, so the page always mounts.
-    void Promise.all([settleLatest(() => uiLocaleActivation), bootRoutes])
-      .then(() => awaitFirstPaintRestore(firstPaintRestore))
-      .then(() =>
-        createRoot(container).render(
-          // Catch outside ExpoRoot so route-resolution/import failures cannot bypass the page boundary.
-          <PageFaultBoundary
-            onFault={(error) => {
-              client.notifyPageFault(error)
-            }}
-          >
-            <ExpoRoot
-              context={routeContext}
-              // Pass the post-init URL explicitly; ExpoRoot’s import-time location predates bridge frames and still names /.
-              location={new URL(window.location.href)}
-              wrapper={createRootProviders(client, target, queryClient)}
-            />
-          </PageFaultBoundary>
-        )
+      // Subscribe before the first catalog load so a switch during startup is not lost; the latest request wins.
+      let uiLocaleActivation = activatePageUiLocale(session.uiLocale)
+      client.onUiLocaleUpdate((locale) => {
+        uiLocaleActivation = activatePageUiLocale(locale)
+      })
+      // Publish plain-function seams before first render because effects and initial list paint already read them.
+      publishPageHostProfile(session.host)
+      publishExternalLinkOpener((url) => client.notifyExternalLink(url))
+      publishHapticsNotifier((kind) => client.notifyHaptics(kind))
+      // Expose shell keyboard height to hooks and plain functions.
+      publishShellKeyboardSource({
+        read: () => client.getShellSession()?.keyboardInset ?? 0,
+        subscribe: client.onKeyboardInsetUpdate
+      })
+      startBlurringOnKeyboardClose()
+      // Without a host in init, leave every storage key unwritable for older shells.
+      publishPageStorage(
+        session.storage,
+        (key, value) => client.notifyStorageWrite(key, value),
+        session.host?.id ?? '',
+        session.route?.pathname ?? '',
+        session.storageOversize,
+        session.ownsHostArea
+          ? async (key) =>
+              storageReadResultSchema.parse(
+                (await client.callNativeVerb('native.storage.read', { key })).result
+              ).value
+          : null
       )
-  },
-  refuseUnroutedShell: () => {
-    renderShellTooOldPanel(container)
-  }
-})
+      // An open-target boot paints the shell's target first, so that is the screen to preload and restore.
+      const route = bootRoute(session.route?.params?.[BRIDGE_OPEN_ROUTE_PARAM])
+      const queryClient = createOrcaQueryClient()
+      // One store read for the first screen's stored data, alongside the catalog and route loads.
+      const firstPaintRestore = startPageQueryPersistence(
+        queryClient,
+        deviceStore,
+        session.host?.id ?? '',
+        route
+      )
+      client.onStorageUpdate(() => {
+        const current = client.getShellSession()
+        if (current !== null) {
+          refreshPageTerminalSettings(current.storage, current.storageOversize)
+        }
+      })
+      const bootRoutes = preloadBootRoutes(route.pathname)
+      // Activation settles to English on failure and preloads settle either way, so the page always mounts.
+      void Promise.all([settleLatest(() => uiLocaleActivation), bootRoutes])
+        .then(() => awaitFirstPaintRestore(firstPaintRestore))
+        .then(() =>
+          createRoot(container).render(
+            // Catch outside ExpoRoot so route-resolution/import failures cannot bypass the page boundary.
+            <PageFaultBoundary
+              onFault={(error) => {
+                client.notifyPageFault(error)
+              }}
+            >
+              <ExpoRoot
+                context={routeContext}
+                // Pass the post-init URL explicitly; ExpoRoot’s import-time location predates bridge frames and still names /.
+                location={new URL(window.location.href)}
+                wrapper={createRootProviders(client, target, queryClient)}
+              />
+            </PageFaultBoundary>
+          )
+        )
+    },
+    refuseUnroutedShell: () => {
+      renderShellTooOldPanel(container)
+    }
+  })
+}
+
+// Inside the app the WebView hands the page its bridge synchronously. A browser tab opened from the
+// desktop has none, so the page installs a shell in its own document; lazily, so the app's WebView
+// never loads that code.
+const bridgedClient = createShellPageClient()
+if (bridgedClient !== null || !isBrowserShellLocation(window.location)) {
+  startShellPage(bridgedClient)
+} else {
+  void import('../src/mobile-web-shell/browser-shell/install-browser-shell')
+    .then(({ installBrowserShell }) => installBrowserShell({ win: window, container }))
+    .then(startShellPage, (error: unknown) => {
+      console.error('[orca-mobile-web-app] the browser shell could not start', error)
+      startShellPage(null)
+    })
+}

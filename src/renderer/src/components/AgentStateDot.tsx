@@ -16,7 +16,8 @@ import {
 } from '@/components/StateIndicatorTooltip'
 import type { AgentListStatus } from '../../../shared/agent-status/presentation/agent-list-status'
 
-// Share state glyphs across agent surfaces. Keep the agent identity icon separate; completion uses a check while sidebar StatusIndicator uses an emerald dot/tooltip.
+// Share state glyphs across agent surfaces. Keep the agent identity icon separate; completion uses a check while sidebar StatusIndicator uses a quiet dot/tooltip.
+// Why (Shark): the check is gray, not green — green read as "Claude is still running".
 
 export type AgentDotState = AgentListStatus
 
@@ -150,13 +151,13 @@ export const AgentStateDot = React.memo(function AgentStateDot({
       </span>
     )
   } else if (state === 'done') {
-    // A check distinguishes reported completion from live/idle dots; sidebar StatusIndicator intentionally differs.
+    // A check distinguishes reported completion from live/idle dots by shape; sidebar StatusIndicator intentionally differs.
     indicator = (
       <span
         className={cn('inline-flex shrink-0 items-center justify-center', box, className)}
         aria-label={agentStateLabel(state)}
       >
-        <CircleCheck className={cn('text-emerald-500', icon)} aria-hidden="true" />
+        <CircleCheck className={cn('text-muted-foreground', icon)} aria-hidden="true" />
       </span>
     )
   } else if (state === 'unverifiable' || state === 'unconfirmed') {

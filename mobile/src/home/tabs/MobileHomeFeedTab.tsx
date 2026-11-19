@@ -22,7 +22,8 @@ export function MobileHomeFeedTab(props: {
   onSeeAllAgents: () => void
   onOpenHost: (host: HostCatalogEntry) => void
   onOpenHostActions: (host: HostCatalogEntry) => void
-  onPairDesktop: () => void
+  /** Absent where this screen cannot pair (a browser tab), which hides the pair actions. */
+  onPairDesktop?: () => void
   onOpenTasks: (hostId: string) => void
 }) {
   const t = useMobileTranslation()
@@ -51,7 +52,11 @@ export function MobileHomeFeedTab(props: {
         contentContainerStyle={[
           styles.content,
           { paddingBottom: props.bottomInset },
-          isWideLayout && { maxWidth: contentMaxWidth, width: '100%', alignSelf: 'center' }
+          isWideLayout && {
+            maxWidth: contentMaxWidth,
+            width: '100%',
+            alignSelf: 'center'
+          }
         ]}
       >
         <MobileHomeAppMoveBanner />

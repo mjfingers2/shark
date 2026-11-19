@@ -45,6 +45,8 @@ export type WebSocketTransportOptions = {
   preAuthTimeoutMs?: number
   // Serve browser assets from the pairing server to avoid another listener.
   staticRoot?: string
+  // The built phone bundle, served on the same listener as a home-screen web app at /m.
+  mobileWebRoot?: string
   // Source-address policy checked at TCP accept; absent admits every source.
   sourceGuard?: WebSocketSourceGuard
   // Retry persisted fallback first so previously paired endpoints remain reachable (STA-1511).
@@ -63,6 +65,7 @@ export class WebSocketTransport implements RpcTransport {
   private readonly heartbeat: RemoteRuntimeServerHeartbeat
   private readonly preAuthTimeoutMs: number
   private readonly staticRoot: string | undefined
+  private readonly mobileWebRoot: string | undefined
   private readonly sourceGuard: WebSocketSourceGuard | undefined
   private readonly fallbackPort: number | undefined
   private readonly preferPinnedPort: boolean
@@ -92,6 +95,7 @@ export class WebSocketTransport implements RpcTransport {
     heartbeatNow,
     preAuthTimeoutMs,
     staticRoot,
+    mobileWebRoot,
     sourceGuard,
     fallbackPort,
     preferPinnedPort,
@@ -107,6 +111,7 @@ export class WebSocketTransport implements RpcTransport {
     )
     this.preAuthTimeoutMs = preAuthTimeoutMs ?? PRE_AUTH_TIMEOUT_MS
     this.staticRoot = staticRoot
+    this.mobileWebRoot = mobileWebRoot
     this.sourceGuard = sourceGuard
     this.fallbackPort = fallbackPort
     this.preferPinnedPort = preferPinnedPort === true
@@ -223,7 +228,9 @@ export class WebSocketTransport implements RpcTransport {
     await assertPortNotShadowingListener(this.host, port)
     // Without an HTTP request listener, plain HTTP hangs instead of receiving 404 (#30100).
     const httpServer = createHttpServer(
-      this.staticRoot ? createStaticWebClientHandler(this.staticRoot) : answerWithoutWebClient
+      this.staticRoot || this.mobileWebRoot
+        ? createStaticWebClientHandler(this.staticRoot, { mobileWebRoot: this.mobileWebRoot })
+        : answerWithoutWebClient
     )
 
     await new Promise<void>((resolve, reject) => {

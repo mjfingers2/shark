@@ -30,6 +30,8 @@ export type MobileApi = {
         endpoint: string | null
         deviceId: string
         connectionMode: MobilePairingConnectionMode
+        /** Home-screen web app link (/m#pairing=…); absent or null without a LAN offer or phone bundle. */
+        mobileWebAppUrl?: string | null
         /** Null when the code stays valid until scanned. */
         expiresAt: number | null
       }

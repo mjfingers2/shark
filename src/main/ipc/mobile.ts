@@ -118,6 +118,7 @@ export function registerMobileHandlers(
         endpoint: offer.endpoint,
         deviceId: offer.deviceId,
         connectionMode: offer.connectionMode,
+        mobileWebAppUrl: offer.mobileWebAppUrl,
         expiresAt: offer.offerExpiresAt
       }
     }

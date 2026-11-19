@@ -32,6 +32,9 @@ import {
 } from './native-chat-subagent-ending'
 import { NativeChatSubagentViewBar } from './NativeChatSubagentViewBar'
 import { NativeChatSubagentPrompt } from './NativeChatSubagentPrompt'
+import { NativeChatAgentTree } from './NativeChatAgentTree'
+import { structuredAgentLabel } from '@/lib/agent-session/launch/structured-agent-session-launch-label'
+import type { AgentType } from '../../../../../shared/agent-status/contracts/agent-status-types'
 import { nativeChatSubagentHandoff } from './native-chat-subagent-handoff'
 
 const NO_MESSAGES: readonly NativeChatMessage[] = []
@@ -65,7 +68,9 @@ export function useNativeChatSubagentScope({
   journalItems,
   journalSubmissions,
   latestTurn,
-  isWorking
+  isWorking,
+  agent,
+  sessionKey
 }: {
   view: NativeChatSubagentView | undefined
   conversation: readonly NativeChatMessage[]
@@ -75,15 +80,18 @@ export function useNativeChatSubagentScope({
   journalSubmissions: readonly AgentJournalSubmission[] | undefined
   latestTurn: AgentSessionLatestTurn | null | undefined
   isWorking: boolean
+  agent: AgentType
+  /** Names the session to the agent tree's open/closed choice. */
+  sessionKey: string
 }) {
   const agentId = view?.agentId ?? null
-  // The conversation names its subagents only for heads, which need rows; a subagent's bar lists them all.
+  // Heads, a subagent's bar and the agent tree all read the session's subagents; a view that cannot open one needs none.
   const entries = useMemo(
     () =>
-      agentId === null && subagentRows.size === 0
+      agentId === null && subagentRows.size === 0 && !view?.open
         ? NO_ENTRIES
         : nativeChatSubagentEntries(conversation, subagentRows, roster),
-    [agentId, conversation, roster, subagentRows]
+    [agentId, conversation, roster, subagentRows, view?.open]
   )
   const t = useTranslate()
   const entry = agentId === null ? undefined : entries.get(agentId)
@@ -166,6 +174,18 @@ export function useNativeChatSubagentScope({
       agentId !== null && handoff?.prompt ? (
         <NativeChatSubagentPrompt agentId={agentId} prompt={handoff.prompt} />
       ) : null,
+    /** Atop every view that can open a subagent: the main agent and its subagents; null without subagents. */
+    tree: open ? (
+      <NativeChatAgentTree
+        sessionKey={sessionKey}
+        mainLabel={structuredAgentLabel(agent)}
+        mainWorking={view?.mainWorking ?? isWorking}
+        entries={entries}
+        subagentRows={subagentRows}
+        viewedId={agentId}
+        onOpen={open}
+      />
+    ) : null,
     /** Drawn above a subagent's own transcript. */
     bar:
       agentId !== null && open ? (

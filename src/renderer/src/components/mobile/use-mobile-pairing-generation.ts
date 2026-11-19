@@ -20,6 +20,7 @@ export function useMobilePairingGeneration(params: {
   setPairQrDataUrl: (value: string | null) => void
   setPairQrSize: (value: number | null) => void
   setPairingUrl: (value: string | null) => void
+  setMobileWebAppUrl: (value: string | null) => void
   setPairExpiresAt: (value: number | null) => void
   setPairingQrError: (value: boolean) => void
   setPairLoading: (value: boolean) => void
@@ -43,6 +44,7 @@ export function useMobilePairingGeneration(params: {
     setPairQrDataUrl,
     setPairQrSize,
     setPairingUrl,
+    setMobileWebAppUrl,
     setPairExpiresAt,
     setPairingQrError,
     setPairLoading,
@@ -80,6 +82,7 @@ export function useMobilePairingGeneration(params: {
             setPairQrDataUrl(result.qrDataUrl)
             setPairQrSize(result.qrSize)
             setPairingUrl(result.pairingUrl)
+            setMobileWebAppUrl(result.mobileWebAppUrl ?? null)
             setPairExpiresAt(result.expiresAt ?? null)
             setPairingQrError(result.qrDataUrl === null)
             setRelayMintFailure(null)
@@ -139,6 +142,7 @@ export function useMobilePairingGeneration(params: {
       setPairQrDataUrl,
       setPairQrSize,
       setPairingUrl,
+      setMobileWebAppUrl,
       setPairExpiresAt,
       setPairingQrError,
       setRelayMintFailure,

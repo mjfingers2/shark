@@ -65,6 +65,7 @@ import { MobileNativeChatQueueAbovePromptContext } from './lower-region/mobile-n
 import { MobileNativeChatPromptStrip } from './input/prompts/MobileNativeChatPromptStrip'
 import { MobileNativeChatOfflineQueue } from './input/queued-messages/MobileNativeChatOfflineQueue'
 import { useMobileNativeChatOfflineQueue } from './composer/delivery/use-mobile-native-chat-offline-sends'
+import { MobileNativeChatAgentTree } from './transcript/messages/MobileNativeChatAgentTree'
 
 export type MobileNativeChatInputLockReason = 'disconnected' | 'waiting'
 
@@ -390,6 +391,7 @@ export function MobileNativeChatView({
   return (
     <MobileNativeChatOpenFileContext value={onOpenFile}>
       <View testID="native-chat-view" style={[styles.root, { paddingBottom: bottomPad }]}>
+        <MobileNativeChatAgentTree scope={sendSurfaceId} {...{ messages, agent, agentWorking }} />
         {status === 'loading' && messages.length === 0 ? (
           <MobileStateView
             loading

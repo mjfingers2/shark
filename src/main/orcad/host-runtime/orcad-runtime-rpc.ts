@@ -2,6 +2,7 @@ import { OrcaRuntimeRpcServer } from '../../runtime/rpc/server/runtime-rpc'
 import type { OrcaRuntimeService } from '../../runtime/orca-runtime'
 import type { OrcadOptions } from '../serve-startup/orcad-start-contract'
 import { resolveOrcadWebClientRoot } from '../serve-startup/orcad-command-arguments'
+import { getBundledMobileWebBundleRoot } from '../../runtime/rpc/methods/mobile-delivery/bundled-mobile-web-bundle'
 import {
   clearDesktopRuntimeFallbackPort,
   orcadWsPortOptions
@@ -26,6 +27,8 @@ export function createOrcadRuntimeRpcServer(
       pairingAddress: options.pairingAddress ?? null
     },
     webClientRoot: resolveOrcadWebClientRoot(options.webClientRoot),
+    // Absent when this install carries no phone bundle; /m then answers 404.
+    mobileWebRoot: getBundledMobileWebBundleRoot(),
     ...orcadWsPortOptions(options.port)
   })
 }

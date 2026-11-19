@@ -32,6 +32,7 @@ export default function MobilePage(): React.JSX.Element {
   const [pairQrDataUrl, setPairQrDataUrl] = useState<string | null>(null)
   const [pairQrSize, setPairQrSize] = useState<number | null>(null)
   const [pairingUrl, setPairingUrl] = useState<string | null>(null)
+  const [mobileWebAppUrl, setMobileWebAppUrl] = useState<string | null>(null)
   const [pairExpiresAt, setPairExpiresAt] = useState<number | null>(null)
   const [pairingQrError, setPairingQrError] = useState(false)
   const [relayMintFailure, setRelayMintFailure] = useState<MobileRelayMintFailure | null>(null)
@@ -93,6 +94,7 @@ export default function MobilePage(): React.JSX.Element {
     setPairQrDataUrl,
     setPairQrSize,
     setPairingUrl,
+    setMobileWebAppUrl,
     setPairExpiresAt,
     setPairingQrError,
     setPairLoading,
@@ -323,6 +325,9 @@ export default function MobilePage(): React.JSX.Element {
   const awaitingPairingAddress =
     stage === 'flow' && stepIdx === 1 && canGenerate && !pairingAddressSettled
 
+  // Every path that clears the code clears pairingUrl, so the link never outlives its offer.
+  const shownMobileWebAppUrl = pairingUrl != null ? mobileWebAppUrl : null
+
   return (
     <MobilePageContent
       closeMobilePage={closeMobilePage}
@@ -352,6 +357,7 @@ export default function MobilePage(): React.JSX.Element {
       pairQrDataUrl={pairQrDataUrl}
       pairQrSize={pairQrSize}
       pairingUrl={pairingUrl}
+      mobileWebAppUrl={shownMobileWebAppUrl}
       pairingQrError={pairingQrError}
       relayMintFailure={
         connectionMode === 'automatic' && pairQrDataUrl == null ? relayMintFailure : null

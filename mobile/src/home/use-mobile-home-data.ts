@@ -7,7 +7,7 @@ import {
   useQueryClient,
   type QueryObserverResult
 } from '@tanstack/react-query'
-import { warmUpWebShell } from '../../modules/orca-mobile-web-shell/src/index'
+import { warmUpWebShell } from './web-shell-warm-up'
 import {
   countAgentsNeedingYouByHost,
   selectActiveAgents,
@@ -23,10 +23,8 @@ import {
   NO_HOST_LIST_INPUT
 } from '../host-screen/catalog/host-list-queries'
 import { useNow } from '../hooks/use-now'
-import {
-  loadMobileOnboardingSteps,
-  mobileOnboardingDestination
-} from '../onboarding/mobile-onboarding-plan'
+import { mobileOnboardingDestination } from '../onboarding/mobile-onboarding-plan'
+import { loadMobileOnboardingSteps } from '../onboarding/mobile-onboarding-steps-load'
 import {
   selectConnectableHostProfiles,
   sortHostsByLastConnected
@@ -82,7 +80,10 @@ export function useMobileHomeData() {
   // Every paired desktop keeps its last counts and totals on Home, connected or not.
   const homeHosts = useMemo((): HomeHost[] => {
     const clients = new Map(allClients.map((entry) => [entry.hostId, entry.client]))
-    return hosts.map((host) => ({ hostId: host.id, client: clients.get(host.id) ?? null }))
+    return hosts.map((host) => ({
+      hostId: host.id,
+      client: clients.get(host.id) ?? null
+    }))
   }, [hosts, allClients])
   // A read from before the desktop's latest connect, or from an earlier launch, can't vouch for agents or usage.
   const isLive = useCallback(

@@ -9,6 +9,8 @@ export type NativeChatSubagentView = {
   open: (agentId: string | null) => void
   /** The open view names the subagent that spawned it, which Back and Esc return to. */
   noteParent?: (parentId: string | null) => void
+  /** Whether the session's own agent works; the agent tree shows it from every view. */
+  mainWorking?: boolean
 }
 
 /** The open subagent and, once its view has read its spawn chain, its parent (null: the main agent). */

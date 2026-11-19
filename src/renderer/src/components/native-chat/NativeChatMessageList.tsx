@@ -165,7 +165,9 @@ export function NativeChatMessageList({
     journalItems,
     journalSubmissions,
     latestTurn,
-    isWorking
+    isWorking,
+    agent: session.agent,
+    sessionKey: `${session.agent}:${session.sessionId}`
   })
   const { agentId: subagentId, messages, turnRows, working, rowsInOrder } = scope
   // Pending/failed reads cannot page; recovery remounts the sentinel to recheck its range.
@@ -361,6 +363,7 @@ export function NativeChatMessageList({
     <NativeChatDisclosureContext.Provider value={disclosures}>
       <NativeChatPullRequestChangeContext.Provider value={openedPullRequests.latestChangeKey}>
         <div className="relative flex min-h-0 flex-1 flex-col bg-chat-pane">
+          {scope.tree}
           {scope.bar}
           <div className="relative min-h-0 flex-1">
             <div

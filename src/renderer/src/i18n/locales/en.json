@@ -16339,6 +16339,11 @@
           "e1c7b4a92d": "Configure in Settings > Mobile.",
           "f3d8e5b71a": "Adds the shortcut back to the sidebar."
         },
+        "MobileWebAppLinkRow": {
+          "label": "Home-screen web app link",
+          "hint": "Open it in Safari on an iPad, then Share → Add to Home Screen.",
+          "copyFailed": "Failed to copy the link"
+        },
         "PhoneCarousel": {
           "96d651cb87": "Terminal session",
           "93217b41c1": "Worktree list",
@@ -21198,6 +21203,14 @@
         "beforeClear": "This subagent ran before the chat was cleared",
         "stoppedBeforeReply": "Stopped before replying",
         "noReply": "Ended without a reply"
+      },
+      "agentTree": {
+        "summaryWorking_one": "{{count}} agent · {{working}} working",
+        "summaryWorking_other": "{{count}} agents · {{working}} working",
+        "summaryDone_one": "{{count}} agent · done",
+        "summaryDone_other": "{{count}} agents · all done",
+        "label": "Agents",
+        "main": "Main ({{value0}})"
       },
       "rewind": {
         "unsupported": "This chat can't go back to an earlier message.",

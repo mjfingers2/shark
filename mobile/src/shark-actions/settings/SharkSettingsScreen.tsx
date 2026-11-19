@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { MobileSwitch } from '../../components/controls/MobileSwitch'
 import { ListRow } from '../../components/list/ListGroup'
 import { loadHosts } from '../../host-catalog/host-store'
@@ -9,15 +9,15 @@ import { useFocusedSettingsHostClients } from '../../settings/settings-host-clie
 import { useMobileColorScheme } from '../../theme/use-mobile-color-scheme'
 import type { UnvalidatedRpcRequestPort } from '../../transport/rpc/unvalidated-rpc-request-port'
 import { useSharkHostSettings } from '../host-settings/use-shark-host-settings'
-import { useSharkNotificationToggle } from './use-shark-notification-toggle'
 
-/** Settings → Shark: this phone's finish alerts, then each paired desktop's Shark switches. */
+/** Settings → Shark: this phone's finish alerts (when given), then each paired desktop's Shark switches. */
 export function SharkSettingsScreen({
   onBack,
-  push
+  renderPhoneSection
 }: {
   onBack: () => void
-  push: (route: string) => void
+  /** This phone's own alerts; the native app passes it, a browser tab has no push to offer. */
+  renderPhoneSection?: (focused: boolean) => ReactNode
 }) {
   useMobileColorScheme()
   const t = useMobileTranslation()
@@ -33,43 +33,10 @@ export function SharkSettingsScreen({
   }, [])
   const hostIds = useMemo(() => (hosts ?? []).map((host) => host.id), [hosts])
   const { clients, focused } = useFocusedSettingsHostClients(hostIds)
-  const notifications = useSharkNotificationToggle(focused)
-  const notifyLabel = t('shark.actions.notifications', 'Notify when AI finishes')
 
   return (
     <SettingsScreen title={t('shark.settings.title', 'Shark')} onBack={onBack}>
-      <SettingsSection
-        first
-        title={t('shark.settings.thisPhone', 'This phone')}
-        footer={
-          notifications.blocked
-            ? t(
-                'settings.notificationSettingsScreen.notificationsBlocked',
-                'Notifications are disabled in system settings.'
-              )
-            : t(
-                'shark.settings.notificationsFooter',
-                'Get a push on this phone when an agent finishes its work.'
-              )
-        }
-      >
-        <ListRow
-          title={notifyLabel}
-          accessory={
-            <MobileSwitch
-              value={notifications.on === true}
-              accessibilityLabel={notifyLabel}
-              disabled={notifications.on === null || notifications.saving || notifications.blocked}
-              onValueChange={(next) => void notifications.toggle(next)}
-            />
-          }
-        />
-        <ListRow
-          title={t('shark.settings.notificationDetails', 'Notification details')}
-          navigates
-          onPress={() => push('/notifications')}
-        />
-      </SettingsSection>
+      {renderPhoneSection?.(focused) ?? null}
       {hosts !== null && hosts.length === 0 ? (
         <SettingsNote>
           {t('shark.settings.noDesktop', 'Pair a desktop to change its Shark settings.')}

@@ -11,6 +11,7 @@ import type { PairingOffersRpcContext } from '../core'
 import { RuntimeRpcPairing } from './runtime-rpc-pairing'
 import { withTimeout } from '../../../../shared/promise-timeout-fallback'
 import {
+  createMobileWebAppUrl,
   DEVICE_REGISTRY_UNAVAILABLE_GUIDANCE,
   pairingUnavailable,
   type MobilePairingOffer,
@@ -142,7 +143,14 @@ export class RuntimeRpcMobilePairing extends RuntimeRpcPairing {
     }
     // Why: explicit LAN path never needs Relay; mint the direct-only offer as selected.
     if (connectionMode === 'local-only') {
-      return { ...direct, connectionMode: 'local-only' }
+      return {
+        ...direct,
+        connectionMode: 'local-only',
+        // A browser tab reaches the desktop only directly, so the web app link carries LAN offers alone.
+        mobileWebAppUrl: this.mobileWebRoot
+          ? createMobileWebAppUrl(direct.endpoint, direct.pairingUrl)
+          : null
+      }
     }
     // Anywhere cannot silently become LAN-only; remove unused pending credentials and let UI offer LAN explicitly.
     const refuseAutomaticWithoutRelay = (
@@ -232,6 +240,7 @@ export class RuntimeRpcMobilePairing extends RuntimeRpcPairing {
     return {
       ...direct,
       connectionMode: 'automatic',
+      mobileWebAppUrl: null,
       pairingUrl: encodePairingOffer({
         v: PAIRING_OFFER_VERSION,
         endpoint: direct.endpoint,

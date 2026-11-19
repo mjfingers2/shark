@@ -18,10 +18,8 @@ import { themedStyleSheet } from '../src/theme/themed-styles'
 import { useMobileColorScheme } from '../src/theme/use-mobile-color-scheme'
 import { useMobileTranslation } from '../src/i18n/use-mobile-translation'
 import { ConnectionLog } from '../src/components/host-connection/ConnectionLog'
-import {
-  loadMobileOnboardingSteps,
-  mobileOnboardingDestination
-} from '../src/onboarding/mobile-onboarding-plan'
+import { mobileOnboardingDestination } from '../src/onboarding/mobile-onboarding-plan'
+import { loadMobileOnboardingSteps } from '../src/onboarding/mobile-onboarding-steps-load'
 import {
   PAIRING_SUCCESS_HOLD_MS,
   PairingProgress,

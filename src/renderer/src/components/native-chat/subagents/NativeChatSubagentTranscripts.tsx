@@ -11,12 +11,13 @@ import {
   type NativeChatSubagentView
 } from './native-chat-open-subagent'
 
-/** What took the reader into a subagent, to hand focus back to: its roster entry, its strip row, else the composer. */
+/** What took the reader into a subagent, to hand focus back to: its roster entry, its agent tree row, its strip row, else the composer. */
 function returnFocusTarget(main: HTMLElement, agentId: string): HTMLElement | null {
   const id = CSS.escape(agentId)
   const root = main.closest('[data-native-chat-root]')
   return (
     main.querySelector<HTMLElement>(`[data-native-chat-subagent-entry="${id}"] button`) ??
+    main.querySelector<HTMLElement>(`[data-native-chat-agent-tree-row="${id}"] button`) ??
     root?.querySelector<HTMLElement>(`[data-native-chat-agent-row="${id}"]`) ??
     root?.querySelector<HTMLElement>('[data-native-chat-prompt-editor]') ??
     null
@@ -38,7 +39,11 @@ export function NativeChatSubagentTranscripts({
     (agentId: string | null) => openNativeChatSubagent(paneKey, agentId),
     [paneKey]
   )
-  const main = useMemo<NativeChatSubagentView>(() => ({ agentId: null, open }), [open])
+  const mainWorking = props.isWorking
+  const main = useMemo<NativeChatSubagentView>(
+    () => ({ agentId: null, open, mainWorking }),
+    [mainWorking, open]
+  )
   const shown = useMemo<NativeChatSubagentView | null>(
     () =>
       openId === null
@@ -46,9 +51,10 @@ export function NativeChatSubagentTranscripts({
         : {
             agentId: openId,
             open,
-            noteParent: (parentId) => noteNativeChatSubagentParent(paneKey, openId, parentId)
+            noteParent: (parentId) => noteNativeChatSubagentParent(paneKey, openId, parentId),
+            mainWorking
           },
-    [open, openId, paneKey]
+    [mainWorking, open, openId, paneKey]
   )
   const isVisible = props.isVisible ?? true
   const mainRef = useRef<HTMLDivElement>(null)

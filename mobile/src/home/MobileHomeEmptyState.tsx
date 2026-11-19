@@ -44,7 +44,7 @@ export function MobileHomeEmptyState(props: {
   contentMaxWidth: number
   isWideLayout: boolean
   bottomInset: number
-  onPairDesktop: () => void
+  onPairDesktop?: () => void
 }) {
   const t = useMobileTranslation()
   useMobileColorScheme()
@@ -76,7 +76,7 @@ export function MobileHomeEmptyState(props: {
           </Text>
         </View>
         <NumberedStepsPanel steps={onboardingSteps(t)} />
-        <PairDesktopButton onPress={props.onPairDesktop} />
+        {props.onPairDesktop ? <PairDesktopButton onPress={props.onPairDesktop} /> : null}
       </View>
     </ScrollView>
   )
@@ -118,7 +118,11 @@ const styles = themedStyleSheet(() => ({
   container: { flexGrow: 1, padding: spacing.lg },
   // The move banner stays at the top while the pairing guide centres in the space below it.
   guide: { flexGrow: 1, justifyContent: 'center' },
-  hero: { alignItems: 'center', paddingHorizontal: spacing.sm, marginBottom: 34 },
+  hero: {
+    alignItems: 'center',
+    paddingHorizontal: spacing.sm,
+    marginBottom: 34
+  },
   title: {
     fontSize: 28,
     fontWeight: '700',
@@ -128,7 +132,12 @@ const styles = themedStyleSheet(() => ({
     marginTop: 26,
     marginBottom: 10
   },
-  body: { fontSize: 17, lineHeight: 24, color: colors.textSecondary, textAlign: 'center' },
+  body: {
+    fontSize: 17,
+    lineHeight: 24,
+    color: colors.textSecondary,
+    textAlign: 'center'
+  },
   ctaHit: { alignSelf: 'center', marginTop: 22 },
   cta: {
     flexDirection: 'row',

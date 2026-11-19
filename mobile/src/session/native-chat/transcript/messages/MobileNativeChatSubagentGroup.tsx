@@ -22,7 +22,7 @@ import { colors, radii, spacing, typography } from '../../../../theme/mobile-the
 import { themedStyleSheet } from '../../../../theme/themed-styles'
 import { useMobileColorScheme } from '../../../../theme/use-mobile-color-scheme'
 
-function stateDotStyle(state: NativeChatSubagentState): ViewStyle {
+export function subagentStateDotStyle(state: NativeChatSubagentState): ViewStyle {
   switch (state) {
     case 'working':
       return { backgroundColor: colors.textPrimary }
@@ -39,7 +39,7 @@ function stateDotStyle(state: NativeChatSubagentState): ViewStyle {
 }
 
 // Isolate the one-second clock so ticks cannot rerender the containing message.
-function Elapsed({
+export function SubagentElapsed({
   startedAt,
   settledAt,
   counting
@@ -95,7 +95,7 @@ export function MobileNativeChatSubagentGroup({
         onPress={() => onToggle?.(block.groupId)}
       >
         <Bot size={14} color={colors.textMuted} strokeWidth={2} />
-        <View style={[styles.dot, stateDotStyle(alertState ?? verdictState)]} />
+        <View style={[styles.dot, subagentStateDotStyle(alertState ?? verdictState)]} />
         <Text style={[styles.headline, working && styles.headlineWorking]} numberOfLines={1}>
           {headline}
         </Text>
@@ -106,7 +106,11 @@ export function MobileNativeChatSubagentGroup({
           {clockStartedAt !== null ? (
             <>
               {' · '}
-              <Elapsed startedAt={clockStartedAt} settledAt={header.settledAt} counting={working} />
+              <SubagentElapsed
+                startedAt={clockStartedAt}
+                settledAt={header.settledAt}
+                counting={working}
+              />
             </>
           ) : null}
           {header.tokens !== null ? ` · ${header.tokens}` : null}
@@ -124,7 +128,7 @@ export function MobileNativeChatSubagentGroup({
             return (
               <View key={agent.id} testID="subagent-group-entry" style={styles.entryBlock}>
                 <View style={styles.entry}>
-                  <View style={[styles.dot, stateDotStyle(state)]} />
+                  <View style={[styles.dot, subagentStateDotStyle(state)]} />
                   <Text
                     style={[styles.entryLabel, state === 'idle' && styles.entryLabelIdle]}
                     numberOfLines={1}

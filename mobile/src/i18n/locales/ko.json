@@ -485,6 +485,14 @@
       "streamEnded": "대화 기록 스트리밍이 종료되었습니다.",
       "streamFailed": "대화 기록 스트리밍에 실패했습니다."
     },
+    "agentTree": {
+      "main": "메인 ({{value0}})",
+      "summaryDone_one": "에이전트 {{count}}개 · 끝남",
+      "summaryDone_other": "에이전트 {{count}}개 · 모두 끝남",
+      "summaryWorking_one": "에이전트 {{count}}개 · {{working}}개 일하는 중",
+      "summaryWorking_other": "에이전트 {{count}}개 · {{working}}개 일하는 중",
+      "unnamed": "하위 에이전트"
+    },
     "subagentGroup": {
       "ran_one": "하위 에이전트 {{count}}개 실행",
       "ran_other": "하위 에이전트 {{count}}개 실행",
@@ -4338,6 +4346,19 @@
       "notificationDetails": "알림 자세히",
       "noDesktop": "데스크톱을 페어링하면 Shark 설정을 바꿀 수 있어요.",
       "desktopOffline": "이 데스크톱에 연결되면 바꿀 수 있어요."
+    }
+  },
+  "browserShell": {
+    "notice": {
+      "openFromDesktopTitle": "데스크톱에서 열어 주세요",
+      "openFromDesktopBody": "컴퓨터에서 Shark의 모바일 설정을 열고, 거기 표시된 브라우저 링크를 이 기기에서 여세요.",
+      "invalidLinkTitle": "페어링 링크가 아닙니다",
+      "invalidLinkBody": "컴퓨터의 Shark 모바일 설정에서 새 링크를 여세요.",
+      "linkUsedTitle": "이미 사용한 링크입니다",
+      "linkUsedBody": "링크는 한 번만 쓸 수 있습니다. 컴퓨터의 Shark 모바일 설정에서 새 링크를 여세요.",
+      "unreachableTitle": "컴퓨터에 연결할 수 없습니다",
+      "unreachableBody": "컴퓨터에서 Shark가 실행 중이고 이 기기와 같은 네트워크에 있는지 확인하세요.",
+      "retry": "다시 시도"
     }
   }
 }

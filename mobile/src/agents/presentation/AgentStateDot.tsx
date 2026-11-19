@@ -7,22 +7,10 @@ import { themedStyleSheet } from '../../theme/themed-styles'
 import { useMobileColorScheme } from '../../theme/use-mobile-color-scheme'
 import { useReducedMotionEnabled } from '../../platform/accessibility/use-reduced-motion'
 import { useWorkingRingRotation } from '../../components/motion/use-working-motion'
+import { agentDotColors } from './agent-status-palette'
 
-// Match desktop per-agent vocabulary: working yellow spinner, done emerald, attention red, interrupted muted, unconfirmed amber, idle neutral.
-// Separate from AgentSpinner’s five-state worktree rollup.
-const dotColors = (): Record<
-  Exclude<AgentDotState, 'working' | 'monitoring' | 'unverifiable'>,
-  string
-> => ({
-  done: '#10b981',
-  blocked: '#ef4444',
-  waiting: '#ef4444',
-  permission: '#ef4444',
-  interrupted: colors.textMuted,
-  failed: '#ef4444',
-  unconfirmed: colors.statusAmber,
-  idle: 'rgba(115,115,115,0.4)'
-})
+// Per-agent dot; colors live in agent-status-palette, separate from AgentSpinner's worktree rollup.
+
 export const AGENT_WORKING_COLOR = '#eab308'
 /** The dot's box, so rows can line text up past it. */
 export const AGENT_STATE_DOT_SIZE = 10
@@ -78,7 +66,7 @@ export function AgentStateDot({ state }: { state: AgentDotState | 'unverifiable'
 
   return (
     <View style={styles.wrapper}>
-      <View style={[styles.dot, { backgroundColor: dotColors()[state] }]} />
+      <View style={[styles.dot, { backgroundColor: agentDotColors()[state] }]} />
     </View>
   )
 }

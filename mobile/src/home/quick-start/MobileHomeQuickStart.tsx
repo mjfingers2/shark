@@ -11,8 +11,14 @@ export function MobileHomeQuickStart(props: {
   showActions: boolean
   bottom: number
   onOpenForm: () => void
+  /** Ask which folder to work in when Home first shows; on by default. */
+  askOnLaunch?: boolean
 }) {
-  const quick = useHomeQuickStart({ hostId: props.hostId, onOpenForm: props.onOpenForm })
+  const quick = useHomeQuickStart({
+    hostId: props.hostId,
+    onOpenForm: props.onOpenForm,
+    askOnLaunch: props.askOnLaunch
+  })
   return (
     <>
       <MobileHomeQuickActions

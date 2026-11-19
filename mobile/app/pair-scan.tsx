@@ -27,10 +27,8 @@ import { useMobileColorScheme } from '../src/theme/use-mobile-color-scheme'
 import { useMobileTranslation } from '../src/i18n/use-mobile-translation'
 import { TextInputModal } from '../src/components/sheets/TextInputModal'
 import { ConnectionLog } from '../src/components/host-connection/ConnectionLog'
-import {
-  loadMobileOnboardingSteps,
-  mobileOnboardingDestination
-} from '../src/onboarding/mobile-onboarding-plan'
+import { mobileOnboardingDestination } from '../src/onboarding/mobile-onboarding-plan'
+import { loadMobileOnboardingSteps } from '../src/onboarding/mobile-onboarding-steps-load'
 import { pairScanStyles as styles } from '../src/pair-scan-styles'
 import {
   PAIRING_SUCCESS_HOLD_MS,

@@ -7,6 +7,7 @@ import type { ServeNetworkSourceOptions } from './serve-network-source-policy'
 import type { PairingRelay } from '../../../../shared/remote-runtime/pairing/mobile-relay-pairing-offer'
 import type { MobilePairingConnectionMode } from '../../../../shared/remote-runtime/pairing/mobile-pairing-connection-mode'
 import type { MobileRelayMintFailure } from '../../../../shared/remote-runtime/relay/mobile-relay-mint-failure'
+import { classifyRemotePairingHostname } from '../../../../shared/remote-runtime/pairing/remote-pairing-address'
 import type {
   DeviceCredentialInstalled,
   PairingGetEndpointsParams,
@@ -47,6 +48,8 @@ export type OrcaRuntimeRpcServerOptions = {
   // `orca serve` only: refuse public source addresses unless allowed (desktop listeners never filter).
   serveNetworkSources?: ServeNetworkSourceOptions
   webClientRoot?: string
+  // The built phone bundle (out/mobile-web); the listener serves it as a home-screen web app at /m.
+  mobileWebRoot?: string
   // Test-only timing overrides; production keeps design §3.1 defaults.
   keepaliveIntervalMs?: number
   longPollCap?: number
@@ -78,6 +81,8 @@ export type MobilePairingOfferAvailable = {
   endpoint: string
   deviceId: string
   webClientUrl: string | null
+  /** The phone UI as a home-screen web app (/m) carrying this offer; null without a bundle or a LAN address. */
+  mobileWebAppUrl: string | null
   /** Null when the offer stays valid until scanned. */
   offerExpiresAt: number | null
   /** Mode the offer actually encodes. */
@@ -130,6 +135,29 @@ export function createWebClientUrl(endpoint: string, pairingUrl: string): string
   const url = new URL(endpoint)
   url.protocol = url.protocol === 'wss:' ? 'https:' : 'http:'
   url.pathname = webClientPathForEndpoint(url.pathname)
+  url.search = ''
+  // Credential-bearing pairing fragments stay out of proxy logs and Referer headers.
+  url.hash = `pairing=${encodeURIComponent(pairingUrl)}`
+  return url.toString()
+}
+
+/** /m on the pairing listener, with the phone QR's pairing code as `#pairing=<encodeURIComponent(code)>`.
+ * Null when a tablet could not reach the endpoint (loopback) or a proxy path prefix would not route /m. */
+export function createMobileWebAppUrl(endpoint: string | null, pairingUrl: string): string | null {
+  if (!endpoint) {
+    return null
+  }
+  let url: URL
+  try {
+    url = new URL(endpoint)
+  } catch {
+    return null
+  }
+  if (url.pathname !== '/' || classifyRemotePairingHostname(url.hostname) === 'loopback') {
+    return null
+  }
+  url.protocol = url.protocol === 'wss:' ? 'https:' : 'http:'
+  url.pathname = '/m'
   url.search = ''
   // Credential-bearing pairing fragments stay out of proxy logs and Referer headers.
   url.hash = `pairing=${encodeURIComponent(pairingUrl)}`

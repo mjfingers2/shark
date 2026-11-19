@@ -1607,6 +1607,12 @@
   },
   "components": {
     "native-chat": {
+      "agentTree": {
+        "summaryDone_one": "{{count}} agent · done",
+        "summaryDone_other": "{{count}} agents · all done",
+        "summaryWorking_one": "{{count}} agent · {{working}} working",
+        "summaryWorking_other": "{{count}} agents · {{working}} working"
+      },
       "approval": {
         "allow": "Allow",
         "deny": "Deny",

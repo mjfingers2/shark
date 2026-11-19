@@ -26,7 +26,9 @@ export const BROWSER_FRAME_FORMAT: BrowserScreencastFormat = 'jpeg'
 export const BROWSER_FRAME_QUALITY = 72
 // Do not skip compositor frames: menus can be final static update; time throttling still bounds throughput.
 const BROWSER_FRAME_EVERY_NTH_FRAME = 1
-export const MOBILE_BROWSER_FRAME_MIN_INTERVAL_MS = 100
+// Why (Shark): users preview their own games here, and 10 pictures a second looked like lag.
+// 30 a second stays safe: the desktop drops repeated pictures and its frame credit waits for slow phones.
+export const MOBILE_BROWSER_FRAME_MIN_INTERVAL_MS = 33
 const BROWSER_MIN_FRAME_WIDTH = 320
 const BROWSER_MIN_FRAME_HEIGHT = 240
 const BROWSER_MAX_FRAME_WIDTH = 2400

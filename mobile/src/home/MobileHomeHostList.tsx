@@ -27,7 +27,7 @@ type MobileHomeHostListProps = {
   worktreeInfo: Record<string, HostWorktreeInfo>
   onOpen: (host: HostCatalogEntry) => void
   onOpenActions: (host: HostCatalogEntry) => void
-  onPairDesktop: () => void
+  onPairDesktop?: () => void
 }
 
 /** Home's Desktops section: one row per paired desktop, then "Pair a desktop". */
@@ -64,16 +64,21 @@ export function MobileHomeHostList(props: MobileHomeHostListProps) {
             />
           </Fragment>
         ))}
-        <Pressable
-          accessibilityRole="button"
-          style={({ pressed }) => [homeListStyles.actionRow, pressed && homeListStyles.rowPressed]}
-          onPress={props.onPairDesktop}
-        >
-          <Plus size={18} color={colors.accentBlue} />
-          <Text style={homeListStyles.actionLabel}>
-            {t('home.desktops.pairDesktop', 'Pair a desktop')}
-          </Text>
-        </Pressable>
+        {props.onPairDesktop ? (
+          <Pressable
+            accessibilityRole="button"
+            style={({ pressed }) => [
+              homeListStyles.actionRow,
+              pressed && homeListStyles.rowPressed
+            ]}
+            onPress={props.onPairDesktop}
+          >
+            <Plus size={18} color={colors.accentBlue} />
+            <Text style={homeListStyles.actionLabel}>
+              {t('home.desktops.pairDesktop', 'Pair a desktop')}
+            </Text>
+          </Pressable>
+        ) : null}
       </View>
     </>
   )

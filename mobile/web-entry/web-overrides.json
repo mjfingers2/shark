@@ -248,6 +248,62 @@
     {
       "file": "src/platform/accessibility/accessibility-announcer.web.ts",
       "reason": "React Native Web's announceForAccessibility is a no-op and VoiceOver in the shell's WebView doesn't read the page's live regions, so the page asks the shell to announce through native.a11y.announce; without it, the caller keeps its live region."
+    },
+    {
+      "file": "src/mobile-web-shell/host-bridge/exact-github-operation.web.ts",
+      "reason": "The browser shell runs the bridge host inside the page, and the host's GitHub exact-operation check is shared code whose schemas import `{ z }`, which ships every zod locale table to the page. This copy imports the zod namespace instead; its test holds it to the shared classifier's answers."
+    },
+    {
+      "file": "src/theme/mobile-appearance.web.ts",
+      "reason": "React Native Web's Appearance has no setColorScheme and a page may not write orca:appearance, so in a browser tab the choice is kept by the tab (browser-display-preferences) and the shell hands the page its colors."
+    },
+    {
+      "file": "src/i18n/ui-language-preference.web.ts",
+      "reason": "A page may not write orca:uiLanguage, so in a browser tab the choice is kept by the tab and the shell opens the next page in it. Inside the app's WebView nothing is saved there, so the preference stays System, as the native module's would on a page."
+    },
+    {
+      "file": "app/h/[hostId]/home.web.tsx",
+      "reason": "Browser-tab Home: a plain browser has no native Home, so the tab renders BrowserHomeScreen. Not a declared page route; the native file redirects to the app's own Home."
+    },
+    {
+      "file": "app/h/[hostId]/settings/index.web.tsx",
+      "reason": "Browser-tab Settings menu, limited to the screens a browser can serve. Not a declared page route; the native file redirects to the app's own Settings."
+    },
+    {
+      "file": "app/h/[hostId]/settings/[section].web.tsx",
+      "reason": "Browser-tab copies of Appearance, Terminal, Chat UI, Browser, Shark and About. Not a declared page route; the native file redirects to the app's own Settings."
+    },
+    {
+      "file": "src/navigation/use-open-host-stack-route.web.ts",
+      "reason": "A browser tab has no native host stack; each host screen is its own document, so the shell loads the target's page. Only the browser tab's Home reaches it."
+    },
+    {
+      "file": "src/query/native-query-persistence.web.ts",
+      "reason": "The page has no device store (the native module already answered null on web) and its import chain carries native-only schemas into the page."
+    },
+    {
+      "file": "src/home/home-query-restore.web.ts",
+      "reason": "Home's stored rows live in the phone's device store; the browser tab's Home reads them fresh from the desktop."
+    },
+    {
+      "file": "src/notifications/mobile-notifications.web.ts",
+      "reason": "Desktop alerts become phone pushes through the native notification stack, which a browser tab does not have."
+    },
+    {
+      "file": "src/home/MobileHomeAppUpdateCard.web.tsx",
+      "reason": "A browser tab is served by its desktop, so there is no app to update; the card and its store checks stay out of the page."
+    },
+    {
+      "file": "src/home/MobileHomeAppMoveBanner.web.tsx",
+      "reason": "The move-to-new-app banner speaks to an installed phone app and reads its update store; a browser tab has neither."
+    },
+    {
+      "file": "src/home/web-shell-warm-up.web.ts",
+      "reason": "In a browser tab the page engine is the tab itself; the native module's import chain does not belong in the page."
+    },
+    {
+      "file": "src/onboarding/mobile-onboarding-steps-load.web.ts",
+      "reason": "First-run steps ask the phone for notification permission and its session view; a browser tab's Home has neither, and the onboarding screen is not part of the page."
     }
   ]
 }

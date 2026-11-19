@@ -4,25 +4,15 @@ import { View } from 'react-native'
 import type { AgentWorkingMode } from '../../../../src/shared/agent-status/contracts/agent-status-types'
 import type { WorktreeStatus } from '../../../../src/shared/worktree-status-rollup'
 import { useMobileTranslation } from '../../i18n/use-mobile-translation'
-import { colors, radii } from '../../theme/mobile-theme'
+import { radii } from '../../theme/mobile-theme'
 import { themedStyleSheet } from '../../theme/themed-styles'
 import { useMobileColorScheme } from '../../theme/use-mobile-color-scheme'
 import { useReducedMotionEnabled } from '../../platform/accessibility/use-reduced-motion'
 import { ArrivalFade } from '../../components/motion/ArrivalFade'
 import { WorkingRing } from './AgentStateDot'
+import { agentStatusColors } from './agent-status-palette'
 
-// Match desktop sidebar StatusIndicator colors/sizes for the worktree rollup; palette distinguishes moving/alive/completed states.
-export const agentStatusColors = (): Record<WorktreeStatus, string> => ({
-  working: '#eab308',
-  monitoring: '#eab308',
-  active: '#10b981',
-  done: '#10b981',
-  permission: '#ef4444',
-  failed: '#ef4444',
-  interrupted: colors.textMuted,
-  unconfirmed: colors.statusAmber,
-  inactive: 'rgba(115,115,115,0.4)'
-})
+// Desktop sidebar StatusIndicator's worktree rollup; colors live in agent-status-palette.
 
 /** `status` null is a state not known yet (rows from the phone's store): the slot keeps its width, empty. */
 export function AgentSpinner({

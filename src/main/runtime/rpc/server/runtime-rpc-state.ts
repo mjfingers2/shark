@@ -55,6 +55,7 @@ export class RuntimeRpcState {
   protected readonly serveNetworkSources: ServeNetworkSourceOptions | null
   protected webSocketSourceGuard: WebSocketSourceGuard | null = null
   protected readonly webClientRoot: string | undefined
+  protected readonly mobileWebRoot: string | undefined
   // Track actual WS bind host for pairing exposure transitions (STA-2370).
   protected wsBoundHost: string | null = null
   // Share one pending rebind across concurrent pairing offers (STA-2370).
@@ -128,6 +129,7 @@ export class RuntimeRpcState {
     pinnedBindHost,
     serveNetworkSources,
     webClientRoot,
+    mobileWebRoot,
     keepaliveIntervalMs = KEEPALIVE_INTERVAL_MS,
     longPollCap = LONG_POLL_CAP,
     metadataOwnershipPollMs = RUNTIME_METADATA_OWNERSHIP_POLL_MS,
@@ -146,6 +148,7 @@ export class RuntimeRpcState {
     this.pinnedBindHost = pinnedBindHost ?? null
     this.serveNetworkSources = serveNetworkSources ?? null
     this.webClientRoot = webClientRoot
+    this.mobileWebRoot = mobileWebRoot
     this.keepaliveIntervalMs = keepaliveIntervalMs
     this.longPollCap = longPollCap
     this.metadataOwnershipPollMs = metadataOwnershipPollMs

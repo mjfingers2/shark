@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { z } from 'zod'
+import * as z from 'zod'
 import { bindDeferredRpcOperation, defineRpcOperation } from '../transport/rpc/rpc-operation'
 import { rpcResultVariant } from '../transport/rpc/rpc-operation-result-reader'
 import type { RpcClient } from '../transport/rpc/rpc-client-contract'
@@ -28,7 +28,10 @@ const agentActivityClearWrite = bindDeferredRpcOperation(
   })
 )
 
-export type AgentActivityFailure = Readonly<{ hostId: string; needsDesktopWindow: boolean }>
+export type AgentActivityFailure = Readonly<{
+  hostId: string
+  needsDesktopWindow: boolean
+}>
 
 async function sendAgentActivity(
   client: RpcClient,
@@ -43,7 +46,10 @@ async function sendAgentActivity(
       )
     } else {
       agentActivitySetReadWrite.interpret(
-        await agentActivitySetReadWrite.request(client, { paneKeys: chunk, read: !change.unread })
+        await agentActivitySetReadWrite.request(client, {
+          paneKeys: chunk,
+          read: !change.unread
+        })
       )
     }
   }

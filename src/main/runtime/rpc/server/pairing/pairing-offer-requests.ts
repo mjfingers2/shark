@@ -88,7 +88,11 @@ export async function requestMobilePairingOffer(
     return offer
   }
   // Unadvertised loopback fallback points at the scanning device; omit it from UI endpoints.
-  return { ...offer, endpoint: ip ? offer.endpoint : null }
+  return {
+    ...offer,
+    endpoint: ip ? offer.endpoint : null,
+    mobileWebAppUrl: ip ? offer.mobileWebAppUrl : null
+  }
 }
 
 export async function requestRuntimePairingOffer(

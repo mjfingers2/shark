@@ -226,6 +226,7 @@ export class RuntimeRpcLifecycle extends RuntimeRpcWebSocketDispatch {
       host: options.host,
       port: options.port,
       staticRoot: this.webClientRoot,
+      mobileWebRoot: this.mobileWebRoot,
       ...(this.webSocketSourceGuard ? { sourceGuard: this.webSocketSourceGuard } : {}),
       ...(options.fallbackPort !== undefined ? { fallbackPort: options.fallbackPort } : {}),
       ...(options.preferPinnedPort ? { preferPinnedPort: true } : {}),

@@ -3424,6 +3424,14 @@
       "computer": "the computer",
       "otherDevice": "another device"
     },
+    "agentTree": {
+      "summaryWorking_one": "{{count}} agent · {{working}} working",
+      "summaryWorking_other": "{{count}} agents · {{working}} working",
+      "summaryDone_one": "{{count}} agent · done",
+      "summaryDone_other": "{{count}} agents · all done",
+      "main": "Main ({{value0}})",
+      "unnamed": "Subagent"
+    },
     "subagentGroup": {
       "stateCompleted": "completed",
       "stateWorking": "working",
@@ -5105,6 +5113,19 @@
       "notificationDetails": "Notification details",
       "noDesktop": "Pair a desktop to change its Shark settings.",
       "desktopOffline": "Connect to this desktop to change these."
+    }
+  },
+  "browserShell": {
+    "notice": {
+      "openFromDesktopTitle": "Open this from your desktop",
+      "openFromDesktopBody": "On your computer, open Shark's Mobile settings and open the browser link shown there on this device.",
+      "invalidLinkTitle": "This link is not a pairing link",
+      "invalidLinkBody": "Open a new link from Shark's Mobile settings on your computer.",
+      "linkUsedTitle": "This link was already used",
+      "linkUsedBody": "Each link works once. Open a new link from Shark's Mobile settings on your computer.",
+      "unreachableTitle": "Can't reach your computer",
+      "unreachableBody": "Make sure Shark is running on your computer and this device is on the same network.",
+      "retry": "Try again"
     }
   }
 }

@@ -1,6 +1,3 @@
-import { shouldPresentNotificationOptIn } from '../notifications/delivery-policy/notification-opt-in-gate'
-import { shouldPresentSessionViewOptIn } from '../session/session-view-opt-in-gate'
-
 export const MOBILE_ONBOARDING_STEPS = ['session-view', 'notifications'] as const
 export type MobileOnboardingStep = (typeof MOBILE_ONBOARDING_STEPS)[number]
 export type MobileOnboardingDestination =
@@ -10,19 +7,6 @@ export type MobileOnboardingDestination =
       pathname: '/mobile-onboarding'
       params: { steps: string; hostId?: string }
     }
-
-export async function loadMobileOnboardingSteps(): Promise<MobileOnboardingStep[]> {
-  // Read independent gates together so complete progress dots do not add serial latency.
-  const [showSessionView, showNotifications] = await Promise.all([
-    shouldPresentSessionViewOptIn(),
-    shouldPresentNotificationOptIn()
-  ])
-  return MOBILE_ONBOARDING_STEPS.filter(
-    (step) =>
-      (step === 'session-view' && showSessionView) ||
-      (step === 'notifications' && showNotifications)
-  )
-}
 
 export function mobileOnboardingDestination(
   steps: readonly MobileOnboardingStep[],

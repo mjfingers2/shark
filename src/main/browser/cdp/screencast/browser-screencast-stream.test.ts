@@ -196,4 +196,58 @@ describe('startBrowserScreencast', () => {
       vi.useRealTimers()
     }
   })
+
+  it('sends a picture the phone already shows only once a second, but still lets Chromium draw on', async () => {
+    vi.useFakeTimers()
+    const webContents = createMockWebContents()
+    const onFrame = vi.fn()
+    let now = 1000
+    const dateNow = vi.spyOn(Date, 'now').mockImplementation(() => now)
+    const session = await startBrowserScreencast(webContents as never, {
+      format: 'jpeg',
+      quality: 70,
+      maxWidth: 1440,
+      maxHeight: 1200,
+      everyNthFrame: 1,
+      minFrameIntervalMs: 0,
+      holdPaint: () => () => {},
+      onFrame
+    })
+    const emitLive = (text: string, sessionId: number) =>
+      webContents.debugger.emit('message', {}, 'Page.screencastFrame', {
+        data: Buffer.from(text).toString('base64'),
+        sessionId,
+        metadata: { deviceWidth: 800, deviceHeight: 600, timestamp: sessionId }
+      })
+    const sentTexts = () =>
+      onFrame.mock.calls.map((call) =>
+        Buffer.from(decodeBrowserScreencastFrame(call[0])?.image ?? new Uint8Array()).toString()
+      )
+    try {
+      emitLive('game-over', 1)
+      now = 1040
+      emitLive('game-over', 2)
+      now = 1080
+      emitLive('game-over', 3)
+      expect(sentTexts()).toEqual(['game-over'])
+      await vi.advanceTimersByTimeAsync(0)
+      // A skipped repeat is still acknowledged, or Chromium would stop sending pictures.
+      expect(webContents.debugger.sendCommand).toHaveBeenCalledWith('Page.screencastFrameAck', {
+        sessionId: 3
+      })
+
+      now = 1120
+      emitLive('running', 4)
+      expect(sentTexts()).toEqual(['game-over', 'running'])
+
+      now = 2200
+      emitLive('running', 5)
+      expect(sentTexts()).toEqual(['game-over', 'running', 'running'])
+    } finally {
+      dateNow.mockRestore()
+      session.stop()
+      await session.done
+      vi.useRealTimers()
+    }
+  })
 })

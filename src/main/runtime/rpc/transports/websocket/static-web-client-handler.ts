@@ -1,8 +1,18 @@
-import { createReadStream } from 'node:fs'
 import { stat } from 'node:fs/promises'
 import type { IncomingMessage, RequestListener, ServerResponse } from 'node:http'
 import { basename, extname, isAbsolute, posix, relative, resolve } from 'node:path'
 import { readBundledWebClientFiles } from '../../../../../shared/bundled-web-client-manifest'
+import { createMobileWebApp, type MobileWebApp } from './mobile-web-app/mobile-web-app-files'
+import {
+  buildMobileWebAppManifest,
+  MOBILE_WEB_APP_MANIFEST_PATHNAME
+} from './mobile-web-app/mobile-web-app-manifest'
+import {
+  sendStaticBody,
+  sendStaticFile,
+  writeHttpStatus,
+  type StaticFileTarget
+} from './static-file-response'
 
 const STATIC_WEB_ALLOWED_PATHS = new Set(['/web-index.html'])
 const STATIC_WEB_ALLOWED_PREFIXES = ['/assets/', '/cmaps/', '/standard_fonts/', '/wasm/']
@@ -23,27 +33,46 @@ export const answerWithoutWebClient: RequestListener = (_request, response) => {
   writeHttpStatus(response, 404)
 }
 
-export function createStaticWebClientHandler(staticRoot: string): RequestListener {
-  const resolvedRoot = resolve(staticRoot)
-  let files: ReadonlySet<string> | undefined
-  try {
-    files = readBundledWebClientFiles(resolvedRoot)
-  } catch (error) {
-    // Damaged web installs must not disable the runtime server.
-    console.warn(`[ws-transport] browser client disabled: ${String(error)}`)
-    return answerWithoutWebClient
-  }
-  if (basename(resolvedRoot) === 'renderer' && !files) {
+type DesktopWebClient = { root: string; files: ReadonlySet<string> | undefined }
+
+export type StaticWebClientHandlerOptions = {
+  /** The built phone bundle (out/mobile-web), served as a home-screen web app at /m. */
+  mobileWebRoot?: string
+}
+
+export function createStaticWebClientHandler(
+  staticRoot: string | undefined,
+  options: StaticWebClientHandlerOptions = {}
+): RequestListener {
+  const desktop = staticRoot ? readDesktopWebClient(staticRoot) : null
+  const mobile = options.mobileWebRoot ? createMobileWebApp(options.mobileWebRoot) : null
+  if (!desktop && !mobile) {
     return answerWithoutWebClient
   }
   return (request, response) => {
-    void handleStaticRequest(resolvedRoot, files, request, response)
+    void handleStaticRequest(desktop, mobile, request, response)
   }
 }
 
+function readDesktopWebClient(staticRoot: string): DesktopWebClient | null {
+  const root = resolve(staticRoot)
+  let files: ReadonlySet<string> | undefined
+  try {
+    files = readBundledWebClientFiles(root)
+  } catch (error) {
+    // Damaged web installs must not disable the runtime server.
+    console.warn(`[ws-transport] browser client disabled: ${String(error)}`)
+    return null
+  }
+  if (basename(root) === 'renderer' && !files) {
+    return null
+  }
+  return { root, files }
+}
+
 async function handleStaticRequest(
-  staticRoot: string,
-  files: ReadonlySet<string> | undefined,
+  desktop: DesktopWebClient | null,
+  mobile: MobileWebApp | null,
   request: IncomingMessage,
   response: ServerResponse
 ): Promise<void> {
@@ -56,79 +85,73 @@ async function handleStaticRequest(
     return
   }
 
-  const pathname = parseStaticPathname(request.url)
-  if (!pathname) {
+  const requestPath = parseRequestPathname(request.url)
+  if (!requestPath) {
     writeHttpStatus(response, 400)
     return
   }
-  if (!isAllowedStaticWebPath(pathname) || (files && !files.has(pathname.slice(1)))) {
-    writeHttpStatus(response, 404)
-    return
-  }
-
-  const absolutePath = resolve(staticRoot, pathname.slice(1))
-  const relativePath = relative(staticRoot, absolutePath)
-  if (relativePath === '' || relativePath.startsWith('..') || isAbsolute(relativePath)) {
-    writeHttpStatus(response, 404)
-    return
-  }
-
-  let fileStat
-  try {
-    fileStat = await stat(absolutePath)
-  } catch {
-    writeHttpStatus(response, 404)
-    return
-  }
-  if (response.destroyed) {
-    return
-  }
-  if (!fileStat.isFile()) {
-    writeHttpStatus(response, 404)
-    return
-  }
-
-  response.statusCode = 200
-  response.setHeader(
-    'Content-Type',
-    STATIC_WEB_CONTENT_TYPES.get(extname(absolutePath)) ?? 'application/octet-stream'
-  )
-  response.setHeader('Content-Length', fileStat.size)
-  response.setHeader(
-    'Cache-Control',
-    pathname.startsWith('/assets/') ? 'public, max-age=31536000, immutable' : 'no-cache'
-  )
-  if (request.method === 'HEAD') {
-    response.end()
-    return
-  }
-
-  const stream = createReadStream(absolutePath)
-  const stopReading = (): void => {
-    stream.destroy()
-  }
-  response.once('close', stopReading)
-  response.once('error', stopReading)
-  stream.once('close', () => {
-    response.off('close', stopReading)
-    response.off('error', stopReading)
-  })
-  stream.on('error', () => {
-    if (response.destroyed) {
+  if (mobile?.isPagePath(requestPath)) {
+    const html = await mobile.readPageHtml()
+    if (html === null) {
+      writeHttpStatus(response, 404)
       return
     }
-    if (!response.headersSent) {
-      response.setHeader('Content-Length', 0)
-      response.setHeader('Cache-Control', 'no-store')
-      writeHttpStatus(response, 500)
-      return
-    }
-    response.destroy()
-  })
-  stream.pipe(response)
+    sendStaticBody(request, response, html, 'text/html; charset=utf-8')
+    return
+  }
+  if (mobile && requestPath === MOBILE_WEB_APP_MANIFEST_PATHNAME) {
+    const manifest = buildMobileWebAppManifest(request.url ?? requestPath)
+    sendStaticBody(request, response, manifest, 'application/manifest+json; charset=utf-8')
+    return
+  }
+
+  const pathname = mapStaticPathname(requestPath)
+  // Desktop files keep priority; the phone bundle fills in only what the desktop client lacks.
+  const target =
+    (desktop ? await resolveDesktopFile(desktop, pathname) : null) ??
+    (mobile ? await mobile.resolveFile(pathname) : null)
+  if (!target) {
+    writeHttpStatus(response, 404)
+    return
+  }
+  await sendStaticFile(request, response, target)
 }
 
-function parseStaticPathname(rawUrl: string | undefined): string | null {
+async function resolveDesktopFile(
+  desktop: DesktopWebClient,
+  pathname: string
+): Promise<StaticFileTarget | null> {
+  if (!isAllowedStaticWebPath(pathname) || (desktop.files && !desktop.files.has(pathname.slice(1)))) {
+    return null
+  }
+  const absolutePath = resolve(desktop.root, pathname.slice(1))
+  const relativePath = relative(desktop.root, absolutePath)
+  if (relativePath === '' || relativePath.startsWith('..') || isAbsolute(relativePath)) {
+    return null
+  }
+  if (!desktop.files && !(await isRegularFile(absolutePath))) {
+    // Without a manifest, only files that exist count, so a missing name can fall through to the phone bundle.
+    return null
+  }
+  return {
+    absolutePath,
+    contentType: STATIC_WEB_CONTENT_TYPES.get(extname(absolutePath)) ?? 'application/octet-stream',
+    cacheControl: pathname.startsWith('/assets/')
+      ? 'public, max-age=31536000, immutable'
+      : 'no-cache'
+  }
+}
+
+async function isRegularFile(path: string): Promise<boolean> {
+  try {
+    return (await stat(path)).isFile()
+  } catch {
+    return false
+  }
+}
+
+/** Decoded request path, or null when it is malformed or tries to leave the served roots. */
+function parseRequestPathname(rawUrl: string | undefined): string | null {
   if (!rawUrl) {
     return '/web-index.html'
   }
@@ -138,14 +161,18 @@ function parseStaticPathname(rawUrl: string | undefined): string | null {
   } catch {
     return null
   }
-  if (pathname === '/' || pathname === '/index.html') {
-    return '/web-index.html'
-  }
   if (pathname.includes('\0') || pathname.includes('\\') || pathname.split('/').includes('..')) {
     return null
   }
   if (posix.normalize(pathname) !== pathname) {
     return null
+  }
+  return pathname
+}
+
+function mapStaticPathname(pathname: string): string {
+  if (pathname === '/' || pathname === '/index.html') {
+    return '/web-index.html'
   }
   return mapProxyPrefixedStaticPathname(pathname)
 }
@@ -170,12 +197,4 @@ function isAllowedStaticWebPath(pathname: string): boolean {
     STATIC_WEB_ALLOWED_PATHS.has(pathname) ||
     STATIC_WEB_ALLOWED_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   )
-}
-
-function writeHttpStatus(response: ServerResponse, statusCode: number): void {
-  if (response.destroyed) {
-    return
-  }
-  response.statusCode = statusCode
-  response.end()
 }

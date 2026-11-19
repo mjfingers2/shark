@@ -10,6 +10,7 @@ import { MobileRelayBetaNotice } from './pairing/MobileRelayBetaNotice'
 import { MachineNameField } from '../machine-identity/MachineNameField'
 import { MobileRelayMintFailureNotice } from './mobile-relay-mint-failure-notice'
 import { WindowsFirewallNotice } from './WindowsFirewallNotice'
+import { MobileWebAppLinkRow } from './pairing/MobileWebAppLinkRow'
 import type { MobilePairingConnectionMode } from '../../../../shared/remote-runtime/pairing/mobile-pairing-connection-mode'
 import type { MobileRelayMintFailure } from '../../../../shared/remote-runtime/relay/mobile-relay-mint-failure'
 import { i18n, translate } from '@/i18n/i18n'
@@ -65,6 +66,7 @@ export function MobileHeroPairingStep({
   pairQrDataUrl,
   pairQrSize = null,
   pairingUrl,
+  mobileWebAppUrl = null,
   pairingQrError,
   relayMintFailure,
   onUseLan,
@@ -90,6 +92,8 @@ export function MobileHeroPairingStep({
   pairQrDataUrl: string | null
   pairQrSize?: number | null
   pairingUrl: string | null
+  /** The phone UI as a home-screen web app; null when this offer has no LAN link. */
+  mobileWebAppUrl?: string | null
   pairingQrError: boolean
   relayMintFailure: MobileRelayMintFailure | null
   onUseLan: () => void
@@ -333,6 +337,9 @@ export function MobileHeroPairingStep({
             {t('auto.components.mobile.MobileHero.010dddcf27', 'Copy pairing code')}
           </button>
         </div>
+        {mobileWebAppUrl != null && pairingUrl != null && !pairLoading ? (
+          <MobileWebAppLinkRow url={mobileWebAppUrl} className="mt-3" />
+        ) : null}
         <WindowsFirewallNotice
           pairingReady={pairQrDataUrl != null}
           address={selectedAddress}

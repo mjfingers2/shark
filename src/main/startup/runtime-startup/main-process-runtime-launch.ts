@@ -19,6 +19,7 @@ import { getDesktopRelayStatus } from '../cloud-startup/main-process-relay-statu
 import { startDesktopRelayService } from '../cloud-startup/main-process-relay-startup'
 import { getServeOptions } from '../serve-launch/serve-options'
 import { getBundledWebClientRoot, printServeReady } from '../serve-launch/main-process-serve'
+import { getBundledMobileWebBundleRoot } from '../../runtime/rpc/methods/mobile-delivery/bundled-mobile-web-bundle'
 import {
   bindTerminalRuntimeStartupServices,
   handleCodexHomePtySpawned,
@@ -112,7 +113,8 @@ function installRuntimeRpc(
           requirePinnedWsPort: true
         }
       : {}),
-    webClientRoot: getBundledWebClientRoot()
+    webClientRoot: getBundledWebClientRoot(),
+    mobileWebRoot: getBundledMobileWebBundleRoot()
   })
   state.runtimeRpc = runtimeRpc
   runtime.setAgentSenderPeerKey(() => runtimeRpc.getE2EEPublicKey())

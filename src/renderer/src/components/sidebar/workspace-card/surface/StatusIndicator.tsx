@@ -102,15 +102,8 @@ const StatusIndicator = React.memo(function StatusIndicator({
         className={cn('inline-flex h-3 w-3 shrink-0 items-center justify-center', className)}
         {...rest}
       >
-        <span
-          className={cn(
-            'block size-2 rounded-full',
-            status === 'done' || status === 'active'
-              ? // Quiet active terminals share the completed-session dot.
-                'bg-emerald-500'
-              : 'bg-neutral-500/40'
-          )}
-        />
+        {/* Why (Shark): green read as "Claude is still running", so done, open and inactive share the quiet dot. */}
+        <span className="block size-2 rounded-full bg-muted-foreground/40" />
       </span>
     )
   }

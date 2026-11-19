@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import type { WebContents } from 'electron'
 import {
   BrowserScreencastOpcode,
@@ -10,6 +11,27 @@ import type {
 } from './browser-screencast-stream-types'
 
 const BACKPRESSURE_RETRY_MS = 50
+// Why: a canvas page redraws the same picture every frame (a game-over screen), and each copy
+// costs the phone a download and a decode. A repeat still goes out once a second, so a phone
+// waiting on its first picture after a reload is never left waiting.
+const REPEAT_FRAME_RESEND_MS = 1000
+
+function repeatsLastSent(
+  frame: PendingScreencastFrame,
+  lastSent: PendingScreencastFrame | null,
+  sinceLastSentMs: number
+): boolean {
+  if (lastSent === null || sinceLastSentMs >= REPEAT_FRAME_RESEND_MS) {
+    return false
+  }
+  // Chromium's capture timestamp differs on every frame; the rest says where the picture sits.
+  const { timestamp: _frameTime, ...placement } = frame.metadata
+  const { timestamp: _lastTime, ...lastPlacement } = lastSent.metadata
+  return (
+    Buffer.compare(frame.image, lastSent.image) === 0 &&
+    JSON.stringify(placement) === JSON.stringify(lastPlacement)
+  )
+}
 
 type BrowserScreencastFramePacerDeps = {
   dbg: WebContents['debugger']
@@ -31,6 +53,7 @@ export function createBrowserScreencastFramePacer(
   const { dbg, options, isClosed, isStopping } = deps
   let seq = 0
   let lastFrameSentAt = 0
+  let lastSent: PendingScreencastFrame | null = null
   let pendingFrame: PendingScreencastFrame | null = null
   let pendingFrameTimer: ReturnType<typeof setTimeout> | null = null
 
@@ -58,7 +81,12 @@ export function createBrowserScreencastFramePacer(
     if (isClosed() || isStopping()) {
       return false
     }
-    lastFrameSentAt = Date.now()
+    const now = Date.now()
+    if (repeatsLastSent(frame, lastSent, now - lastFrameSentAt)) {
+      // Counted as delivered so the caller still acks Chromium, which keeps drawing.
+      return true
+    }
+    lastFrameSentAt = now
     const accepted = options.onFrame(
       encodeBrowserScreencastFrame({
         opcode: BrowserScreencastOpcode.Frame,
@@ -68,7 +96,12 @@ export function createBrowserScreencastFramePacer(
         image: frame.image
       })
     )
-    return accepted !== false
+    if (accepted === false) {
+      return false
+    }
+    // Only a picture the transport took counts; a refused one is retried, never skipped.
+    lastSent = frame
+    return true
   }
 
   const schedulePendingFrameRetry = (): void => {

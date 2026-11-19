@@ -19,7 +19,7 @@ function appearanceOptions(t: Translate): { value: MobileAppearancePreference; l
   ]
 }
 
-export default function AppearanceSettingsScreen() {
+export default function AppearanceSettingsScreen({ onBack }: { onBack?: () => void } = {}) {
   useMobileColorScheme()
   const t = useMobileTranslation()
   const router = useRouter()
@@ -28,7 +28,7 @@ export default function AppearanceSettingsScreen() {
   return (
     <SettingsScreen
       title={t('settings.appearance.title', 'Appearance')}
-      onBack={() => router.back()}
+      onBack={onBack ?? (() => router.back())}
     >
       <SettingsSection
         first
