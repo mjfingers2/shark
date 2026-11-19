@@ -38,6 +38,7 @@ Shark 는 스스로 업데이트하지 않아요. 새 버전이 나오면 Releas
 ## 아이패드·아이폰에서 쓰기
 
 맥의 Shark 를 아이패드나 아이폰에서도 볼 수 있어요. 방법은 두 가지이고, 편한 쪽을 고르면 돼요.
+같은 안내를 [shark-mobile-app.vercel.app](https://shark-mobile-app.vercel.app) 에서도 볼 수 있어요 (페이지 소스는 `site/shark-mobile/`).
 어느 쪽이든 **맥이 켜져 있고 Shark 가 실행 중**이어야 하고, 맥과 기기가 **같은 와이파이**에 있어야 해요.
 
 | | ① 웹 앱 (홈 화면에 추가) | ② Shark 모바일 앱 |
