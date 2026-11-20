@@ -170,6 +170,7 @@ export function NativeChatStructuredSession(props: Omit<NativeChatStructuredView
     directory: fileLinkContext,
     messages: controller.messages,
     epoch: controller.epoch,
+    turn: controller,
     focusComposer
   })
   const paneCommands = useStructuredNativeChatPaneCommands({
